@@ -1,11 +1,11 @@
 package cc.ibooker.ibookereditorandroid;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
+
+import cc.ibooker.ibookereditorlib.IbookerEditorView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,12 +14,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*ImageView boldIBtn = findViewById(R.id.ibtn_bold);
-        boldIBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "加粗", Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        IbookerEditorView ibookerEditorView = findViewById(R.id.ibookereditorview);
+
+        // 设置书客编辑器顶部布局相关属性
+        ibookerEditorView.getIbookerEditorTopView()
+                .setBackImgVisibility(View.VISIBLE)
+                .setHelpIBtnVisibility(View.VISIBLE);
+
+        // 设置书客编辑器中间布局相关属性
+        ibookerEditorView.getIbookerEditorVpView().getEditView()
+                .setIbookerEdHint("书客编辑器")
+                .setIbookerEdBackgroundColor(Color.parseColor("#DDDDDD"));
     }
 }

@@ -2,10 +2,14 @@ package cc.ibooker.ibookereditorlib;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
@@ -20,11 +24,36 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BAC
  * 书客编辑器布局
  * Created by 邹峰立 on 2018/2/11.
  */
-public class IbookerEditorView extends LinearLayout implements IbookerEditorTopView.OnTopClickListener {
+public class IbookerEditorView extends LinearLayout implements IbookerEditorTopView.OnTopClickListener, IbookerEditorToolView.OnToolClickListener {
     private IbookerEditorTopView ibookerEditorTopView;
     private IbookerEditorVpView ibookerEditorVpView;
     private IbookerEditorToolView ibookerEditorToolView;
 
+    public IbookerEditorTopView getIbookerEditorTopView() {
+        return ibookerEditorTopView;
+    }
+
+    public void setIbookerEditorTopView(IbookerEditorTopView ibookerEditorTopView) {
+        this.ibookerEditorTopView = ibookerEditorTopView;
+    }
+
+    public IbookerEditorVpView getIbookerEditorVpView() {
+        return ibookerEditorVpView;
+    }
+
+    public void setIbookerEditorVpView(IbookerEditorVpView ibookerEditorVpView) {
+        this.ibookerEditorVpView = ibookerEditorVpView;
+    }
+
+    public IbookerEditorToolView getIbookerEditorToolView() {
+        return ibookerEditorToolView;
+    }
+
+    public void setIbookerEditorToolView(IbookerEditorToolView ibookerEditorToolView) {
+        this.ibookerEditorToolView = ibookerEditorToolView;
+    }
+
+    // 构造方法
     public IbookerEditorView(Context context) {
         this(context, null);
     }
@@ -51,10 +80,53 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         // 中间区域
         ibookerEditorVpView = new IbookerEditorVpView(context);
         ibookerEditorVpView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+        ibookerEditorVpView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                changeVpUpdateIbookerEditorTopView(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         addView(ibookerEditorVpView);
+        ibookerEditorVpView.setCurrentItem(0);
+        changeVpUpdateIbookerEditorTopView(0);
         // 底部工具栏
         ibookerEditorToolView = new IbookerEditorToolView(context);
         addView(ibookerEditorToolView);
+    }
+
+    // 设置ViewPager变化
+    private void changeVpUpdateIbookerEditorTopView(int position) {
+        if (ibookerEditorTopView != null)
+            if (position == 0) {
+                ibookerEditorTopView.getEditIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_edit_orange);
+                ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_gray);
+                openInputSoft(true);
+            } else if (position == 1) {
+                ibookerEditorTopView.getEditIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_edit_gray);
+                ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_orange);
+                openInputSoft(false);
+            }
+    }
+
+    // 关闭/开启软盘
+    private void openInputSoft(boolean isOpen) {
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            if (isOpen)
+                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+            else
+                imm.hideSoftInputFromWindow(getApplicationWindowToken(), 0);
+        }
     }
 
     // 顶部按钮点击事件监听
@@ -67,12 +139,30 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         } else if (tag.equals(IBTN_REDO)) {// 重做
 
         } else if (tag.equals(IBTN_EDIT)) {// 编辑
-
+            ibookerEditorVpView.setCurrentItem(0);
         } else if (tag.equals(IBTN_PREVIEW)) {// 预览
-
+            ibookerEditorVpView.setCurrentItem(1);
         } else if (tag.equals(IBTN_HELP)) {// 帮助
-
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse("http://ibooker.cc/article/1/detail");
+            intent.setData(content_url);
+            getContext().startActivity(intent);
         } else if (tag.equals(IBTN_ABOUT)) {// 关于
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse("http://ibooker.cc/article/182/detail");
+            intent.setData(content_url);
+            getContext().startActivity(intent);
+        }
+    }
+
+    // 工具栏按钮点击事件监听
+    @Override
+    public void onToolClick(Object tag) {
+        if (tag.equals(IMG_BACK)) {// 返回
+            ((Activity) getContext()).finish();
+        } else if (tag.equals(IBTN_UNDO)) {// 撤销
 
         }
     }

@@ -17,6 +17,14 @@ public class IbookerEditorVpView extends ViewPager {
     private ArrayList<View> mDatas;
     private IbookerEditorVpAdapter adapter;
 
+    public IbookerEditorEditView getEditView() {
+        return editView;
+    }
+
+    public IbookerEditorPreView getPreView() {
+        return preView;
+    }
+
     public IbookerEditorVpView(Context context) {
         this(context, null);
     }
@@ -37,6 +45,8 @@ public class IbookerEditorVpView extends ViewPager {
         mDatas.add(preView);
 
         setAdapter();
+        // 设置缓存
+        setOffscreenPageLimit(mDatas.size());
     }
 
     /**

@@ -2,6 +2,7 @@ package cc.ibooker.ibookereditorlib;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -53,6 +54,32 @@ public class IbookerEditorEditView extends LinearLayout {
         addView(ibookerEd);
 
         ((Activity) ibookerEd.getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
+
+    // 设置输入框
+    public IbookerEditorEditView setIbookerEdTextSize(float size) {
+        ibookerEd.setTextSize(size);
+        return this;
+    }
+
+    public IbookerEditorEditView setIbookerEdTextColor(@ColorInt int color) {
+        ibookerEd.setTextColor(color);
+        return this;
+    }
+
+    public IbookerEditorEditView setIbookerEdHint(CharSequence hint) {
+        ibookerEd.setHint(hint);
+        return this;
+    }
+
+    public IbookerEditorEditView setIbookerEdHintTextColor(@ColorInt int color) {
+        ibookerEd.setHintTextColor(color);
+        return this;
+    }
+
+    public IbookerEditorEditView setIbookerEdBackgroundColor(@ColorInt int color) {
+        ibookerEd.setBackgroundColor(color);
+        return this;
     }
 
 }

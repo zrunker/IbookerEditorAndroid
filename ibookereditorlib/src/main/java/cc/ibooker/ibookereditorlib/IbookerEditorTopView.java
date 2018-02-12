@@ -2,6 +2,7 @@ package cc.ibooker.ibookereditorlib;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -122,6 +123,116 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     public void onClick(View v) {
         if (onTopClickListener != null)
             onTopClickListener.onTopClick(v.getTag());
+    }
+
+    // getter
+    public ImageView getBackImg() {
+        return backImg;
+    }
+
+    public ImageView getAboutImg() {
+        return aboutImg;
+    }
+
+    public LinearLayout getRightLayout() {
+        return rightLayout;
+    }
+
+    public ImageButton getUndoIBtn() {
+        return undoIBtn;
+    }
+
+    public ImageButton getRedoIBtn() {
+        return redoIBtn;
+    }
+
+    public ImageButton getEditIBtn() {
+        return editIBtn;
+    }
+
+    public ImageButton getPreviewIBtn() {
+        return previewIBtn;
+    }
+
+    public ImageButton getHelpIBtn() {
+        return helpIBtn;
+    }
+
+    // 设置返回按钮backImg
+    public IbookerEditorTopView setBackImageResource(@DrawableRes int resId) {
+        backImg.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setBackImgVisibility(int visibility) {
+        backImg.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置撤销按钮undoIBtn
+    public IbookerEditorTopView setUndoImageResource(@DrawableRes int resId) {
+        undoIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setUndoIBtnVisibility(int visibility) {
+        undoIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置重做按钮
+    public IbookerEditorTopView setRedoImageResource(@DrawableRes int resId) {
+        redoIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setRedoIBtnVisibility(int visibility) {
+        redoIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置编辑按钮
+    public IbookerEditorTopView setEditImageResource(@DrawableRes int resId) {
+        editIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setEditIBtnVisibility(int visibility) {
+        editIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置预览按钮
+    public IbookerEditorTopView setPreviewImageResource(@DrawableRes int resId) {
+        previewIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setPreviewIBtnVisibility(int visibility) {
+        previewIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置帮助按钮
+    public IbookerEditorTopView setHelpImageResource(@DrawableRes int resId) {
+        helpIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setHelpIBtnVisibility(int visibility) {
+        helpIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置关于按钮
+    public IbookerEditorTopView setAboutImageResource(@DrawableRes int resId) {
+        aboutImg.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setAboutImgVisibility(int visibility) {
+        aboutImg.setVisibility(visibility);
+        return this;
     }
 
     /**
