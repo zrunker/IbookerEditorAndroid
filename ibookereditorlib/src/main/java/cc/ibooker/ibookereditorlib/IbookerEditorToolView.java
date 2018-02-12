@@ -22,6 +22,116 @@ public class IbookerEditorToolView extends HorizontalScrollView {
             codeIBtn, imguIBtn, olIBtn, ulIBtn, unselectedIBtn, selectedIBtn, tableIBtn, htmlIBtn, hrIBtn,
             emojiIBtn;
 
+    // getter
+    public LinearLayout getToolLayout() {
+        return toolLayout;
+    }
+
+    public ImageButton getBoldIBtn() {
+        return boldIBtn;
+    }
+
+    public ImageButton getItalicIBtn() {
+        return italicIBtn;
+    }
+
+    public ImageButton getStrikeoutIBtn() {
+        return strikeoutIBtn;
+    }
+
+    public ImageButton getUnderlineIBtn() {
+        return underlineIBtn;
+    }
+
+    public ImageButton getCapitalsIBtn() {
+        return capitalsIBtn;
+    }
+
+    public ImageButton getUppercaseIBtn() {
+        return uppercaseIBtn;
+    }
+
+    public ImageButton getLowercaseIBtn() {
+        return lowercaseIBtn;
+    }
+
+    public ImageButton getH1IBtn() {
+        return h1IBtn;
+    }
+
+    public ImageButton getH2IBtn() {
+        return h2IBtn;
+    }
+
+    public ImageButton getH3IBtn() {
+        return h3IBtn;
+    }
+
+    public ImageButton getH4IBtn() {
+        return h4IBtn;
+    }
+
+    public ImageButton getH5IBtn() {
+        return h5IBtn;
+    }
+
+    public ImageButton getH6IBtn() {
+        return h6IBtn;
+    }
+
+    public ImageButton getLinkIBtn() {
+        return linkIBtn;
+    }
+
+    public ImageButton getQuoteIBtn() {
+        return quoteIBtn;
+    }
+
+    public ImageButton getCodeIBtn() {
+        return codeIBtn;
+    }
+
+    public ImageButton getImguIBtn() {
+        return imguIBtn;
+    }
+
+    public ImageButton getOlIBtn() {
+        return olIBtn;
+    }
+
+    public ImageButton getUlIBtn() {
+        return ulIBtn;
+    }
+
+    public ImageButton getUnselectedIBtn() {
+        return unselectedIBtn;
+    }
+
+    public ImageButton getSelectedIBtn() {
+        return selectedIBtn;
+    }
+
+    public ImageButton getTableIBtn() {
+        return tableIBtn;
+    }
+
+    public ImageButton getHtmlIBtn() {
+        return htmlIBtn;
+    }
+
+    public ImageButton getHrIBtn() {
+        return hrIBtn;
+    }
+
+    public ImageButton getEmojiIBtn() {
+        return emojiIBtn;
+    }
+
+    public OnToolClickListener getOnToolClickListener() {
+        return onToolClickListener;
+    }
+
+    // 构造方法
     public IbookerEditorToolView(Context context) {
         this(context, null);
     }
@@ -202,6 +312,281 @@ public class IbookerEditorToolView extends HorizontalScrollView {
                     onToolClickListener.onToolClick(v.getTag());
             }
         });
+    }
+
+    // 粗体
+    public IbookerEditorToolView setBoldIBtnImageResource(@DrawableRes int resId) {
+        boldIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setBoldIBtnVisibility(int visibility) {
+        boldIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 斜体
+    public IbookerEditorToolView setItalicIBtnImageResource(@DrawableRes int resId) {
+        italicIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setItalicIBtnVisibility(int visibility) {
+        italicIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 删除线
+    public IbookerEditorToolView setStrikeoutIBtnImageResource(@DrawableRes int resId) {
+        strikeoutIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setStrikeoutIBtnVisibility(int visibility) {
+        strikeoutIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 下划线
+    public IbookerEditorToolView setUnderlineIBtnImageResource(@DrawableRes int resId) {
+        underlineIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setUnderlineIBtnVisibility(int visibility) {
+        underlineIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 单词首字母大写
+    public IbookerEditorToolView setCapitalsIBtnImageResource(@DrawableRes int resId) {
+        capitalsIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setCapitalsIBtnVisibility(int visibility) {
+        capitalsIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 单词转大写
+    public IbookerEditorToolView setUppercaseIBtnImageResource(@DrawableRes int resId) {
+        uppercaseIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setUppercaseIBtnVisibility(int visibility) {
+        uppercaseIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 单词转小写
+    public IbookerEditorToolView setLowercaseIBtnImageResource(@DrawableRes int resId) {
+        lowercaseIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setLowercaseIBtnVisibility(int visibility) {
+        lowercaseIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 一级标题
+    public IbookerEditorToolView setH1IBtnImageResource(@DrawableRes int resId) {
+        h1IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH1IBtnVisibility(int visibility) {
+        h1IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 二级标题
+    public IbookerEditorToolView setH2IBtnImageResource(@DrawableRes int resId) {
+        h2IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH2IBtnVisibility(int visibility) {
+        h2IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 三级标题
+    public IbookerEditorToolView setH3IBtnImageResource(@DrawableRes int resId) {
+        h3IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH3IBtnVisibility(int visibility) {
+        h3IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 四级标题
+    public IbookerEditorToolView setH4IBtnImageResource(@DrawableRes int resId) {
+        h4IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH4IBtnVisibility(int visibility) {
+        h4IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 五级标题
+    public IbookerEditorToolView setH5IBtnImageResource(@DrawableRes int resId) {
+        h5IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH5IBtnVisibility(int visibility) {
+        h5IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 六级标题
+    public IbookerEditorToolView setH6IBtnImageResource(@DrawableRes int resId) {
+        h6IBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setH6IBtnVisibility(int visibility) {
+        h6IBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 链接
+    public IbookerEditorToolView setLinkIBtnImageResource(@DrawableRes int resId) {
+        linkIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setLinkIBtnVisibility(int visibility) {
+        linkIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 引用
+    public IbookerEditorToolView setQuoteIBtnImageResource(@DrawableRes int resId) {
+        quoteIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setQuoteIBtnVisibility(int visibility) {
+        quoteIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 代码
+    public IbookerEditorToolView setCodeIBtnImageResource(@DrawableRes int resId) {
+        codeIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setCodeIBtnVisibility(int visibility) {
+        codeIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 图片
+    public IbookerEditorToolView setImguIBtnImageResource(@DrawableRes int resId) {
+        imguIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setImguIBtnVisibility(int visibility) {
+        imguIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 数字列表
+    public IbookerEditorToolView setOlIBtnImageResource(@DrawableRes int resId) {
+        olIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setOlIBtnVisibility(int visibility) {
+        olIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 普通列表
+    public IbookerEditorToolView setUlIBtnImageResource(@DrawableRes int resId) {
+        ulIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setUlIBtnVisibility(int visibility) {
+        ulIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 列表未选中
+    public IbookerEditorToolView setUnselectedIBtnImageResource(@DrawableRes int resId) {
+        unselectedIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setUnselectedIBtnVisibility(int visibility) {
+        unselectedIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 列表选中
+    public IbookerEditorToolView setSelectedIBtnImageResource(@DrawableRes int resId) {
+        selectedIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setSelectedIBtnVisibility(int visibility) {
+        selectedIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 表格
+    public IbookerEditorToolView setTableIBtnImageResource(@DrawableRes int resId) {
+        tableIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setTableIBtnVisibility(int visibility) {
+        tableIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // HTML
+    public IbookerEditorToolView setHtmlIBtnImageResource(@DrawableRes int resId) {
+        htmlIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setHtmlIBtnVisibility(int visibility) {
+        htmlIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 分割线
+    public IbookerEditorToolView setHrIBtnImageResource(@DrawableRes int resId) {
+        hrIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setHrIBtnVisibility(int visibility) {
+        hrIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 表情
+    public IbookerEditorToolView setEmojiIBtnImageResource(@DrawableRes int resId) {
+        emojiIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorToolView setEmojiIBtnVisibility(int visibility) {
+        emojiIBtn.setVisibility(visibility);
+        return this;
     }
 
     /**

@@ -25,5 +25,9 @@ public class MainActivity extends AppCompatActivity {
         ibookerEditorView.getIbookerEditorVpView().getEditView()
                 .setIbookerEdHint("书客编辑器")
                 .setIbookerEdBackgroundColor(Color.parseColor("#DDDDDD"));
+
+        // 设置书客编辑器底部布局相关属性
+        ibookerEditorView.getIbookerEditorToolView()
+                .setEmojiIBtnVisibility(View.GONE);
     }
 }

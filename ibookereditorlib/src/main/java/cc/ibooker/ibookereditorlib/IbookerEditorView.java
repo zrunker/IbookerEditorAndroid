@@ -13,10 +13,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ITALIC;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PREVIEW;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_STRIKEOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDO;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK;
 
@@ -28,6 +31,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     private IbookerEditorTopView ibookerEditorTopView;
     private IbookerEditorVpView ibookerEditorVpView;
     private IbookerEditorToolView ibookerEditorToolView;
+    private IbookerEditorUtil ibookerEditorUtil;
 
     public IbookerEditorTopView getIbookerEditorTopView() {
         return ibookerEditorTopView;
@@ -101,6 +105,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         changeVpUpdateIbookerEditorTopView(0);
         // 底部工具栏
         ibookerEditorToolView = new IbookerEditorToolView(context);
+        ibookerEditorToolView.setOnToolClickListener(this);
         addView(ibookerEditorToolView);
     }
 
@@ -160,10 +165,16 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     // 工具栏按钮点击事件监听
     @Override
     public void onToolClick(Object tag) {
-        if (tag.equals(IMG_BACK)) {// 返回
-            ((Activity) getContext()).finish();
-        } else if (tag.equals(IBTN_UNDO)) {// 撤销
-
+        if (ibookerEditorUtil == null)
+            ibookerEditorUtil = new IbookerEditorUtil(ibookerEditorVpView.getEditView());
+        if (tag.equals(IBTN_BOLD)) {// 加粗
+            ibookerEditorUtil.bold();
+        } else if (tag.equals(IBTN_ITALIC)) {// 斜体
+            ibookerEditorUtil.italic();
+        } else if (tag.equals(IBTN_STRIKEOUT)) {// 下划线
+            ibookerEditorUtil.strikeout();
         }
+
+        // 执行预览
     }
 }

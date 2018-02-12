@@ -6,7 +6,10 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.ActionMode;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -51,6 +54,26 @@ public class IbookerEditorEditView extends LinearLayout {
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT);
         ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8));
         ibookerEd.setBackgroundResource(android.R.color.transparent);
+//        ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+//            @Override
+//            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onDestroyActionMode(ActionMode mode) {
+//            }
+//
+//            @Override
+//            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//                return false;// 返回false 就是屏蔽ActionMode菜单
+//            }
+//
+//            @Override
+//            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//                return false;
+//            }
+//        });
         addView(ibookerEd);
 
         ((Activity) ibookerEd.getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
