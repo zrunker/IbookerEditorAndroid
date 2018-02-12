@@ -1,13 +1,13 @@
 package cc.ibooker.ibookereditorlib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -17,8 +17,16 @@ import android.widget.LinearLayout;
  */
 public class IbookerEditorEditView extends LinearLayout {
     private EditText ibookerEd;
-    private IbookerEditorToolView ibookerEditorToolView;
 
+    public EditText getIbookerEd() {
+        return ibookerEd;
+    }
+
+    public void setIbookerEd(EditText ibookerEd) {
+        this.ibookerEd = ibookerEd;
+    }
+
+    // 三种构造方法
     public IbookerEditorEditView(Context context) {
         this(context, null);
     }
@@ -39,24 +47,12 @@ public class IbookerEditorEditView extends LinearLayout {
         ibookerEd = new EditText(context);
         ibookerEd.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         ibookerEd.setGravity(Gravity.TOP | Gravity.START);
-        ibookerEd.setInputType(EditorInfo.TYPE_CLASS_TEXT);
-        ibookerEd.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+        ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT);
+        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8));
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         addView(ibookerEd);
 
-        // 菜单工具栏
-//        ibookerEditorToolView = new IbookerEditorToolView(context);
-//        addView(ibookerEditorToolView);
-    }
-
-    /**
-     * dp转换成px
-     *
-     * @param value 待转换值
-     */
-    public int dpToPx(float value) {
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm);
+        ((Activity) ibookerEd.getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
 }

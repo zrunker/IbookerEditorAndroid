@@ -10,14 +10,14 @@ import java.util.ArrayList;
  * ViewPage适配器
  * Created by 邹峰立 on 2018/2/11.
  */
-public class IbookerEditorAdapter extends PagerAdapter {
+public class IbookerEditorVpAdapter extends PagerAdapter {
     private ArrayList<View> mDatas = new ArrayList<>();
 
-    public IbookerEditorAdapter(ArrayList<View> list) {
+    IbookerEditorVpAdapter(ArrayList<View> list) {
         this.mDatas = list;
     }
 
-    public void reflashData(ArrayList<View> list) {
+    void reflashData(ArrayList<View> list) {
         this.mDatas = list;
         this.notifyDataSetChanged();
     }

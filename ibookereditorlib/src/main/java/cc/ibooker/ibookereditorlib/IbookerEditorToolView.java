@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +32,8 @@ public class IbookerEditorToolView extends HorizontalScrollView {
 
     public IbookerEditorToolView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        this.setVerticalScrollBarEnabled(false);
+        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setVerticalScrollBarEnabled(false);
         init(context);
     }
 
@@ -44,14 +41,14 @@ public class IbookerEditorToolView extends HorizontalScrollView {
     private void init(Context context) {
         toolLayout = new LinearLayout(context);
         toolLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        toolLayout.setMinimumHeight(dpToPx(46));
+        toolLayout.setMinimumHeight(IbookerEditorUtil.dpToPx(context, 46));
         toolLayout.setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
         toolLayout.setGravity(Gravity.CENTER_VERTICAL);
         toolLayout.setOrientation(LinearLayout.HORIZONTAL);
         addView(toolLayout);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(dpToPx(6), dpToPx(6), dpToPx(6), dpToPx(6));
+        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6));
         // 粗体
         boldIBtn = new ImageButton(context);
         setImageBtn(boldIBtn, layoutParams, R.drawable.draw_bold, getResources().getString(R.string.bold), IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD);
@@ -196,7 +193,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         imageButton.setLayoutParams(layoutParams);
         imageButton.setBackgroundResource(resid);
         imageButton.setContentDescription(contentDescription);
-        imageButton.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
+        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12));
         imageButton.setTag(tag);
         imageButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -205,16 +202,6 @@ public class IbookerEditorToolView extends HorizontalScrollView {
                     onToolClickListener.onToolClick(v.getTag());
             }
         });
-    }
-
-    /**
-     * dp转换成px
-     *
-     * @param value 待转换值
-     */
-    public int dpToPx(float value) {
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm);
     }
 
     /**

@@ -1,12 +1,9 @@
 package cc.ibooker.ibookereditorlib;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +15,7 @@ public class IbookerEditorVpView extends ViewPager {
     private IbookerEditorEditView editView;
     private IbookerEditorPreView preView;
     private ArrayList<View> mDatas;
-    private IbookerEditorAdapter adapter;
+    private IbookerEditorVpAdapter adapter;
 
     public IbookerEditorVpView(Context context) {
         this(context, null);
@@ -47,7 +44,7 @@ public class IbookerEditorVpView extends ViewPager {
      */
     private void setAdapter() {
         if (adapter == null) {
-            adapter = new IbookerEditorAdapter(mDatas);
+            adapter = new IbookerEditorVpAdapter(mDatas);
             this.setAdapter(adapter);
         } else {
             adapter.reflashData(mDatas);
