@@ -1,0 +1,56 @@
+package cc.ibooker.ibookereditorlib;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+/**
+ * 书客编辑器界面 - ViewPager
+ * Created by 邹峰立 on 2018/1/17.
+ */
+public class IbookerEditorVpView extends ViewPager {
+    private IbookerEditorEditView editView;
+    private IbookerEditorPreView preView;
+    private ArrayList<View> mDatas;
+    private IbookerEditorAdapter adapter;
+
+    public IbookerEditorVpView(Context context) {
+        this(context, null);
+    }
+
+    public IbookerEditorVpView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context);
+    }
+
+    // 初始化
+    private void init(Context context) {
+        editView = new IbookerEditorEditView(context);
+        preView = new IbookerEditorPreView(context);
+
+        if (mDatas == null)
+            mDatas = new ArrayList<>();
+        mDatas.add(editView);
+        mDatas.add(preView);
+
+        setAdapter();
+    }
+
+    /**
+     * 自定义setAdapter
+     */
+    private void setAdapter() {
+        if (adapter == null) {
+            adapter = new IbookerEditorAdapter(mDatas);
+            this.setAdapter(adapter);
+        } else {
+            adapter.reflashData(mDatas);
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">IbookerEditorLib</string>
+    <string name="back">返回</string>
+    <string name="bold">加粗</string>
+    <string name="italic">斜体</string>
+    <string name="strikeout">删除线</string>
+    <string name="underline">下划线</string>
+    <string name="capitals">单词首字母大写</string>
+    <string name="uppercase">单词转大写</string>
+    <string name="lowercase">单词转小写</string>
+    <string name="h1">一级标题</string>
+    <string name="h2">二级标题</string>
+    <string name="h3">三级标题</string>
+    <string name="h4">四级标题</string>
+    <string name="h5">五级标题</string>
+    <string name="h6">六级标题</string>
+    <string name="link">链接</string>
+    <string name="quote">引用</string>
+    <string name="code">代码</string>
+    <string name="img_u">图片</string>
+    <string name="ol">数字列表</string>
+    <string name="ul">普通列表</string>
+    <string name="unselected">列表未选中</string>
+    <string name="selected">列表选中</string>
+    <string name="table">表格</string>
+    <string name="html">HTML</string>
+    <string name="hr">分割线</string>
+    <string name="emoji">表情</string>
+    <string name="undo">撤销</string>
+    <string name="redo">重做</string>
+    <string name="edit">编辑</string>
+    <string name="preview">预览</string>
+    <string name="help">帮助</string>
+    <string name="about">关于</string>
+</resources>

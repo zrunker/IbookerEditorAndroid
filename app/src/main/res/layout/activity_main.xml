@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cc.ibooker.ibookereditorlib.IbookerEditorView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:orientation="vertical">
+
+        <cc.ibooker.ibookereditorlib.IbookerEditorTopView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        &lt;!&ndash;<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/back"
+                android:src="@drawable/icon_back" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end|center_vertical">
+
+                <ImageButton
+                    android:id="@+id/ibtn_undo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/draw_undo"
+                    android:contentDescription="@string/undo"
+                    android:padding="12dp" />
+
+                <ImageButton
+                    android:id="@+id/ibtn_redo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/draw_redo"
+                    android:contentDescription="@string/redo"
+                    android:padding="12dp" />
+
+                <ImageButton
+                    android:id="@+id/ibtn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/draw_edit"
+                    android:contentDescription="@string/edit"
+                    android:padding="12dp" />
+
+                <ImageButton
+                    android:id="@+id/ibtn_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/draw_preview"
+                    android:contentDescription="@string/preview"
+                    android:padding="12dp" />
+
+                <ImageButton
+                    android:id="@+id/ibtn_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/draw_help"
+                    android:contentDescription="@string/help"
+                    android:padding="12dp" />
+
+                <ImageView
+                    android:id="@+id/ibtn_about"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="5dp"
+                    android:src="@drawable/ibooker_editor_logo" />
+
+            </LinearLayout>
+        </LinearLayout>&ndash;&gt;
+
+        &lt;!&ndash;<cc.ibooker.ibookereditorlib.IbookerEditorEditView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />&ndash;&gt;
+
+        &lt;!&ndash;<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/ed_ibooker"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+
+            <cc.ibooker.ibookereditorlib.IbookerEditorToolView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>&ndash;&gt;
+
+        <cc.ibooker.ibookereditorlib.IbookerEditorVpView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    -->
