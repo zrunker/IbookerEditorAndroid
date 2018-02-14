@@ -14,13 +14,34 @@ import android.widget.LinearLayout;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CAPITALS;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CODE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H1;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H2;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H3;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H4;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H5;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H6;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HR;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HTML;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_IMG_U;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ITALIC;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_LINK;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_LOWERCASE;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_OL;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PREVIEW;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_QUOTE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SELECTED;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_STRIKEOUT;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_TABLE;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UL;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDERLINE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDO;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNSELECTED;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UPPERCASE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK;
 
 /**
@@ -171,8 +192,50 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             ibookerEditorUtil.bold();
         } else if (tag.equals(IBTN_ITALIC)) {// 斜体
             ibookerEditorUtil.italic();
-        } else if (tag.equals(IBTN_STRIKEOUT)) {// 下划线
+        } else if (tag.equals(IBTN_STRIKEOUT)) {// 删除线
             ibookerEditorUtil.strikeout();
+        } else if (tag.equals(IBTN_UNDERLINE)) {// 下划线
+            ibookerEditorUtil.underline();
+        } else if (tag.equals(IBTN_CAPITALS)) {// 单词首字母大写
+            ibookerEditorUtil.capitals();
+        } else if (tag.equals(IBTN_UPPERCASE)) {// 字母转大写
+            ibookerEditorUtil.uppercase();
+        } else if (tag.equals(IBTN_LOWERCASE)) {// 字母转小写
+            ibookerEditorUtil.lowercase();
+        } else if (tag.equals(IBTN_H1)) {// 一级标题
+            ibookerEditorUtil.h1();
+        } else if (tag.equals(IBTN_H2)) {// 二级标题
+            ibookerEditorUtil.h2();
+        } else if (tag.equals(IBTN_H3)) {// 三级标题
+            ibookerEditorUtil.h3();
+        } else if (tag.equals(IBTN_H4)) {// 四级标题
+            ibookerEditorUtil.h4();
+        } else if (tag.equals(IBTN_H5)) {// 五级标题
+            ibookerEditorUtil.h5();
+        } else if (tag.equals(IBTN_H6)) {// 六级标题
+            ibookerEditorUtil.h6();
+        } else if (tag.equals(IBTN_LINK)) {// 超链接
+            ibookerEditorUtil.link();
+        } else if (tag.equals(IBTN_QUOTE)) {// 引用
+            ibookerEditorUtil.quote();
+        } else if (tag.equals(IBTN_CODE)) {// 代码
+            ibookerEditorUtil.code();
+        } else if (tag.equals(IBTN_IMG_U)) {// 图片
+            ibookerEditorUtil.imgu();
+        } else if (tag.equals(IBTN_OL)) {// 数字列表
+            ibookerEditorUtil.ol();
+        } else if (tag.equals(IBTN_UL)) {// 普通列表
+            ibookerEditorUtil.ul();
+        } else if (tag.equals(IBTN_UNSELECTED)) {// 复选框未选中
+            ibookerEditorUtil.tasklistsUnChecked();
+        } else if (tag.equals(IBTN_SELECTED)) {// 复选框选中
+            ibookerEditorUtil.tasklistsChecked();
+        } else if (tag.equals(IBTN_TABLE)) {// 表格
+            ibookerEditorUtil.tables();
+        } else if (tag.equals(IBTN_HTML)) {// HTML
+            ibookerEditorUtil.html();
+        } else if (tag.equals(IBTN_HR)) {// 分割线
+            ibookerEditorUtil.hr();
         }
 
         // 执行预览

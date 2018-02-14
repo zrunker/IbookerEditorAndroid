@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,7 +58,9 @@ public class IbookerEditorEditView extends LinearLayout {
         ibookerEd = new EditText(context);
         ibookerEd.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         ibookerEd.setGravity(Gravity.TOP | Gravity.START);
-        ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT);
+        ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        ibookerEd.setSingleLine(false);
+        ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8));
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
@@ -77,14 +80,15 @@ public class IbookerEditorEditView extends LinearLayout {
                     Field mEditor = TextView.class.getDeclaredField("mEditor");//找到 TextView中的成员变量mEditor
                     mEditor.setAccessible(true);
                     Object object = mEditor.get(ibookerEd);//根具持有对象拿到mEditor变量里的值 （android.widget.Editor类的实例）
+
                     //--------------------显示选择控制工具------------------------------//
                     Class mClass = Class.forName("android.widget.Editor");//拿到隐藏类Editor；
                     Method method = mClass.getDeclaredMethod("getSelectionController");//取得方法  getSelectionController
                     method.setAccessible(true);//取消访问私有方法的合法性检查
                     Object resultobject = method.invoke(object);//调用方法，返回SelectionModifierCursorController类的实例
 
-                    Method show = resultobject.getClass().getDeclaredMethod("show");//查找 SelectionModifierCursorController类中的show方法
-                    show.invoke(resultobject);//执行SelectionModifierCursorController类的实例的show方法
+                    Method show = resultobject.getClass().getDeclaredMethod("show");// 查找 SelectionModifierCursorController类中的show方法
+                    show.invoke(resultobject);// 执行SelectionModifierCursorController类的实例的show方法
                     ibookerEd.setHasTransientState(true);
 
                     //--------------------忽略最后一次TouchUP事件-----------------------------------------------//
