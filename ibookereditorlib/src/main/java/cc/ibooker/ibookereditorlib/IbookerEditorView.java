@@ -161,9 +161,9 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         if (tag.equals(IMG_BACK)) {// 返回
             ((Activity) getContext()).finish();
         } else if (tag.equals(IBTN_UNDO)) {// 撤销
-
+            getIbookerEditorVpView().getEditView().undo();
         } else if (tag.equals(IBTN_REDO)) {// 重做
-
+            getIbookerEditorVpView().getEditView().redo();
         } else if (tag.equals(IBTN_EDIT)) {// 编辑
             ibookerEditorVpView.setCurrentItem(0);
         } else if (tag.equals(IBTN_PREVIEW)) {// 预览

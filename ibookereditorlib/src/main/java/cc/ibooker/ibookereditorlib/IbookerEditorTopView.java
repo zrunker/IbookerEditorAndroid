@@ -65,7 +65,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         undoIBtn.setLayoutParams(layoutParams);
         undoIBtn.setBackgroundResource(R.drawable.draw_undo);
         undoIBtn.setContentDescription(getResources().getString(R.string.undo));
-        undoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12));
+        undoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
         undoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDO);
         undoIBtn.setOnClickListener(this);
         rightLayout.addView(undoIBtn);
@@ -74,7 +74,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         redoIBtn.setLayoutParams(layoutParams);
         redoIBtn.setBackgroundResource(R.drawable.draw_redo);
         redoIBtn.setContentDescription(getResources().getString(R.string.redo));
-        redoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12));
+        redoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
         redoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO);
         redoIBtn.setOnClickListener(this);
         rightLayout.addView(redoIBtn);
@@ -83,7 +83,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         editIBtn.setLayoutParams(layoutParams);
         editIBtn.setBackgroundResource(R.drawable.draw_edit);
         editIBtn.setContentDescription(getResources().getString(R.string.edit));
-        editIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12));
+        editIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
         editIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT);
         editIBtn.setOnClickListener(this);
         rightLayout.addView(editIBtn);
@@ -92,7 +92,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         previewIBtn.setLayoutParams(layoutParams);
         previewIBtn.setBackgroundResource(R.drawable.draw_preview);
         previewIBtn.setContentDescription(getResources().getString(R.string.preview));
-        previewIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12));
+        previewIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
         previewIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PREVIEW);
         previewIBtn.setOnClickListener(this);
         rightLayout.addView(previewIBtn);
@@ -101,7 +101,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         helpIBtn.setLayoutParams(layoutParams);
         helpIBtn.setBackgroundResource(R.drawable.draw_help);
         helpIBtn.setContentDescription(getResources().getString(R.string.help));
-        helpIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12), IbookerEditorUtil.dpToPx(context, 12));
+        helpIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
         helpIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP);
         helpIBtn.setOnClickListener(this);
         rightLayout.addView(helpIBtn);

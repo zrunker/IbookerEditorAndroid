@@ -6,7 +6,9 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Gravity;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * 书客编辑器 - 编辑界面
@@ -28,6 +31,10 @@ import java.lang.reflect.Method;
  */
 public class IbookerEditorEditView extends LinearLayout {
     private EditText ibookerEd;
+
+    private ArrayList<String> textList = new ArrayList<>();
+    private boolean isSign = true;// 标记是否需要记录currentPos=textList.size()和textList
+    private int currentPos = 0;
 
     public EditText getIbookerEd() {
         return ibookerEd;
@@ -82,17 +89,17 @@ public class IbookerEditorEditView extends LinearLayout {
                     Object object = mEditor.get(ibookerEd);//根具持有对象拿到mEditor变量里的值 （android.widget.Editor类的实例）
 
                     //--------------------显示选择控制工具------------------------------//
-                    Class mClass = Class.forName("android.widget.Editor");//拿到隐藏类Editor；
-                    Method method = mClass.getDeclaredMethod("getSelectionController");//取得方法  getSelectionController
-                    method.setAccessible(true);//取消访问私有方法的合法性检查
-                    Object resultobject = method.invoke(object);//调用方法，返回SelectionModifierCursorController类的实例
+                    Class mClass = Class.forName("android.widget.Editor");// 拿到隐藏类Editor；
+                    Method method = mClass.getDeclaredMethod("getSelectionController");// 取得方法  getSelectionController
+                    method.setAccessible(true);// 取消访问私有方法的合法性检查
+                    Object resultobject = method.invoke(object);// 调用方法，返回SelectionModifierCursorController类的实例
 
                     Method show = resultobject.getClass().getDeclaredMethod("show");// 查找 SelectionModifierCursorController类中的show方法
                     show.invoke(resultobject);// 执行SelectionModifierCursorController类的实例的show方法
                     ibookerEd.setHasTransientState(true);
 
                     //--------------------忽略最后一次TouchUP事件-----------------------------------------------//
-                    Field mSelectionActionMode = mClass.getDeclaredField("mDiscardNextActionUp");//查找变量Editor类中mDiscardNextActionUp
+                    Field mSelectionActionMode = mClass.getDeclaredField("mDiscardNextActionUp");// 查找变量Editor类中mDiscardNextActionUp
                     mSelectionActionMode.setAccessible(true);
                     mSelectionActionMode.set(object, true);//赋值为true
                 } catch (Exception e) {
@@ -106,9 +113,60 @@ public class IbookerEditorEditView extends LinearLayout {
                 return false;
             }
         });
+        ibookerEd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (textList == null)
+                    textList = new ArrayList<>();
+                if (s != null) {
+                    if (isSign) {
+                        textList.add(s.toString());
+                        currentPos = textList.size();
+                    }
+                }
+            }
+        });
         addView(ibookerEd);
 
         ((Activity) ibookerEd.getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
+
+    // 设置undo/redo
+    // 重做
+    protected void redo() {
+        if (textList != null && textList.size() > 0 && (currentPos + 1) >= 0 && (currentPos + 1) < textList.size()) {
+            isSign = false;
+            currentPos++;
+            ibookerEd.setText(textList.get(currentPos));
+            ibookerEd.setSelection(textList.get(currentPos).length());
+            isSign = true;
+        }
+    }
+
+    // 撤销
+    protected void undo() {
+        if (textList != null && textList.size() > 0) {
+            isSign = false;
+            if (currentPos == 0)
+                ibookerEd.setText("");
+            if ((currentPos - 1) >= 0 && (currentPos - 1) < textList.size()) {
+                currentPos--;
+                ibookerEd.setText(textList.get(currentPos));
+                ibookerEd.setSelection(textList.get(currentPos).length());
+            }
+            isSign = true;
+        }
+
     }
 
     // 设置输入框

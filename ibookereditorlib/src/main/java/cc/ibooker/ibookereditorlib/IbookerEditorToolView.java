@@ -303,7 +303,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         imageButton.setLayoutParams(layoutParams);
         imageButton.setBackgroundResource(resid);
         imageButton.setContentDescription(contentDescription);
-        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12), IbookerEditorUtil.dpToPx(getContext(), 12));
+        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13));
         imageButton.setTag(tag);
         imageButton.setOnClickListener(new OnClickListener() {
             @Override
