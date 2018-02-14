@@ -101,7 +101,7 @@ public class IbookerEditorUtil {
     /**
      * 加粗
      */
-    protected void bold() {
+    void bold() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -127,7 +127,7 @@ public class IbookerEditorUtil {
     /**
      * 斜体
      */
-    protected void italic() {
+    void italic() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -153,7 +153,7 @@ public class IbookerEditorUtil {
     /**
      * 删除线
      */
-    protected void strikeout() {
+    void strikeout() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -179,7 +179,7 @@ public class IbookerEditorUtil {
     /**
      * 下划线
      */
-    protected void underline() {
+    void underline() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -205,7 +205,7 @@ public class IbookerEditorUtil {
     /**
      * 单词首字母大写
      */
-    protected void capitals() {
+    void capitals() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         String selectTxt = rangeData.getText();
@@ -239,7 +239,7 @@ public class IbookerEditorUtil {
     /**
      * 字母转大写
      */
-    protected void uppercase() {
+    void uppercase() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -257,7 +257,7 @@ public class IbookerEditorUtil {
     /**
      * 字母转小写
      */
-    protected void lowercase() {
+    void lowercase() {
         // 初始化
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
@@ -275,7 +275,7 @@ public class IbookerEditorUtil {
     /**
      * 一级标题
      */
-    protected void h1() {
+    void h1() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -295,7 +295,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -306,7 +306,7 @@ public class IbookerEditorUtil {
     /**
      * 二级标题
      */
-    protected void h2() {
+    void h2() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -326,7 +326,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -337,7 +337,7 @@ public class IbookerEditorUtil {
     /**
      * 三级标题
      */
-    protected void h3() {
+    void h3() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -357,7 +357,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -368,7 +368,7 @@ public class IbookerEditorUtil {
     /**
      * 四级标题
      */
-    protected void h4() {
+    void h4() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -388,7 +388,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -399,7 +399,7 @@ public class IbookerEditorUtil {
     /**
      * 五级标题
      */
-    protected void h5() {
+    void h5() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -419,7 +419,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -430,7 +430,7 @@ public class IbookerEditorUtil {
     /**
      * 六级标题
      */
-    protected void h6() {
+    void h6() {
         // 初始化
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
@@ -450,7 +450,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -461,7 +461,7 @@ public class IbookerEditorUtil {
     /**
      * 超链接
      */
-    protected void link() {
+    void link() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.getStart();
         int end = rangeData.getEnd();
@@ -474,7 +474,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -485,7 +485,7 @@ public class IbookerEditorUtil {
     /**
      * 引用
      */
-    protected void quote() {
+    void quote() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
         int end = rangeData.end;
@@ -515,7 +515,7 @@ public class IbookerEditorUtil {
     /**
      * 代码
      */
-    protected void code() {
+    void code() {
         String finalTxt;
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
@@ -547,11 +547,11 @@ public class IbookerEditorUtil {
         int line = temp.split("\n").length - 1;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
-        thisline += "\n![图片描述](" + "http://ibooker.cc/favicon.ico/" + ')';
+        thisline += "\n![图片描述](http://ibooker.cc/favicon.ico/)";
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -562,7 +562,7 @@ public class IbookerEditorUtil {
     /**
      * 数字列表
      */
-    protected void ol() {
+    void ol() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
         int end = rangeData.end;
@@ -586,13 +586,13 @@ public class IbookerEditorUtil {
                 allLine[i] = (j++) + ". " + thisline;
                 continue;
             }
-            if (TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
+            if ((i - 1) >= 0 && TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
                 j = 1;
             }
         }
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -603,7 +603,7 @@ public class IbookerEditorUtil {
     /**
      * 普通列表
      */
-    protected void ul() {
+    void ul() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
         int end = rangeData.end;
@@ -621,7 +621,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -651,7 +651,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -680,7 +680,7 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
@@ -699,24 +699,25 @@ public class IbookerEditorUtil {
         int line = temp.split("\n").length - 1;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
-        thisline += "\n|  h1   |    h2   |      h3 |"
+        thisline += "\n|  h1   |    h2   |    h3   |"
                 + "\n|:------|:-------:|--------:|"
                 + "\n| 100   | [a][1]  | ![b][2] |"
                 + "\n| *foo* | **bar** | ~~baz~~ |";
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
+        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
         setSelectionInfo(rangeData);
     }
 
     /**
      * HTML
      */
-    protected void html() {
+    void html() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
         String text = ibookerEd.getText().toString();
@@ -728,17 +729,18 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
+        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length() - 9;
         setSelectionInfo(rangeData);
     }
 
     /**
      * 分割线
      */
-    protected void hr() {
+    void hr() {
         RangeData rangeData = getSelectionInfo();
         int start = rangeData.start;
         String text = ibookerEd.getText().toString();
@@ -750,10 +752,11 @@ public class IbookerEditorUtil {
         allLine[line] = thisline;
         String finalTxt = "";
         for (String str : allLine) {
-            finalTxt = str + "\n";
+            finalTxt = finalTxt + str + "\n";
         }
         ibookerEd.setText(finalTxt);
         // 设置光标位置
+        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
         setSelectionInfo(rangeData);
     }
 
