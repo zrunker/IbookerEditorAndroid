@@ -1,7 +1,9 @@
 package cc.ibooker.ibookereditorlib;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -19,6 +21,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -29,7 +32,7 @@ import java.util.ArrayList;
  * 书客编辑器 - 编辑界面
  * Created by 邹峰立 on 2018/2/11.
  */
-public class IbookerEditorEditView extends LinearLayout {
+public class IbookerEditorEditView extends ScrollView {
     private EditText ibookerEd;
 
     private ArrayList<String> textList = new ArrayList<>();
@@ -55,21 +58,29 @@ public class IbookerEditorEditView extends LinearLayout {
 
     public IbookerEditorEditView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.setOrientation(VERTICAL);
-        this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setVerticalScrollBarEnabled(false);
+        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         init(context);
     }
 
     // 初始化
     private void init(Context context) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        addView(linearLayout);
+
         ibookerEd = new EditText(context);
-        ibookerEd.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+        ibookerEd.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         ibookerEd.setGravity(Gravity.TOP | Gravity.START);
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8));
         ibookerEd.setBackgroundResource(android.R.color.transparent);
+        ibookerEd.setTextColor(Color.parseColor("#444444"));
+        ibookerEd.setTextSize(16);
+        ibookerEd.setLineSpacing(4, 1.3F);
         ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
@@ -89,6 +100,7 @@ public class IbookerEditorEditView extends LinearLayout {
                     Object object = mEditor.get(ibookerEd);//根具持有对象拿到mEditor变量里的值 （android.widget.Editor类的实例）
 
                     //--------------------显示选择控制工具------------------------------//
+                    @SuppressLint("PrivateApi")
                     Class mClass = Class.forName("android.widget.Editor");// 拿到隐藏类Editor；
                     Method method = mClass.getDeclaredMethod("getSelectionController");// 取得方法  getSelectionController
                     method.setAccessible(true);// 取消访问私有方法的合法性检查
@@ -98,7 +110,7 @@ public class IbookerEditorEditView extends LinearLayout {
                     show.invoke(resultobject);// 执行SelectionModifierCursorController类的实例的show方法
                     ibookerEd.setHasTransientState(true);
 
-                    //--------------------忽略最后一次TouchUP事件-----------------------------------------------//
+                    //--------------------忽略最后一次TouchUP事件------------------------------//
                     Field mSelectionActionMode = mClass.getDeclaredField("mDiscardNextActionUp");// 查找变量Editor类中mDiscardNextActionUp
                     mSelectionActionMode.setAccessible(true);
                     mSelectionActionMode.set(object, true);//赋值为true
@@ -136,13 +148,12 @@ public class IbookerEditorEditView extends LinearLayout {
                 }
             }
         });
-        addView(ibookerEd);
+        linearLayout.addView(ibookerEd);
 
         ((Activity) ibookerEd.getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
-    // 设置undo/redo
-    // 重做
+    // 重做 - redo
     protected void redo() {
         if (textList != null && textList.size() > 0 && (currentPos + 1) >= 0 && (currentPos + 1) < textList.size()) {
             isSign = false;
@@ -153,7 +164,7 @@ public class IbookerEditorEditView extends LinearLayout {
         }
     }
 
-    // 撤销
+    // 撤销 - undo
     protected void undo() {
         if (textList != null && textList.size() > 0) {
             isSign = false;
@@ -169,29 +180,53 @@ public class IbookerEditorEditView extends LinearLayout {
 
     }
 
-    // 设置输入框
+    /**
+     * 设置输入框字体大小
+     *
+     * @param size 字体大小
+     */
     public IbookerEditorEditView setIbookerEdTextSize(float size) {
         ibookerEd.setTextSize(size);
         return this;
     }
 
+    /**
+     * 设置输入框字体颜色
+     *
+     * @param color 字体颜色
+     */
     public IbookerEditorEditView setIbookerEdTextColor(@ColorInt int color) {
         ibookerEd.setTextColor(color);
         return this;
     }
 
+    /**
+     * 设置输入框hint内容
+     *
+     * @param hint hint内容
+     */
     public IbookerEditorEditView setIbookerEdHint(CharSequence hint) {
         ibookerEd.setHint(hint);
         return this;
     }
 
+    /**
+     * 设置输入框hint颜色
+     *
+     * @param color hint颜色
+     */
     public IbookerEditorEditView setIbookerEdHintTextColor(@ColorInt int color) {
         ibookerEd.setHintTextColor(color);
         return this;
     }
 
-    public IbookerEditorEditView setIbookerEdBackgroundColor(@ColorInt int color) {
-        ibookerEd.setBackgroundColor(color);
+    /**
+     * 设置编辑控件背景颜色
+     *
+     * @param color 背景颜色
+     */
+    public IbookerEditorEditView setIbookerBackgroundColor(@ColorInt int color) {
+        this.setBackgroundColor(color);
         return this;
     }
 

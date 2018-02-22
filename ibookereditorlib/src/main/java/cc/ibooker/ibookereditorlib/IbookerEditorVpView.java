@@ -12,7 +12,9 @@ import java.util.ArrayList;
  * Created by 邹峰立 on 2018/1/17.
  */
 public class IbookerEditorVpView extends ViewPager {
+    // 编辑控件
     private IbookerEditorEditView editView;
+    // 预览控件
     private IbookerEditorPreView preView;
     private ArrayList<View> mDatas;
     private IbookerEditorVpAdapter adapter;

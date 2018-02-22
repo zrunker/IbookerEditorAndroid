@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -49,11 +50,16 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BAC
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorView extends LinearLayout implements IbookerEditorTopView.OnTopClickListener, IbookerEditorToolView.OnToolClickListener {
+    // 顶部控件
     private IbookerEditorTopView ibookerEditorTopView;
+    // 中间区域ViewPager
     private IbookerEditorVpView ibookerEditorVpView;
+    // 底部工具栏
     private IbookerEditorToolView ibookerEditorToolView;
+    // 底部工具栏-操作类
     private IbookerEditorUtil ibookerEditorUtil;
 
+    // getter/setter
     public IbookerEditorTopView getIbookerEditorTopView() {
         return ibookerEditorTopView;
     }
@@ -76,6 +82,14 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
 
     public void setIbookerEditorToolView(IbookerEditorToolView ibookerEditorToolView) {
         this.ibookerEditorToolView = ibookerEditorToolView;
+    }
+
+    public IbookerEditorUtil getIbookerEditorUtil() {
+        return ibookerEditorUtil;
+    }
+
+    public void setIbookerEditorUtil(IbookerEditorUtil ibookerEditorUtil) {
+        this.ibookerEditorUtil = ibookerEditorUtil;
     }
 
     // 构造方法
@@ -102,7 +116,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         ibookerEditorTopView = new IbookerEditorTopView(context);
         ibookerEditorTopView.setOnTopClickListener(this);
         addView(ibookerEditorTopView);
-        // 中间区域
+        // 中间区域ViewPager
         ibookerEditorVpView = new IbookerEditorVpView(context);
         ibookerEditorVpView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         ibookerEditorVpView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -121,13 +135,15 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
 
             }
         });
-        addView(ibookerEditorVpView);
         ibookerEditorVpView.setCurrentItem(0);
         changeVpUpdateIbookerEditorTopView(0);
+        addView(ibookerEditorVpView);
         // 底部工具栏
         ibookerEditorToolView = new IbookerEditorToolView(context);
         ibookerEditorToolView.setOnToolClickListener(this);
         addView(ibookerEditorToolView);
+        // 底部工具栏 - 管理类
+        ibookerEditorUtil = new IbookerEditorUtil(ibookerEditorVpView.getEditView());
     }
 
     // 设置ViewPager变化
@@ -141,6 +157,8 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
                 ibookerEditorTopView.getEditIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_edit_gray);
                 ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_orange);
                 openInputSoft(false);
+                // 执行预览
+                htmlCompile();
             }
     }
 
@@ -161,9 +179,9 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         if (tag.equals(IMG_BACK)) {// 返回
             ((Activity) getContext()).finish();
         } else if (tag.equals(IBTN_UNDO)) {// 撤销
-            getIbookerEditorVpView().getEditView().undo();
+            ibookerEditorVpView.getEditView().undo();
         } else if (tag.equals(IBTN_REDO)) {// 重做
-            getIbookerEditorVpView().getEditView().redo();
+            ibookerEditorVpView.getEditView().redo();
         } else if (tag.equals(IBTN_EDIT)) {// 编辑
             ibookerEditorVpView.setCurrentItem(0);
         } else if (tag.equals(IBTN_PREVIEW)) {// 预览
@@ -237,7 +255,15 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         } else if (tag.equals(IBTN_HR)) {// 分割线
             ibookerEditorUtil.hr();
         }
+    }
 
+    // 执行HTML预览
+    private void htmlCompile() {
+        // 获取待转义内容
+        String text = ibookerEditorVpView.getEditView().getIbookerEd().getText().toString();
         // 执行预览
+        if (!TextUtils.isEmpty(text)) {
+            ibookerEditorVpView.getPreView().ibookerHtmlCompile(text);
+        }
     }
 }

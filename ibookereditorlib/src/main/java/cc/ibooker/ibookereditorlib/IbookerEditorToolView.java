@@ -143,6 +143,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
     public IbookerEditorToolView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
         setVerticalScrollBarEnabled(false);
         init(context);
     }
@@ -152,7 +153,6 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         toolLayout = new LinearLayout(context);
         toolLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         toolLayout.setMinimumHeight(IbookerEditorUtil.dpToPx(context, 46));
-        toolLayout.setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
         toolLayout.setGravity(Gravity.CENTER_VERTICAL);
         toolLayout.setOrientation(LinearLayout.HORIZONTAL);
         addView(toolLayout);

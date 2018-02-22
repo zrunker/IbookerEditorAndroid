@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         // 设置书客编辑器中间布局相关属性
         ibookerEditorView.getIbookerEditorVpView().getEditView()
                 .setIbookerEdHint("书客编辑器")
-                .setIbookerEdBackgroundColor(Color.parseColor("#DDDDDD"));
+                .setIbookerBackgroundColor(Color.parseColor("#DDDDDD"));
+
+        ibookerEditorView.getIbookerEditorVpView().getEditView().getIbookerEd().setText("### 书客编辑器\n***\n书客编辑器从这里开始，我们的每一次开始，都那么小心翼翼，这一次如果可以的话不妨就现在开始试试。\n\n书客编辑器，简易，高效。轻轻松松记录你的每一刻。\n>书客编辑器不仅仅是为了“还好”而设计\n\n“还好”，那就意味着产品不够好；“很好”，那就意味着还需要努力；产品目标只为“最好”。\n```\nWish you every day to be beautiful.\n```\n书客编辑器期待你的加入！！！\n\n![书客编辑器](http://editor.ibooker.cc/resources/images-logos/ic_launcher_96.png)\n");
 
         // 设置书客编辑器底部布局相关属性
         ibookerEditorView.getIbookerEditorToolView()

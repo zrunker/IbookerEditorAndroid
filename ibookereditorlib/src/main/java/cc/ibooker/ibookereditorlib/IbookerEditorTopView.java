@@ -20,6 +20,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     private LinearLayout rightLayout;
     private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn;
 
+    // 构造方法
     public IbookerEditorTopView(Context context) {
         this(context, null);
     }
