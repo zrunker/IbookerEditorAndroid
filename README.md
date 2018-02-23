@@ -1,11 +1,20 @@
 # IbookerEditorAndroid
 书客编辑器安卓Java版
 
->作者：邹峰立，微博：zrunker，邮箱：zrunker@yahoo.com，个人平台：www.ibooker.cc，微信公众号：书客创作。
+>作者：邹峰立，微博：zrunker，邮箱：zrunker@yahoo.com，微信公众号：书客创作，个人平台：www.ibooker.cc。
 
+>本文选自[书客创作](www.ibooker.cc)平台第130篇文章。[阅读原文](http://www.ibooker.cc/article/130/detail)
 ![书客创作](http://www.ibookerfile.cc/upload/images/acontents/1_1519218464761acontentimage.jpg)
 
 书客编辑器是一款基于Markdown标记语言的开源的富文本编辑器，它以简易的操作界面和强大的功能深受广大开发者的喜爱。正如官方所说：现在的版本不一定是最好的版本，却是最好的开源版本。官方地址：[editor.ibooker.cc](editor.ibooker.cc)。
+
+下面针对书客编辑器安卓Java版，进行详解说明。
+
+### 效果图
+
+在进行讲解之前，首先看一下书客编辑器安卓版的效果图：
+
+![书客编辑器安卓版效果图](http://www.ibookerfile.cc/upload/images/acontents/1_1519358019987acontentimage.gif)
 
 ### 一、引入资源
 
@@ -194,6 +203,9 @@ public void onToolClick(Object tag) {
 }
 ```
 其中IBTN_BOLD、IBTN_ITALIC等变量是由IbookerEditorEnum枚举类提供。
+
+[Github地址](https://github.com/zrunker/IbookerEditorAndroid/)
+[阅读原文](http://www.ibooker.cc/article/130/detail)
 
 ----------
 ![微信公众号：书客创作](http://www.ibookerfile.cc/upload/images/acontents/1_1519225707363acontentimage.jpg)
