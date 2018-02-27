@@ -3,9 +3,9 @@
 
 >作者：邹峰立，微博：zrunker，邮箱：zrunker@yahoo.com，微信公众号：书客创作，个人平台：www.ibooker.cc。
 
->本文选自[书客创作](www.ibooker.cc)平台第130篇文章。[阅读原文](http://www.ibooker.cc/article/130/detail)
+>本文选自[书客创作](www.ibooker.cc)平台第130篇文章。[阅读原文](http://www.ibooker.cc/article/130/detail) ，  [书客编辑器安卓Java版 - 体验版下载](https://www.pgyer.com/QUOX)
 
-![书客创作](http://www.ibookerfile.cc/upload/images/acontents/1_1519218464761acontentimage.jpg)
+![书客创作](http://upload-images.jianshu.io/upload_images/3480018-3eaa10cda787aaed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 书客编辑器是一款基于Markdown标记语言的开源的富文本编辑器，它以简易的操作界面和强大的功能深受广大开发者的喜爱。正如官方所说：现在的版本不一定是最好的版本，却是最好的开源版本。官方地址：[editor.ibooker.cc](editor.ibooker.cc)。
 
@@ -15,7 +15,7 @@
 
 在进行讲解之前，首先看一下书客编辑器安卓版的效果图：
 
-![书客编辑器安卓版效果图](http://www.ibookerfile.cc/upload/images/acontents/1_1519358019987acontentimage.gif)
+![书客编辑器安卓版效果图](http://upload-images.jianshu.io/upload_images/3480018-f429940174464dda.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 一、引入资源
 
@@ -31,7 +31,7 @@ allprojects {
 ```
 ```
 dependencies {
-	compile 'com.github.zrunker:IbookerEditorAndroid:v1.0'
+	compile 'com.github.zrunker:IbookerEditorAndroid:v1.0.1'
 }
 ```
 2、在maven文件中添加以下代码：
@@ -47,7 +47,7 @@ dependencies {
 <dependency>
 	<groupId>com.github.zrunker</groupId>
 	<artifactId>IbookerEditorAndroid</artifactId>
-	<version>v1.0</version>
+	<version>v1.0.1</version>
 </dependency>
 ```
 
@@ -59,7 +59,7 @@ dependencies {
 
 书客编辑器安卓版界面大致分为三个部分，即编辑器顶部，内容区（编辑区+预览区）和底部（工具栏）。
 
-![书客编辑器安卓-布局轮廓图](http://www.ibookerfile.cc/upload/images/acontents/1_1519357061065acontentimage.jpg)
+![书客编辑器安卓-布局轮廓图](http://upload-images.jianshu.io/upload_images/3480018-65cf2b785fde4990.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 首先在布局文件中引入书客编辑器安卓版控件，如布局文件为activity_main.xml，只需要在该文件内添加以下代码即可：
 
@@ -81,7 +81,7 @@ dependencies {
 
 书客编辑器安卓版顶部实际上是采用IbookerEditorTopView控件进行呈现，所以要实现顶部相关控件功能首先要获取该控件。
 
-![书客编辑器安卓版顶部](http://www.ibookerfile.cc/upload/images/acontents/1_1519360429393acontentimage.jpg)
+![书客编辑器安卓版顶部](http://upload-images.jianshu.io/upload_images/3480018-b55b3f5dfde8705b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 书客编辑器安卓版顶部界面图，从左到右分别对应返回（back），撤销（undo），重做（redo），编辑模式（edit），预览模式（preview），帮助（help），关于（about）。知道每个按钮对应的功能，所以就可以去修改或完善相关实现过程。
 
@@ -209,4 +209,4 @@ public void onToolClick(Object tag) {
 [阅读原文](http://www.ibooker.cc/article/130/detail)
 
 ----------
-![微信公众号：书客创作](http://www.ibookerfile.cc/upload/images/acontents/1_1519225707363acontentimage.jpg)
+![微信公众号：书客创作](http://upload-images.jianshu.io/upload_images/3480018-aaaca8b35890252b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
