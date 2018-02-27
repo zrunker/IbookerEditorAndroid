@@ -95,7 +95,7 @@ public class IbookerEditorUtil {
      * 设置EditText光标相关信息
      */
     private void setSelectionInfo(RangeData data) {
-        ibookerEd.setSelection(data.getStart(), data.getEnd());
+        ibookerEd.setSelection(data.getStart() >= 0 ? data.getStart() : 0, data.getEnd() >= 0 ? data.getEnd() : 0);
     }
 
     /**
@@ -283,6 +283,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -314,6 +315,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -345,6 +347,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -376,6 +379,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -407,6 +411,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -438,6 +443,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         // 赋值
@@ -468,6 +474,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         thisline += "\n[链接描述](http://www.ibooker.cc)";
@@ -492,6 +499,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
 
@@ -545,6 +553,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         thisline += "\n![图片描述](http://ibooker.cc/favicon.ico/)";
@@ -569,6 +578,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         int j = 1;
@@ -610,6 +620,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         Pattern pattern = Pattern.compile("^-\\s.*$");
@@ -639,6 +650,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
 
@@ -669,6 +681,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         Pattern pattern = Pattern.compile("^-\\s+\\[x\\]\\s+.*$");
@@ -697,6 +710,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         thisline += "\n|  h1   |    h2   |    h3   |"
@@ -723,6 +737,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         thisline += "\n<html>\n<!--在这里插入内容-->\n</html>";
@@ -746,6 +761,7 @@ public class IbookerEditorUtil {
         String text = ibookerEd.getText().toString();
         String temp = text.substring(0, start);
         int line = temp.split("\n").length - 1;
+        if (line < 0) line = 0;
         String thisline = text.split("\n")[line];
         String[] allLine = text.split("\n");
         thisline = thisline + "\n***";
