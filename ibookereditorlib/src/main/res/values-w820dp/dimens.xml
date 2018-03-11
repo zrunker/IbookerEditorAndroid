@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--2.56-->
+    <dimen name="dp1">2.56dp</dimen>
+    <dimen name="dp3">7.68dp</dimen>
+    <dimen name="dp3_5">8.96dp</dimen>
+    <dimen name="dp4">10.24dp</dimen>
+    <dimen name="dp5">12.8dp</dimen>
+    <dimen name="dp6">15.36dp</dimen>
+    <dimen name="dp7">17.92dp</dimen>
+    <dimen name="dp8">20.48dp</dimen>
+    <dimen name="dp10">25.6dp</dimen>
+    <dimen name="dp11">28.16dp</dimen>
+    <dimen name="dp13">33.28dp</dimen>
+    <dimen name="dp16">40.96dp</dimen>
+    <dimen name="dp17">43.52dp</dimen>
+    <dimen name="dp22">56.32dp</dimen>
+    <dimen name="dp24">61.44dp</dimen>
+    <dimen name="dp29">74.24dp</dimen>
+    <dimen name="dp46">117.76dp</dimen>
+    <dimen name="dp48">122.88dp</dimen>
+</resources>

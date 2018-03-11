@@ -34,8 +34,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         setOrientation(HORIZONTAL);
         setBackgroundColor(Color.parseColor("#EFEFEF"));
         setGravity(Gravity.CENTER_VERTICAL);
-        setMinimumHeight(IbookerEditorUtil.dpToPx(context, 48));
-        setPadding(IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5));
+        setMinimumHeight(IbookerEditorUtil.dpToPx(context, getResources().getDimension(R.dimen.dp24)));
+
+        // 4dp
+        float dp4 = getResources().getDimension(R.dimen.dp4);
+        setPadding(IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4));
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         init(context);
@@ -43,11 +46,16 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     // 初始化
     private void init(Context context) {
+        // 3.5dp
+        float dp3_5 = getResources().getDimension(R.dimen.dp3_5);
+        // 6dp
+        float dp6 = getResources().getDimension(R.dimen.dp6);
+
         backImg = new ImageView(context);
-        LayoutParams backParams = new LayoutParams(IbookerEditorUtil.dpToPx(context, 30), ViewGroup.LayoutParams.WRAP_CONTENT);
-        backParams.setMargins(IbookerEditorUtil.dpToPx(context, 5), 0, IbookerEditorUtil.dpToPx(context, 5), 0);
+        LayoutParams backParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, IbookerEditorUtil.dpToPx(context, getResources().getDimension(R.dimen.dp11)));
+        backParams.setMargins(IbookerEditorUtil.dpToPx(context, dp3_5), 0, IbookerEditorUtil.dpToPx(context, dp3_5), 0);
         backImg.setLayoutParams(backParams);
-        backImg.setImageResource(R.drawable.icon_back);
+        backImg.setImageResource(R.drawable.icon_back_black);
         backImg.setAdjustViewBounds(true);
         backImg.setContentDescription(getResources().getString(R.string.back));
         backImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
@@ -60,13 +68,13 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         addView(rightLayout);
 
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, 5), 0, IbookerEditorUtil.dpToPx(context, 5), 0);
+        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, dp3_5), 0, IbookerEditorUtil.dpToPx(context, dp3_5), 0);
 
         undoIBtn = new ImageButton(context);
         undoIBtn.setLayoutParams(layoutParams);
         undoIBtn.setBackgroundResource(R.drawable.draw_undo);
         undoIBtn.setContentDescription(getResources().getString(R.string.undo));
-        undoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
+        undoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
         undoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDO);
         undoIBtn.setOnClickListener(this);
         rightLayout.addView(undoIBtn);
@@ -75,7 +83,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         redoIBtn.setLayoutParams(layoutParams);
         redoIBtn.setBackgroundResource(R.drawable.draw_redo);
         redoIBtn.setContentDescription(getResources().getString(R.string.redo));
-        redoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
+        redoIBtn.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
         redoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO);
         redoIBtn.setOnClickListener(this);
         rightLayout.addView(redoIBtn);
@@ -84,7 +92,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         editIBtn.setLayoutParams(layoutParams);
         editIBtn.setBackgroundResource(R.drawable.draw_edit);
         editIBtn.setContentDescription(getResources().getString(R.string.edit));
-        editIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
+        editIBtn.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
         editIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT);
         editIBtn.setOnClickListener(this);
         rightLayout.addView(editIBtn);
@@ -93,7 +101,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         previewIBtn.setLayoutParams(layoutParams);
         previewIBtn.setBackgroundResource(R.drawable.draw_preview);
         previewIBtn.setContentDescription(getResources().getString(R.string.preview));
-        previewIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
+        previewIBtn.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
         previewIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PREVIEW);
         previewIBtn.setOnClickListener(this);
         rightLayout.addView(previewIBtn);
@@ -102,18 +110,22 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         helpIBtn.setLayoutParams(layoutParams);
         helpIBtn.setBackgroundResource(R.drawable.draw_help);
         helpIBtn.setContentDescription(getResources().getString(R.string.help));
-        helpIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13), IbookerEditorUtil.dpToPx(context, 13));
+        helpIBtn.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
         helpIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP);
         helpIBtn.setOnClickListener(this);
         rightLayout.addView(helpIBtn);
 
-        LayoutParams params = new LayoutParams(IbookerEditorUtil.dpToPx(context, 29), IbookerEditorUtil.dpToPx(context, 29));
-        params.setMargins(IbookerEditorUtil.dpToPx(context, 5), 0, IbookerEditorUtil.dpToPx(context, 5), 0);
+        // 17dp
+        float dp17 = getResources().getDimension(R.dimen.dp17);
+        LayoutParams params = new LayoutParams(IbookerEditorUtil.dpToPx(context, dp17), IbookerEditorUtil.dpToPx(context, dp17));
+        // 3dp
+        float dp3 = getResources().getDimension(R.dimen.dp3);
+        params.setMargins(IbookerEditorUtil.dpToPx(context, dp3), 0, IbookerEditorUtil.dpToPx(context, dp3), 0);
         aboutImg = new ImageView(context);
         aboutImg.setLayoutParams(params);
         aboutImg.setImageResource(R.drawable.ibooker_editor_logo);
         aboutImg.setContentDescription(getResources().getString(R.string.about));
-        aboutImg.setPadding(IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5), IbookerEditorUtil.dpToPx(context, 5));
+        aboutImg.setPadding(IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3));
         aboutImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT);
         aboutImg.setOnClickListener(this);
         rightLayout.addView(aboutImg);

@@ -152,13 +152,16 @@ public class IbookerEditorToolView extends HorizontalScrollView {
     private void init(Context context) {
         toolLayout = new LinearLayout(context);
         toolLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        toolLayout.setMinimumHeight(IbookerEditorUtil.dpToPx(context, 46));
+        toolLayout.setMinimumHeight(IbookerEditorUtil.dpToPx(context, getResources().getDimension(R.dimen.dp24)));
         toolLayout.setGravity(Gravity.CENTER_VERTICAL);
         toolLayout.setOrientation(LinearLayout.HORIZONTAL);
         addView(toolLayout);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6), IbookerEditorUtil.dpToPx(context, 6));
+
+        // 4dp
+        float dp4 = getResources().getDimension(R.dimen.dp4);
+        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4));
         // 粗体
         boldIBtn = new ImageButton(context);
         setImageBtn(boldIBtn, layoutParams, R.drawable.draw_bold, getResources().getString(R.string.bold), IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD);
@@ -303,7 +306,9 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         imageButton.setLayoutParams(layoutParams);
         imageButton.setBackgroundResource(resid);
         imageButton.setContentDescription(contentDescription);
-        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13), IbookerEditorUtil.dpToPx(getContext(), 13));
+        // 6dp
+        float dp6 = getResources().getDimension(R.dimen.dp6);
+        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), dp6), IbookerEditorUtil.dpToPx(getContext(), dp6), IbookerEditorUtil.dpToPx(getContext(), dp6), IbookerEditorUtil.dpToPx(getContext(), dp6));
         imageButton.setTag(tag);
         imageButton.setOnClickListener(new OnClickListener() {
             @Override

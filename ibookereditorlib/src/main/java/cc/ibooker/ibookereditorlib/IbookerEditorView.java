@@ -204,8 +204,10 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     // 工具栏按钮点击事件监听
     @Override
     public void onToolClick(Object tag) {
-        if (ibookerEditorUtil == null)
+        if (ibookerEditorUtil == null)// 初始化ibookerEditorUtil
             ibookerEditorUtil = new IbookerEditorUtil(ibookerEditorVpView.getEditView());
+        if (ibookerEditorVpView.getCurrentItem() != 0)// 切换到编辑器模式
+            ibookerEditorVpView.setCurrentItem(0);
         if (tag.equals(IBTN_BOLD)) {// 加粗
             ibookerEditorUtil.bold();
         } else if (tag.equals(IBTN_ITALIC)) {// 斜体

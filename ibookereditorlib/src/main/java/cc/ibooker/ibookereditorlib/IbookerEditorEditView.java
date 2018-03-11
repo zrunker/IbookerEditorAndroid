@@ -76,11 +76,15 @@ public class IbookerEditorEditView extends ScrollView {
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
-        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8), IbookerEditorUtil.dpToPx(context, 8));
+
+        // 6dp
+        float dp6 = getResources().getDimension(R.dimen.dp6);
+        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
+
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
-        ibookerEd.setTextSize(16);
-        ibookerEd.setLineSpacing(4, 1.3F);
+        ibookerEd.setTextSize(getResources().getDimension(R.dimen.dp8));
+        ibookerEd.setLineSpacing(getResources().getDimension(R.dimen.dp4), 1.3F);
         ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
