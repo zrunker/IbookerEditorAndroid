@@ -30,6 +30,7 @@
 <!-- 引入编辑器js -->
 <script type="text/javascript" src="file:///android_asset/showdown.min.js"></script>
 <script type="text/javascript">
+    // 执行预览
 	var eConverter = null;
 	function ibookerHtmlCompile(ibookerEditorText) {
 		if (ibookerEditorText) {
@@ -64,5 +65,17 @@
 			document.getElementById('ibooker_editor').innerHTML = eConverter.makeHtml(ibookerEditorText);
 		}
 	};
+
+	// 获取全部图片地址
+	function getImgAllPaths() {
+		var imgPaths = "";
+		var objs = document.getElementsByTagName("img");
+		if (objs != null && objs.length > 0) {
+			for (var i = 0; i < objs.length; i++) {
+				imgPaths = imgPaths+ objs[i].src + ';ibookerEditor;';
+			}
+		}
+		return imgPaths;
+	}
 </script>
 </html>

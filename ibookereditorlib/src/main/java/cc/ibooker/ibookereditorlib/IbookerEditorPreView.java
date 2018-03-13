@@ -2,18 +2,25 @@ package cc.ibooker.ibookereditorlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.webkit.ValueCallback;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.util.ArrayList;
+
 /**
  * 书客编辑器 - 预览界面
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorPreView extends WebView {
+    private ArrayList<String> imgPathList;// WebView所有图片地址
+    private IbookerEditorJsCheckImgEvent ibookerEditorJsCheckImgEvent;
 
     public IbookerEditorPreView(Context context) {
         this(context, null);
@@ -30,7 +37,7 @@ public class IbookerEditorPreView extends WebView {
     }
 
     // 初始化
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     private void init() {
         WebSettings webSettings = this.getSettings();
         // 允许JS
@@ -71,9 +78,56 @@ public class IbookerEditorPreView extends WebView {
                 // 当网页加载出错时，加载本地错误文件
                 IbookerEditorPreView.this.loadUrl("file:///android_asset/error.html");
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                addWebViewListener();
+            }
         });
+        // 添加js
+        ibookerEditorJsCheckImgEvent = new IbookerEditorJsCheckImgEvent();
+        this.addJavascriptInterface(ibookerEditorJsCheckImgEvent, "ibookerEditorJsCheckImgEvent");
         // 加载本地HTML
         this.loadUrl("file:///android_asset/ibooker_editor_index.html");
+    }
+
+    // 给WebView添加相关监听
+    private void addWebViewListener() {
+        // 获取WebView中全部图片地址
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            this.evaluateJavascript("javascript:getImgAllPaths()", new ValueCallback<String>() {
+
+                @Override
+                public void onReceiveValue(String value) {
+                    // value即为所有图片地址
+                    if (!TextUtils.isEmpty(value)) {
+                        value = value.replace("\"", "").replace("\"", "");
+                        if (!TextUtils.isEmpty(value)) {
+                            if (imgPathList == null)
+                                imgPathList = new ArrayList<>();
+                            imgPathList.clear();
+                            String[] imgPaths = value.split(";ibookerEditor;");
+                            for (String imgPath : imgPaths) {
+                                if (!TextUtils.isEmpty(imgPath))
+                                    imgPathList.add(imgPath);
+                            }
+                            ibookerEditorJsCheckImgEvent.setmImgPathList(imgPathList);
+                        }
+                    }
+                }
+            });
+        }
+
+        // 动态添加图片点击事件
+        this.loadUrl("javascript:(function() {"
+                + "  var objs = document.getElementsByTagName(\"img\"); "
+                + "  for(var i = 0; i < objs.length; i++) {"
+                + "     objs[i].onclick = function() {"
+                + "          window.ibookerEditorJsCheckImgEvent.onCheckImg(this.src);"
+                + "     }"
+                + "  }"
+                + "})()");
     }
 
     /**
@@ -85,5 +139,18 @@ public class IbookerEditorPreView extends WebView {
         ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
         String js = "javascript:ibookerHtmlCompile('" + ibookerEditorText + "')";
         this.loadUrl(js);
+
+        // 重新WebView添加监听
+        addWebViewListener();
+    }
+
+    // 图片预览接口
+    public interface IbookerEditorImgPreviewListener {
+        void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList);
+    }
+
+    public void setIbookerEditorImgPreviewListener(IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
+        ibookerEditorJsCheckImgEvent.setmIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
+
     }
 }
