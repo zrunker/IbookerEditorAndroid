@@ -1,5 +1,6 @@
 package cc.ibooker.ibookereditorandroid;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
         ibookerEditorView.getIbookerEditorToolView()
                 .setEmojiIBtnVisibility(View.GONE);
 
+        // 设置点击图片监听
         ibookerEditorView.getIbookerEditorVpView().getPreView().setIbookerEditorImgPreviewListener(new IbookerEditorPreView.IbookerEditorImgPreviewListener() {
             @Override
             public void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList) {
                 Toast.makeText(MainActivity.this, currentPath + "===" + position + "===" + imgAllPathList.toString(), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(MainActivity.this, ImgVPagerActivity.class);
+                intent.putExtra("currentPath", currentPath);
+                intent.putExtra("position", position);
+                intent.putStringArrayListExtra("imgAllPathList", imgAllPathList);
+                startActivity(intent);
             }
         });
     }
