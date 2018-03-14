@@ -133,10 +133,10 @@ public class ImgVPagerActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(ImgVPagerActivity.this, "执行分享", Toast.LENGTH_LONG).show();
                 break;
             case R.id.img_left:// 左移图片
-                mViewPager.setCurrentItem(currentPosition == 0 ? mViewPager.getChildCount() - 1 : currentPosition - 1);
+                mViewPager.setCurrentItem(currentPosition == 0 ? imgAllPathList.size() - 1 : currentPosition - 1);
                 break;
             case R.id.img_right:// 右移事件
-                mViewPager.setCurrentItem(currentPosition == mViewPager.getChildCount() - 1 ? 0 : currentPosition + 1);
+                mViewPager.setCurrentItem(currentPosition == imgAllPathList.size() - 1 ? 0 : currentPosition + 1);
                 break;
         }
     }
