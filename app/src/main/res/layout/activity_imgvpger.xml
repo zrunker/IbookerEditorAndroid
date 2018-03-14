@@ -5,6 +5,12 @@
     android:background="#000000"
     android:orientation="vertical">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,12 +26,6 @@
             android:padding="15dp"
             android:src="@mipmap/picture_share" />
     </RelativeLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/id_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
 
     <RelativeLayout
         android:layout_width="match_parent"
