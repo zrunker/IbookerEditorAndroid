@@ -76,6 +76,7 @@ public class IbookerEditorEditView extends ScrollView {
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+        ibookerEd.setHint("书客创作，从这里开始");
 
         // 6dp
         float dp6 = getResources().getDimension(R.dimen.dp6);
