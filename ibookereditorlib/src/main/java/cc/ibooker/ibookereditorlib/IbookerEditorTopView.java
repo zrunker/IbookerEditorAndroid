@@ -120,12 +120,13 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         LayoutParams params = new LayoutParams(IbookerEditorUtil.dpToPx(context, dp17), IbookerEditorUtil.dpToPx(context, dp17));
         // 3dp
         float dp3 = getResources().getDimension(R.dimen.dp3);
+        float dp4 = getResources().getDimension(R.dimen.dp4);
         params.setMargins(IbookerEditorUtil.dpToPx(context, dp3), 0, IbookerEditorUtil.dpToPx(context, dp3), 0);
         aboutImg = new ImageView(context);
         aboutImg.setLayoutParams(params);
         aboutImg.setImageResource(R.drawable.ibooker_editor_logo);
         aboutImg.setContentDescription(getResources().getString(R.string.about));
-        aboutImg.setPadding(IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3), IbookerEditorUtil.dpToPx(context, dp3));
+        aboutImg.setPadding(IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4), IbookerEditorUtil.dpToPx(context, dp4));
         aboutImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT);
         aboutImg.setOnClickListener(this);
         rightLayout.addView(aboutImg);
