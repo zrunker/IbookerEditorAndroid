@@ -19,6 +19,11 @@ import java.util.ArrayList;
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorPreView extends WebView {
+    private boolean isLoadFinished = false;// 本地文件是否加载完成
+    private boolean isExecuteCompile = false;// 是否执行预览
+    private boolean isExecuteHtmlCompile = false;// 是否执行HTML预览
+    private String ibookerEditorText, ibookerEditorHtml;
+
     private ArrayList<String> imgPathList;// WebView所有图片地址
     private IbookerEditorJsCheckImgEvent ibookerEditorJsCheckImgEvent;
 
@@ -82,7 +87,15 @@ public class IbookerEditorPreView extends WebView {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                addWebViewListener();
+                isLoadFinished = true;
+                if (isExecuteCompile) {
+                    ibookerCompile(ibookerEditorText);
+                } else if (isExecuteHtmlCompile) {
+                    ibookerHtmlCompile(ibookerEditorHtml);
+                } else {
+                    addWebViewListener();
+                }
+
             }
         });
         // 添加js
@@ -131,17 +144,58 @@ public class IbookerEditorPreView extends WebView {
     }
 
     /**
-     * 执行Html预览
+     * 是否完成本地文件加载
+     */
+    public boolean isLoadFinished() {
+        return isLoadFinished;
+    }
+
+    /**
+     * 执行预览
      *
      * @param ibookerEditorText 待预览内容 非HTML
      */
-    public void ibookerHtmlCompile(String ibookerEditorText) {
-        ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
-        String js = "javascript:ibookerHtmlCompile('" + ibookerEditorText + "')";
-        this.loadUrl(js);
+    public void ibookerCompile(String ibookerEditorText) {
+        if (isLoadFinished) {
+            ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
+            String js = "javascript:ibookerCompile('" + ibookerEditorText + "')";
+            this.loadUrl(js);
 
-        // 重新WebView添加监听
-        addWebViewListener();
+            // 重新WebView添加监听
+            addWebViewListener();
+
+            this.isExecuteCompile = false;
+            this.ibookerEditorText = null;
+            this.isExecuteHtmlCompile = false;
+            this.ibookerEditorHtml = null;
+        } else {
+            this.isExecuteCompile = true;
+            this.ibookerEditorText = ibookerEditorText;
+        }
+
+    }
+
+    /**
+     * 执行Html预览
+     *
+     * @param ibookerEditorHtml 待预览内容 HTML
+     */
+    public void ibookerHtmlCompile(String ibookerEditorHtml) {
+        if (isLoadFinished) {
+            String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
+            this.loadUrl(js);
+
+            // 重新WebView添加监听
+            addWebViewListener();
+
+            this.isExecuteHtmlCompile = false;
+            this.ibookerEditorHtml = null;
+            this.isExecuteCompile = false;
+            this.ibookerEditorText = null;
+        } else {
+            this.isExecuteHtmlCompile = true;
+            this.ibookerEditorHtml = ibookerEditorHtml;
+        }
     }
 
     // 图片预览接口
@@ -151,6 +205,5 @@ public class IbookerEditorPreView extends WebView {
 
     public void setIbookerEditorImgPreviewListener(IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
         ibookerEditorJsCheckImgEvent.setmIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
-
     }
 }

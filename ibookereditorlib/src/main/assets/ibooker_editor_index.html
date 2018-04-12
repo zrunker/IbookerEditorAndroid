@@ -23,16 +23,17 @@
     <link rel="stylesheet" rev="stylesheet" href="file:///android_asset/ibooker_editor_md_min.css" type="text/css"/>
     <link rel="stylesheet" rev="stylesheet" href="file:///android_asset/ibooker_editor_min.css" type="text/css"/>
 
+    <!-- 引入编辑器js -->
+    <script type="text/javascript" src="file:///android_asset/showdown.min.js"></script>
+</head>
 <body>
 <!-- 书客编辑器 -->
 <div id="ibooker_editor" class="ibooker_editor_content"></div>
 </body>
-<!-- 引入编辑器js -->
-<script type="text/javascript" src="file:///android_asset/showdown.min.js"></script>
 <script type="text/javascript">
-    // 执行预览
+    // 执行预览-非Html
 	var eConverter = null;
-	function ibookerHtmlCompile(ibookerEditorText) {
+	function ibookerCompile(ibookerEditorText) {
 		if (ibookerEditorText) {
 			if (eConverter == null) {
 				eConverter = new showdown.Converter();
@@ -63,6 +64,13 @@
 				eConverter.setFlavor('github');
 			}
 			document.getElementById('ibooker_editor').innerHTML = eConverter.makeHtml(ibookerEditorText);
+		}
+	};
+
+	// 执行预览HTML
+	function ibookerHtmlCompile(ibookerEditorHtml) {
+		if (ibookerEditorHtml) {
+			document.getElementById('ibooker_editor').innerHTML = ibookerEditorHtml;
 		}
 	};
 
