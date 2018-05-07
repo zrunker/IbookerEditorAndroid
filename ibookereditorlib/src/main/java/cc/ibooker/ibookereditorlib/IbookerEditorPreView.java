@@ -42,11 +42,15 @@ public class IbookerEditorPreView extends WebView {
     }
 
     // 初始化
-    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
+    @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void init() {
         WebSettings webSettings = this.getSettings();
+        // 支持内容重新布局
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         // 允许JS
         webSettings.setJavaScriptEnabled(true);
+        // 支持插件
+        webSettings.setPluginState(WebSettings.PluginState.ON);
         // 设置允许JS弹窗
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         // access Assets and resources
@@ -78,6 +82,21 @@ public class IbookerEditorPreView extends WebView {
         this.requestFocus();
         // 设置WebViewClient
         this.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.getUrl().toString());
+                }
+                return true;
+            }
+
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 // 当网页加载出错时，加载本地错误文件

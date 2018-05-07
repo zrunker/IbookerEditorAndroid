@@ -158,7 +158,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
                 ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_orange);
                 openInputSoft(false);
                 // 执行预览
-                htmlCompile();
+                ibookerCompile();
             }
     }
 
@@ -259,13 +259,13 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         }
     }
 
-    // 执行HTML预览
-    private void htmlCompile() {
+    // 执行Text预览
+    private void ibookerCompile() {
         // 获取待转义内容
         String text = ibookerEditorVpView.getEditView().getIbookerEd().getText().toString();
         // 执行预览
         if (!TextUtils.isEmpty(text)) {
-            ibookerEditorVpView.getPreView().ibookerHtmlCompile(text);
+            ibookerEditorVpView.getPreView().ibookerCompile(text);
         }
     }
 }

@@ -28,7 +28,7 @@ public class IbookerEditorUtil {
     private EditText ibookerEd;
 
     // 构造方法
-    public IbookerEditorUtil(IbookerEditorEditView ibookerEditorEditView) {
+    IbookerEditorUtil(IbookerEditorEditView ibookerEditorEditView) {
         ibookerEd = ibookerEditorEditView.getIbookerEd();
     }
 
@@ -41,7 +41,7 @@ public class IbookerEditorUtil {
             super();
         }
 
-        public RangeData(int start, int end, String text) {
+        RangeData(int start, int end, String text) {
             this.start = start;
             this.end = end;
             this.text = text;
