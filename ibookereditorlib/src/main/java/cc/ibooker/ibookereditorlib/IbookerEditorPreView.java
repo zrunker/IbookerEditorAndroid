@@ -2,6 +2,9 @@ package cc.ibooker.ibookereditorlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -214,6 +217,17 @@ public class IbookerEditorPreView extends WebView {
             this.isExecuteHtmlCompile = true;
             this.ibookerEditorHtml = ibookerEditorHtml;
         }
+    }
+
+    /**
+     * 获取整个WebView截图
+     */
+    public Bitmap getWebViewBitmap() {
+        Picture picture = this.capturePicture();
+        Bitmap bitmap = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        picture.draw(canvas);
+        return bitmap;
     }
 
     // 图片预览接口
