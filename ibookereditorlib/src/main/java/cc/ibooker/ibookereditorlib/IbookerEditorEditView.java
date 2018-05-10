@@ -16,6 +16,7 @@ import android.view.ActionMode;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -33,11 +34,29 @@ import java.util.ArrayList;
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorEditView extends ScrollView {
+    private EditText ibookerTitleEd;
+    private View lineView;
     private EditText ibookerEd;
 
     private ArrayList<String> textList = new ArrayList<>();
     private boolean isSign = true;// 标记是否需要记录currentPos=textList.size()和textList
     private int currentPos = 0;
+
+    public EditText getIbookerTitleEd() {
+        return ibookerTitleEd;
+    }
+
+    public void setIbookerTitleEd(EditText ibookerTitleEd) {
+        this.ibookerTitleEd = ibookerTitleEd;
+    }
+
+    public View getLineView() {
+        return lineView;
+    }
+
+    public void setLineView(View lineView) {
+        this.lineView = lineView;
+    }
 
     public EditText getIbookerEd() {
         return ibookerEd;
@@ -70,15 +89,32 @@ public class IbookerEditorEditView extends ScrollView {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         addView(linearLayout);
 
+        ibookerTitleEd = new EditText(context);
+        ibookerTitleEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50)));
+        ibookerTitleEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
+        ibookerTitleEd.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        ibookerTitleEd.setSingleLine(true);
+        ibookerTitleEd.setLines(1);
+        ibookerTitleEd.setTextColor(Color.parseColor("#444444"));
+        ibookerTitleEd.setTextSize(18f);
+        ibookerTitleEd.setLineSpacing(4f, 1.3f);
+        ibookerTitleEd.setHint("标题");
+        linearLayout.addView(ibookerTitleEd);
+
+        lineView = new View(context);
+        lineView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+        lineView.setBackgroundColor(Color.parseColor("#BABABA"));
+        linearLayout.addView(lineView);
+
         ibookerEd = new EditText(context);
-        ibookerEd.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ibookerEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
         ibookerEd.setGravity(Gravity.TOP | Gravity.START);
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setHint("书客创作，从这里开始");
 
-        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F));
+        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
 
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
