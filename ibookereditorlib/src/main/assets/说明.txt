@@ -1,0 +1,12 @@
+
+书客编辑器 - 基于markdown标记语言的一款富文本编辑器，简易，强大。
+
+官网：http://editor.ibooker.cc/
+
+@author 邹峰立
+
+@email zrunker@yahoo.com
+
+@微信公众号  书客创作
+
+@创作平台  http://ibooker.cc/

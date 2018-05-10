@@ -75,7 +75,6 @@ public class IbookerEditorPreView extends WebView {
         // 隐藏原生的缩放控件
         webSettings.setDisplayZoomControls(false);
 
-
         // 隐藏滚动条
         this.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         // 使页面获取焦点，防止点击无响应
