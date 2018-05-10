@@ -78,14 +78,12 @@ public class IbookerEditorEditView extends ScrollView {
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setHint("书客创作，从这里开始");
 
-        // 6dp
-        float dp6 = getResources().getDimension(R.dimen.dp6);
-        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6), IbookerEditorUtil.dpToPx(context, dp6));
+        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F), IbookerEditorUtil.dpToPx(context, 8F));
 
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
-        ibookerEd.setTextSize(getResources().getDimension(R.dimen.dp8));
-        ibookerEd.setLineSpacing(getResources().getDimension(R.dimen.dp4), 1.3F);
+        ibookerEd.setTextSize(16f);
+        ibookerEd.setLineSpacing(4f, 1.3f);
         ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
