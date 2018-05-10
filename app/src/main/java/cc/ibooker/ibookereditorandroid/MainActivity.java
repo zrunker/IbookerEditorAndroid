@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 .setHelpIBtnVisibility(View.VISIBLE);
 
         // 设置书客编辑器中间布局相关属性
-        ibookerEditorView.getIbookerEditorVpView().getEditView()
+        ibookerEditorView.getIbookerEditorVpView()
+                .getEditView()
                 .setIbookerEdHint("书客编辑器")
                 .setIbookerBackgroundColor(Color.parseColor("#DDDDDD"));
 
