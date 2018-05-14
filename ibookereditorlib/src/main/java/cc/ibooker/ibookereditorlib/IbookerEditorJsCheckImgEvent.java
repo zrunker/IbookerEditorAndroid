@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class IbookerEditorJsCheckImgEvent {
     private ArrayList<String> mImgPathList;
-    private IbookerEditorPreView.IbookerEditorImgPreviewListener mIbookerEditorImgPreviewListener;
+    private IbookerEditorWebView.IbookerEditorImgPreviewListener mIbookerEditorImgPreviewListener;
 
     public ArrayList<String> getmImgPathList() {
         return mImgPathList;
@@ -20,11 +20,11 @@ public class IbookerEditorJsCheckImgEvent {
         this.mImgPathList = mImgPathList;
     }
 
-    public IbookerEditorPreView.IbookerEditorImgPreviewListener getmIbookerEditorImgPreviewListener() {
+    public IbookerEditorWebView.IbookerEditorImgPreviewListener getmIbookerEditorImgPreviewListener() {
         return mIbookerEditorImgPreviewListener;
     }
 
-    public void setmIbookerEditorImgPreviewListener(IbookerEditorPreView.IbookerEditorImgPreviewListener mIbookerEditorImgPreviewListener) {
+    public void setmIbookerEditorImgPreviewListener(IbookerEditorWebView.IbookerEditorImgPreviewListener mIbookerEditorImgPreviewListener) {
         this.mIbookerEditorImgPreviewListener = mIbookerEditorImgPreviewListener;
     }
 

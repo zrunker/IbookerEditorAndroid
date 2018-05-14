@@ -105,6 +105,7 @@
 			try {
 				if (ibookerEditorHtml && ibookerEditorHtml != null && ibookerEditorHtml != "") {
 					if (preIbookerEditorContent === ibookerEditorHtml) {
+					    lock = false;
 						return;
 					}
 					preIbookerEditorContent = ibookerEditorHtml;

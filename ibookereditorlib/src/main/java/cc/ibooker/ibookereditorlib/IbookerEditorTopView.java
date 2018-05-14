@@ -34,7 +34,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         setOrientation(HORIZONTAL);
         setBackgroundColor(Color.parseColor("#EFEFEF"));
         setGravity(Gravity.CENTER_VERTICAL);
-        setMinimumHeight(IbookerEditorUtil.dpToPx(context,48F));
+        setMinimumHeight(IbookerEditorUtil.dpToPx(context, 48F));
 
         setPadding(IbookerEditorUtil.dpToPx(context, 5F), IbookerEditorUtil.dpToPx(context, 5F), IbookerEditorUtil.dpToPx(context, 5F), IbookerEditorUtil.dpToPx(context, 5F));
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

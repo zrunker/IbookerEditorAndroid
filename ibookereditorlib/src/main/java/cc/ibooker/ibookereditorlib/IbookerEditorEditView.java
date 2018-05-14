@@ -89,22 +89,23 @@ public class IbookerEditorEditView extends NestedScrollView {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         addView(linearLayout);
 
-//        ibookerTitleEd = new EditText(context);
-//        ibookerTitleEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50)));
-//        ibookerTitleEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
-//        ibookerTitleEd.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-//        ibookerTitleEd.setSingleLine(true);
-//        ibookerTitleEd.setLines(1);
-//        ibookerTitleEd.setTextColor(Color.parseColor("#444444"));
-//        ibookerTitleEd.setTextSize(18f);
-//        ibookerTitleEd.setLineSpacing(4f, 1.3f);
-//        ibookerTitleEd.setHint("标题");
-//        linearLayout.addView(ibookerTitleEd);
-//
-//        lineView = new View(context);
-//        lineView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
-//        lineView.setBackgroundColor(Color.parseColor("#BABABA"));
-//        linearLayout.addView(lineView);
+        ibookerTitleEd = new EditText(context);
+        ibookerTitleEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50)));
+        ibookerTitleEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
+        ibookerTitleEd.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        ibookerTitleEd.setSingleLine(true);
+        ibookerTitleEd.setLines(1);
+        ibookerTitleEd.setTextColor(Color.parseColor("#444444"));
+        ibookerTitleEd.setTextSize(18f);
+        ibookerTitleEd.setLineSpacing(4f, 1.3f);
+        ibookerTitleEd.setHint("标题");
+        ibookerTitleEd.setGravity(Gravity.CENTER_VERTICAL);
+        linearLayout.addView(ibookerTitleEd);
+
+        lineView = new View(context);
+        lineView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+        lineView.setBackgroundColor(Color.parseColor("#BABABA"));
+        linearLayout.addView(lineView);
 
         ibookerEd = new EditText(context);
         ibookerEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
@@ -113,9 +114,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setHint("书客创作，从这里开始");
-
         ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
-
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
         ibookerEd.setTextSize(16f);
@@ -261,12 +260,88 @@ public class IbookerEditorEditView extends NestedScrollView {
     }
 
     /**
-     * 设置编辑控件背景颜色
+     * 设置输入框背景颜色
      *
      * @param color 背景颜色
      */
-    public IbookerEditorEditView setIbookerBackgroundColor(@ColorInt int color) {
-        this.setBackgroundColor(color);
+    public IbookerEditorEditView setIbookerEdBackgroundColor(@ColorInt int color) {
+        ibookerEd.setBackgroundColor(color);
+        return this;
+    }
+
+    /**
+     * 设置标题显示或者隐藏
+     *
+     * @param visibility View.GONE,View.VISIBLE,View.INVISIBLE
+     */
+    public IbookerEditorEditView setIbookerTitleEdVisibility(int visibility) {
+        if (visibility == View.GONE || visibility == View.VISIBLE || visibility == View.INVISIBLE) {
+            if (ibookerTitleEd != null)
+                ibookerTitleEd.setVisibility(visibility);
+            if (lineView != null)
+                lineView.setVisibility(visibility);
+        }
+        return this;
+    }
+
+    /**
+     * 设置标题输入框字体大小
+     *
+     * @param size 字体大小
+     */
+    public IbookerEditorEditView setIbookerTitleEdTextSize(float size) {
+        ibookerTitleEd.setTextSize(size);
+        return this;
+    }
+
+    /**
+     * 设置标题输入框字体颜色
+     *
+     * @param color 字体颜色
+     */
+    public IbookerEditorEditView setIbookerTitleEdTextColor(@ColorInt int color) {
+        ibookerTitleEd.setTextColor(color);
+        return this;
+    }
+
+    /**
+     * 设置标题输入框hint内容
+     *
+     * @param hint hint内容
+     */
+    public IbookerEditorEditView setIbookerTitleEdHint(CharSequence hint) {
+        ibookerTitleEd.setHint(hint);
+        return this;
+    }
+
+    /**
+     * 设置标题输入框hint颜色
+     *
+     * @param color hint颜色
+     */
+    public IbookerEditorEditView setIbookerTitleEdHintTextColor(@ColorInt int color) {
+        ibookerTitleEd.setHintTextColor(color);
+        return this;
+    }
+
+    /**
+     * 设置线条的背景颜色
+     *
+     * @param color 颜色
+     */
+    public IbookerEditorEditView setLineViewBackgroundColor(@ColorInt int color) {
+        lineView.setBackgroundColor(color);
+        return this;
+    }
+
+    /**
+     * 设置线条显示或者隐藏
+     *
+     * @param visibility View.GONE,View.VISIBLE,View.INVISIBLE
+     */
+    public IbookerEditorEditView setLineViewVisibility(int visibility) {
+        if (visibility == View.GONE || visibility == View.VISIBLE || visibility == View.INVISIBLE)
+            lineView.setVisibility(visibility);
         return this;
     }
 }

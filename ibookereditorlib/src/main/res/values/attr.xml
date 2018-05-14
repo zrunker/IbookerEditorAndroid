@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="IbookerEditorView">
+        <!--顶部状态栏-->
+        <attr name="IbookerEditorTopView_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_BackImg_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_BackImg_Res" format="reference" />
+        <attr name="IbookerEditorTopView_UndoIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_UndoIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_RedoIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_RedoIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_EditIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_EditIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_PreviewIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_PreviewIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_AboutImg_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_AboutImg_Res" format="reference" />
+        <attr name="IbookerEditorTopView_HelpIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_HelpIBtn_Res" format="reference" />
+
+        <!--编辑框-->
+        <attr name="IbookerEditorEditView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_TitleEd_Visible" format="boolean" />
+        <attr name="IbookerEditorEditView_TitleEd_TextSize" format="dimension" />
+        <attr name="IbookerEditorEditView_TitleEd_TextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_TitleEd_Hint" format="string" />
+        <attr name="IbookerEditorEditView_TitleEd_HintTextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_LineView_Visible" format="boolean" />
+        <attr name="IbookerEditorEditView_LineView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_IbookerEd_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_IbookerEd_TextSize" format="dimension" />
+        <attr name="IbookerEditorEditView_IbookerEd_TextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_IbookerEd_Hint" format="string" />
+        <attr name="IbookerEditorEditView_IbookerEd_HintTextColor" format="reference|color" />
+
+        <!--预览框-->
+        <attr name="IbookerEditorPreView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_TitleTv_Visible" format="boolean" />
+        <attr name="IbookerEditorPreView_TitleTv_TextSize" format="dimension" />
+        <attr name="IbookerEditorPreView_TitleTv_TextColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_TitleTv_Hint" format="string" />
+        <attr name="IbookerEditorPreView_TitleTv_HintTextColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_LineView_Visible" format="boolean" />
+        <attr name="IbookerEditorPreView_LineView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_IbookerWebView_BackgroundColor" format="reference|color" />
+
+        <!--底部工具栏-->
+        <attr name="IbookerEditorToolView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorToolView_BoldIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_BoldIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_ItalicIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_ItalicIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_StrikeoutIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_StrikeoutIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_UnderlineIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_UnderlineIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_CapitalsIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_CapitalsIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_UppercaseIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_UppercaseIBtnBackImg_Res" format="reference" />
+        <attr name="IbookerEditorToolView_LowercaseIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_LowercaseIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H1IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H1IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H2IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H2IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H3IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H3IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H4IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H4IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H5IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H5IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_H6IBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_H6IBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_LinkIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_LinkIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_QuoteIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_QuoteIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_CodeIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_CodeIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_ImguIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_ImguIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_OlIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_OlIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_UlIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_UlIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_UnselectedIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_UnselectedIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_SelectedIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_SelectedIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_TableIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_TableIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_HtmlIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_HtmlIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_HrIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_HrIBtn_Res" format="reference" />
+        <attr name="IbookerEditorToolView_EmojiIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorToolView_EmojiIBtng_Res" format="reference" />
+
+    </declare-styleable>
+</resources>
