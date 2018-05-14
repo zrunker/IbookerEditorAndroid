@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import cc.ibooker.ibookereditorlib.IbookerEditorPreView;
 import cc.ibooker.ibookereditorlib.IbookerEditorView;
+import cc.ibooker.ibookereditorlib.IbookerEditorWebView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         final IbookerEditorView ibookerEditorView = findViewById(R.id.ibookereditorview);
 
+        ibookerEditorView.setIbookerEditorEditViewBackgroundColor(Color.parseColor("#DDDDDD"));
+
         // 设置书客编辑器顶部布局相关属性
         ibookerEditorView.getIbookerEditorTopView()
                 .setBackImgVisibility(View.VISIBLE)
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ibookerEditorView.getIbookerEditorVpView()
                 .getEditView()
                 .setIbookerEdHint("书客编辑器")
-                .setIbookerBackgroundColor(Color.parseColor("#DDDDDD"));
+        ;
 
         ibookerEditorView.getIbookerEditorVpView()
                 .getEditView()
@@ -44,17 +46,18 @@ public class MainActivity extends AppCompatActivity {
         // 设置点击图片监听
         ibookerEditorView.getIbookerEditorVpView()
                 .getPreView()
-                .setIbookerEditorImgPreviewListener(new IbookerEditorPreView.IbookerEditorImgPreviewListener() {
-            @Override
-            public void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList) {
-                Toast.makeText(MainActivity.this, currentPath + "===" + position + "===" + imgAllPathList.toString(), Toast.LENGTH_LONG).show();
+                .getIbookerEditorWebView()
+                .setIbookerEditorImgPreviewListener(new IbookerEditorWebView.IbookerEditorImgPreviewListener() {
+                    @Override
+                    public void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList) {
+                        Toast.makeText(MainActivity.this, currentPath + "===" + position + "===" + imgAllPathList.toString(), Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(MainActivity.this, ImgVPagerActivity.class);
-                intent.putExtra("currentPath", currentPath);
-                intent.putExtra("position", position);
-                intent.putStringArrayListExtra("imgAllPathList", imgAllPathList);
-                startActivity(intent);
-            }
-        });
+                        Intent intent = new Intent(MainActivity.this, ImgVPagerActivity.class);
+                        intent.putExtra("currentPath", currentPath);
+                        intent.putExtra("position", position);
+                        intent.putStringArrayListExtra("imgAllPathList", imgAllPathList);
+                        startActivity(intent);
+                    }
+                });
     }
 }
