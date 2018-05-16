@@ -20,33 +20,33 @@
         <attr name="IbookerEditorTopView_HelpIBtn_Res" format="reference" />
 
         <!--编辑框-->
-        <attr name="IbookerEditorEditView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_BackgroundColor" format="color" />
         <attr name="IbookerEditorEditView_TitleEd_Visible" format="boolean" />
         <attr name="IbookerEditorEditView_TitleEd_TextSize" format="dimension" />
-        <attr name="IbookerEditorEditView_TitleEd_TextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_TitleEd_TextColor" format="color" />
         <attr name="IbookerEditorEditView_TitleEd_Hint" format="string" />
-        <attr name="IbookerEditorEditView_TitleEd_HintTextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_TitleEd_HintTextColor" format="color" />
         <attr name="IbookerEditorEditView_LineView_Visible" format="boolean" />
-        <attr name="IbookerEditorEditView_LineView_BackgroundColor" format="reference|color" />
-        <attr name="IbookerEditorEditView_IbookerEd_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_LineView_BackgroundColor" format="color" />
+        <attr name="IbookerEditorEditView_IbookerEd_BackgroundColor" format="color" />
         <attr name="IbookerEditorEditView_IbookerEd_TextSize" format="dimension" />
-        <attr name="IbookerEditorEditView_IbookerEd_TextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_IbookerEd_TextColor" format="color" />
         <attr name="IbookerEditorEditView_IbookerEd_Hint" format="string" />
-        <attr name="IbookerEditorEditView_IbookerEd_HintTextColor" format="reference|color" />
+        <attr name="IbookerEditorEditView_IbookerEd_HintTextColor" format="color" />
 
         <!--预览框-->
-        <attr name="IbookerEditorPreView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_BackgroundColor" format="color" />
         <attr name="IbookerEditorPreView_TitleTv_Visible" format="boolean" />
         <attr name="IbookerEditorPreView_TitleTv_TextSize" format="dimension" />
-        <attr name="IbookerEditorPreView_TitleTv_TextColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_TitleTv_TextColor" format="color" />
         <attr name="IbookerEditorPreView_TitleTv_Hint" format="string" />
-        <attr name="IbookerEditorPreView_TitleTv_HintTextColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_TitleTv_HintTextColor" format="color" />
         <attr name="IbookerEditorPreView_LineView_Visible" format="boolean" />
-        <attr name="IbookerEditorPreView_LineView_BackgroundColor" format="reference|color" />
-        <attr name="IbookerEditorPreView_IbookerWebView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorPreView_LineView_BackgroundColor" format="color" />
+        <attr name="IbookerEditorPreView_IbookerWebView_BackgroundColor" format="color" />
 
         <!--底部工具栏-->
-        <attr name="IbookerEditorToolView_BackgroundColor" format="reference|color" />
+        <attr name="IbookerEditorToolView_BackgroundColor" format="color" />
         <attr name="IbookerEditorToolView_BoldIBtn_Visible" format="boolean" />
         <attr name="IbookerEditorToolView_BoldIBtn_Res" format="reference" />
         <attr name="IbookerEditorToolView_ItalicIBtn_Visible" format="boolean" />

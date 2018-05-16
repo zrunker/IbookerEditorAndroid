@@ -270,8 +270,11 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             ibookerEditorVpView.getPreView().getIbookerEditorWebView().setBackgroundColor(ibookerWebViewBackgroundColor);
 
             // 底部工具栏
-            int ibookerEditorToolViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorToolView_BackgroundColor, 0xffffffff);
-            ibookerEditorToolView.setBackgroundColor(ibookerEditorToolViewBackgroundColor);
+            int ibookerEditorToolViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorToolView_BackgroundColor, 0xff);
+            if (ibookerEditorToolViewBackgroundColor == 0xff)
+                ibookerEditorToolView.setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
+            else
+                ibookerEditorToolView.setBackgroundColor(ibookerEditorToolViewBackgroundColor);
 
             boolean boldIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_BoldIBtn_Visible, true);
             int boldIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_BoldIBtn_Res, R.drawable.draw_bold);
@@ -401,7 +404,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             ta.recycle();
         }
 
-        changeVpUpdateIbookerEditorTopView(0);
+//        changeVpUpdateIbookerEditorTopView(0);
     }
 
     // 设置ViewPager变化
