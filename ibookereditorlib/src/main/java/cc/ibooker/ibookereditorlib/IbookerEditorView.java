@@ -404,7 +404,8 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             ta.recycle();
         }
 
-//        changeVpUpdateIbookerEditorTopView(0);
+        ibookerEditorTopView.getEditIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_edit_orange);
+        ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_gray);
     }
 
     // 设置ViewPager变化
