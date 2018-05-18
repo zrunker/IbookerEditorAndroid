@@ -73,8 +73,12 @@ public class IbookerEditorPreView extends NestedScrollView {
         addView(linearLayout);
 
         ibookerTitleTv = new TextView(context);
-        ibookerTitleTv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50)));
-        ibookerTitleTv.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50F));
+        int dp10 = IbookerEditorUtil.dpToPx(context, 10F);
+        titleParams.leftMargin = dp10;
+        titleParams.rightMargin = dp10;
+        ibookerTitleTv.setLayoutParams(titleParams);
+        ibookerTitleTv.setPadding(0, 0, 0, 0);
         ibookerTitleTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ibookerTitleTv.setSingleLine(true);
         ibookerTitleTv.setLines(1);
@@ -92,6 +96,7 @@ public class IbookerEditorPreView extends NestedScrollView {
         linearLayout.addView(lineView);
 
         ibookerEditorWebView = new IbookerEditorWebView(context);
+        ibookerEditorWebView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         linearLayout.addView(ibookerEditorWebView);
     }
 

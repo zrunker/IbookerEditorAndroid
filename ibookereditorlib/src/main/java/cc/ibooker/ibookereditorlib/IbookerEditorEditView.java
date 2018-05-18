@@ -90,8 +90,12 @@ public class IbookerEditorEditView extends NestedScrollView {
         addView(linearLayout);
 
         ibookerTitleEd = new EditText(context);
-        ibookerTitleEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50)));
-        ibookerTitleEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50F));
+        int dp10 = IbookerEditorUtil.dpToPx(context, 10F);
+        titleParams.leftMargin = dp10;
+        titleParams.rightMargin = dp10;
+        ibookerTitleEd.setLayoutParams(titleParams);
+        ibookerTitleEd.setPadding(0, 0, 0, 0);
         ibookerTitleEd.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ibookerTitleEd.setSingleLine(true);
         ibookerTitleEd.setLines(1);
@@ -99,7 +103,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerTitleEd.setTextSize(18f);
         ibookerTitleEd.setLineSpacing(4f, 1.3f);
         ibookerTitleEd.setHint("标题");
-        ibookerTitleEd.setGravity(Gravity.CENTER_VERTICAL);
+        ibookerTitleEd.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
         linearLayout.addView(ibookerTitleEd);
 
         lineView = new View(context);

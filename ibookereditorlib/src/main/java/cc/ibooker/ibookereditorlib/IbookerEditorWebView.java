@@ -79,11 +79,11 @@ public class IbookerEditorWebView extends WebView {
         webSettings.setDisplayZoomControls(false);
 
         // 隐藏滚动条
-        this.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         // 使页面获取焦点，防止点击无响应
-        this.requestFocus();
+        requestFocus();
         // 设置WebViewClient
-        this.setWebViewClient(new WebViewClient() {
+        setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -121,9 +121,9 @@ public class IbookerEditorWebView extends WebView {
         });
         // 添加js
         ibookerEditorJsCheckImgEvent = new IbookerEditorJsCheckImgEvent();
-        this.addJavascriptInterface(ibookerEditorJsCheckImgEvent, "ibookerEditorJsCheckImgEvent");
+        addJavascriptInterface(ibookerEditorJsCheckImgEvent, "ibookerEditorJsCheckImgEvent");
         // 加载本地HTML
-        this.loadUrl("file:///android_asset/ibooker_editor_index.html");
+        loadUrl("file:///android_asset/ibooker_editor_index.html");
     }
 
     // 给WebView添加相关监听

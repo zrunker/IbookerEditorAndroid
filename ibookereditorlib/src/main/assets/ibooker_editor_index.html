@@ -17,40 +17,29 @@
     <meta http-equiv="keywords" content="书客，书客编辑器，富文本编辑器，书客写作，书客创作，爱书客">
     <meta http-equiv="description" content="书客编辑器，是基于Markdown标记语言的富文本编辑器。它以简易的界面，强大的功能得到广泛应用。书客编辑器适用于几乎所有与书写相关的网站或者应用使用。">
 
-    <link rel="shortcut icon" href="file:///android_asset/favicon.ico">
-    <link rel="icon" type="image/gif" href="file:///android_asset/animated_favicon1.gif">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/gif" href="animated_favicon1.gif">
 
-    <link rel="stylesheet" rev="stylesheet" href="file:///android_asset/ibookereditor/css/ibooker_editor_md_min.css" type="text/css"/>
-    <link rel="stylesheet" rev="stylesheet" href="file:///android_asset/ibookereditor/css/ibooker_editor_min.css" type="text/css"/>
+    <link rel="stylesheet" rev="stylesheet" href="ibookereditor/css/ibooker_editor_md_min.css" type="text/css"/>
+    <link rel="stylesheet" rev="stylesheet" href="ibookereditor/css/ibooker_editor_min.css" type="text/css"/>
 
-    <link rel="stylesheet" rev="stylesheet" href="file:///android_asset/highlight/styles/googlecode.css" type="text/css"/>
+    <link rel="stylesheet" rev="stylesheet" href="highlight/styles/googlecode.css" type="text/css"/>
 
     <!-- 引入编辑器js -->
-    <script type="text/javascript" src="file:///android_asset/ibookereditor/js/showdown.min.js"></script>
+    <script type="text/javascript" src="ibookereditor/js/showdown.min.js"></script>
     <!-- 引入jQuery -->
-    <script type="text/javascript" src="file:///android_asset/highlight/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="highlight/jquery-3.2.1.min.js"></script>
     <!-- 引入高亮 -->
-    <script type="text/javascript" src="file:///android_asset/highlight/highlight.pack.js"></script>
+    <script type="text/javascript" src="highlight/highlight.pack.js"></script>
     <!-- 引入MathJax -->
 	<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({
-			showProcessingMessages: false, // 关闭js加载过程信息
-			messageStyle: "none", // 不显示信息
-			extensions: ["tex2jax.js"],
-			jax: ["input/TeX", "output/HTML-CSS"],
-			tex2jax: {
-				inlineMath:  [ ["$", "$"] ], // 行内公式选择$
-				displayMath: [ ["$$","$$"] ], // 段内公式选择$$
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'], // 避开某些标签
-				ignoreClass:"comment-content" // 避开含该Class的标签
-			},
-			"HTML-CSS": {
-				availableFonts: ["STIX","TeX"], // 可选字体
-				showMathMenu: false // 关闭右击菜单显示
-			}
-		});
+		    showProcessingMessages: false,
+		    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
+		    TeX: { equationNumbers: {autoNumber: "AMS"} }
+	    });
 	</script>
-	<script type="text/javascript" src="file:///android_asset/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<script type="text/javascript" src="mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <!-- 书客编辑器 -->

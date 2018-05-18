@@ -1,0 +1,17 @@
+Index: ibookereditorlib/src/main/java/cc/ibooker/ibookereditorlib/IbookerEditorView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ibookereditorlib/src/main/java/cc/ibooker/ibookereditorlib/IbookerEditorView.java	(revision 91c5438cb6874ca226fdd7bc434101384a356f0c)
++++ ibookereditorlib/src/main/java/cc/ibooker/ibookereditorlib/IbookerEditorView.java	(date 1526443674316)
+@@ -404,7 +404,8 @@
+             ta.recycle();
+         }
+ 
+-//        changeVpUpdateIbookerEditorTopView(0);
++        ibookerEditorTopView.getEditIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_edit_orange);
++        ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(R.drawable.icon_ibooker_editor_preview_gray);
+     }
+ 
+     // 设置ViewPager变化
