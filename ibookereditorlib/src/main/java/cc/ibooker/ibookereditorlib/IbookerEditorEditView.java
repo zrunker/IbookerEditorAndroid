@@ -104,6 +104,25 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerTitleEd.setLineSpacing(4f, 1.3f);
         ibookerTitleEd.setHint("标题");
         ibookerTitleEd.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
+        ibookerTitleEd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (onIbookerTitleEdTextChangedListener != null)
+                    onIbookerTitleEdTextChangedListener.beforeTextChanged(s, start, count, after);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (onIbookerTitleEdTextChangedListener != null)
+                    onIbookerTitleEdTextChangedListener.onTextChanged(s, start, before, count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (onIbookerTitleEdTextChangedListener != null)
+                    onIbookerTitleEdTextChangedListener.afterTextChanged(s);
+            }
+        });
         linearLayout.addView(ibookerTitleEd);
 
         lineView = new View(context);
@@ -117,7 +136,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
-        ibookerEd.setHint("书客创作，从这里开始");
+        ibookerEd.setHint("书客编辑器，从这里开始");
         ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
@@ -170,12 +189,14 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                if (onIbookerEdTextChangedListener != null)
+                    onIbookerEdTextChangedListener.beforeTextChanged(s, start, count, after);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if (onIbookerEdTextChangedListener != null)
+                    onIbookerEdTextChangedListener.onTextChanged(s, start, before, count);
             }
 
             @Override
@@ -188,6 +209,8 @@ public class IbookerEditorEditView extends NestedScrollView {
                         currentPos = textList.size();
                     }
                 }
+                if (onIbookerEdTextChangedListener != null)
+                    onIbookerEdTextChangedListener.afterTextChanged(s);
             }
         });
         ibookerEd.setHorizontallyScrolling(false);
@@ -347,5 +370,39 @@ public class IbookerEditorEditView extends NestedScrollView {
         if (visibility == View.GONE || visibility == View.VISIBLE || visibility == View.INVISIBLE)
             lineView.setVisibility(visibility);
         return this;
+    }
+
+    /**
+     * 标题输入框输入监听
+     */
+    public interface OnIbookerTitleEdTextChangedListener {
+        void beforeTextChanged(CharSequence s, int start, int count, int after);
+
+        void onTextChanged(CharSequence s, int start, int before, int count);
+
+        void afterTextChanged(Editable s);
+    }
+
+    private OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener;
+
+    public void setOnIbookerTitleEdTextChangedListener(OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener) {
+        this.onIbookerTitleEdTextChangedListener = onIbookerTitleEdTextChangedListener;
+    }
+
+    /**
+     * 内容输入框监听
+     */
+    public interface OnIbookerEdTextChangedListener {
+        void beforeTextChanged(CharSequence s, int start, int count, int after);
+
+        void onTextChanged(CharSequence s, int start, int before, int count);
+
+        void afterTextChanged(Editable s);
+    }
+
+    private OnIbookerEdTextChangedListener onIbookerEdTextChangedListener;
+
+    public void setOnIbookerEdTextChangedListener(OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
+        this.onIbookerEdTextChangedListener = onIbookerEdTextChangedListener;
     }
 }

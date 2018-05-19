@@ -115,7 +115,7 @@ public class IbookerEditorPreView extends NestedScrollView {
      *
      * @param visibility View.GONE,View.VISIBLE,View.INVISIBLE
      */
-    public IbookerEditorPreView setIbookerTitleTdVisibility(int visibility) {
+    public IbookerEditorPreView setIbookerTitleTvVisibility(int visibility) {
         if (visibility == View.GONE || visibility == View.VISIBLE || visibility == View.INVISIBLE) {
             if (ibookerTitleTv != null)
                 ibookerTitleTv.setVisibility(visibility);
@@ -130,7 +130,7 @@ public class IbookerEditorPreView extends NestedScrollView {
      *
      * @param size 字体大小
      */
-    public IbookerEditorPreView setIbookerTitleTdTextSize(float size) {
+    public IbookerEditorPreView setIbookerTitleTvTextSize(float size) {
         ibookerTitleTv.setTextSize(size);
         return this;
     }
@@ -140,7 +140,7 @@ public class IbookerEditorPreView extends NestedScrollView {
      *
      * @param color 字体颜色
      */
-    public IbookerEditorPreView setIbookerTitleTdTextColor(@ColorInt int color) {
+    public IbookerEditorPreView setIbookerTitleTvTextColor(@ColorInt int color) {
         ibookerTitleTv.setTextColor(color);
         return this;
     }
@@ -150,7 +150,7 @@ public class IbookerEditorPreView extends NestedScrollView {
      *
      * @param hint hint内容
      */
-    public IbookerEditorPreView setIbookerTitleTdHint(CharSequence hint) {
+    public IbookerEditorPreView setIbookerTitleTvHint(CharSequence hint) {
         ibookerTitleTv.setHint(hint);
         return this;
     }
@@ -160,7 +160,7 @@ public class IbookerEditorPreView extends NestedScrollView {
      *
      * @param color hint颜色
      */
-    public IbookerEditorPreView setIbookerTitleTdHintTextColor(@ColorInt int color) {
+    public IbookerEditorPreView setIbookerTitleTvHintTextColor(@ColorInt int color) {
         ibookerTitleTv.setHintTextColor(color);
         return this;
     }

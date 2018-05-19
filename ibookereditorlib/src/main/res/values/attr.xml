@@ -11,9 +11,11 @@
         <attr name="IbookerEditorTopView_RedoIBtn_Visible" format="boolean" />
         <attr name="IbookerEditorTopView_RedoIBtn_Res" format="reference" />
         <attr name="IbookerEditorTopView_EditIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_EditIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_EditIBtn_Default_Res" format="reference" />
+        <attr name="IbookerEditorTopView_EditIBtn_Selected_Res" format="reference" />
         <attr name="IbookerEditorTopView_PreviewIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_PreviewIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_PreviewIBtn_Default_Res" format="reference" />
+        <attr name="IbookerEditorTopView_PreviewIBtn_Selected_Res" format="reference" />
         <attr name="IbookerEditorTopView_AboutImg_Visible" format="boolean" />
         <attr name="IbookerEditorTopView_AboutImg_Res" format="reference" />
         <attr name="IbookerEditorTopView_HelpIBtn_Visible" format="boolean" />

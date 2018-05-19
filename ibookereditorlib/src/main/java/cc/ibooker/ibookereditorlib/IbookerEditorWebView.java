@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Picture;
+import android.net.http.SslError;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -101,8 +103,27 @@ public class IbookerEditorWebView extends WebView {
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                // 当网页加载出错时，加载本地错误文件
-                IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    ibookerEditorWebViewUrlLoadingListener.onReceivedError(view, request, error);
+                else
+                    // 当网页加载出错时，加载本地错误文件
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
+                else
+                    // 当网页加载出错时，加载本地错误文件
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    ibookerEditorWebViewUrlLoadingListener.onPageStarted(view, url, favicon);
             }
 
             @Override
@@ -116,7 +137,8 @@ public class IbookerEditorWebView extends WebView {
                 } else {
                     addWebViewListener();
                 }
-
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    ibookerEditorWebViewUrlLoadingListener.onPageFinished(view, url);
             }
         });
         // 添加js
@@ -237,5 +259,22 @@ public class IbookerEditorWebView extends WebView {
 
     public void setIbookerEditorImgPreviewListener(IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
         ibookerEditorJsCheckImgEvent.setmIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
+    }
+
+    // Url加载状态监听
+    public interface IbookerEditorWebViewUrlLoadingListener {
+        void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error);
+
+        void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error);
+
+        void onPageStarted(WebView view, String url, Bitmap favicon);
+
+        void onPageFinished(WebView view, String url);
+    }
+
+    private IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener;
+
+    public void setIbookerEditorWebViewUrlLoadingListener(IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener) {
+        this.ibookerEditorWebViewUrlLoadingListener = ibookerEditorWebViewUrlLoadingListener;
     }
 }
