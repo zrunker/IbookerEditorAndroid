@@ -57,9 +57,9 @@ public class IbookerEditorPreView extends NestedScrollView {
 
     public IbookerEditorPreView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         setVerticalScrollBarEnabled(false);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        setFillViewport(true);
         init(context);
     }
 
