@@ -417,7 +417,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     }
 
     // 设置ViewPager变化
-    private void changeVpUpdateIbookerEditorTopView(int position) {
+    public void changeVpUpdateIbookerEditorTopView(int position) {
         if (ibookerEditorTopView != null)
             if (position == 0) {
                 ibookerEditorTopView.getEditIBtn().setBackgroundResource(editIBtnSelectedRes);
@@ -711,6 +711,16 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     }
 
     /**
+     * 设置输入框text内容
+     *
+     * @param text text内容
+     */
+    public IbookerEditorView setIEEditViewIbookerEdText(CharSequence text) {
+        ibookerEditorVpView.getEditView().getIbookerEd().setText(text);
+        return this;
+    }
+
+    /**
      * 设置输入框hint颜色
      *
      * @param color hint颜色
@@ -767,6 +777,16 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
      */
     public IbookerEditorView setIEEditViewIbookerTitleEdHint(CharSequence hint) {
         ibookerEditorVpView.getEditView().setIbookerTitleEdHint(hint);
+        return this;
+    }
+
+    /**
+     * 设置标题输入框text内容
+     *
+     * @param text text内容
+     */
+    public IbookerEditorView setIEEditViewIbookerTitleEdText(CharSequence text) {
+        ibookerEditorVpView.getEditView().getIbookerTitleEd().setText(text);
         return this;
     }
 
