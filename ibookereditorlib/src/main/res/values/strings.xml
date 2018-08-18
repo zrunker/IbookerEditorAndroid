@@ -32,4 +32,6 @@
     <string name="preview">预览</string>
     <string name="help">帮助</string>
     <string name="about">关于</string>
+    <string name="share">分享</string>
+    <string name="_else">其他</string>
 </resources>

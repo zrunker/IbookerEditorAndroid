@@ -7,6 +7,8 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -18,6 +20,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
@@ -42,6 +48,7 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PR
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_QUOTE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SELECTED;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SHARE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_STRIKEOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_TABLE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UL;
@@ -213,6 +220,12 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             int aboutImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_AboutImg_Res, R.drawable.ibooker_editor_logo);
             ibookerEditorTopView.getAboutImg().setVisibility(aboutImgVisible ? VISIBLE : GONE);
             ibookerEditorTopView.getAboutImg().setImageResource(aboutImgRes);
+
+            // 分享
+            boolean shareIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Visible, true);
+            int shareIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Res, R.drawable.draw_share);
+            ibookerEditorTopView.getShareIBtn().setVisibility(shareIBtnVisible ? VISIBLE : GONE);
+            ibookerEditorTopView.getShareIBtn().setBackgroundResource(shareIBtnRes);
 
             // 编辑框
             int ibookerEditorEditViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorEditView_BackgroundColor, 0xffffffff);
@@ -484,6 +497,9 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             Uri content_url = Uri.parse("http://ibooker.cc/article/182/detail");
             intent.setData(content_url);
             getContext().startActivity(intent);
+        } else if (tag.equals(IBTN_SHARE)) {// 分享
+            ibookerEditorVpView.setCurrentItem(1);
+            generateBitmap();
         }
     }
 
@@ -1100,7 +1116,8 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
      *
      * @param color 背景颜色
      */
-    public IbookerEditorView setIEPreViewIbookerEditorWebViewBackgroundColor(@ColorInt int color) {
+    public IbookerEditorView setIEPreViewIbookerEditorWebViewBackgroundColor(
+            @ColorInt int color) {
         ibookerEditorVpView.getPreView().setIbookerEditorWebViewBackgroundColor(color);
         return this;
     }
@@ -1210,42 +1227,114 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     /**
      * 编辑框顶部按钮点击监听
      */
-    public void setOnTopClickListener(IbookerEditorTopView.OnTopClickListener onTopClickListener) {
+    public void setOnTopClickListener(IbookerEditorTopView.OnTopClickListener
+                                              onTopClickListener) {
         ibookerEditorTopView.setOnTopClickListener(onTopClickListener);
     }
 
     /**
      * 编辑区输入标题监听
      */
-    public void setOnIbookerTitleEdTextChangedListener(IbookerEditorEditView.OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener) {
+    public void setOnIbookerTitleEdTextChangedListener
+    (IbookerEditorEditView.OnIbookerTitleEdTextChangedListener
+             onIbookerTitleEdTextChangedListener) {
         ibookerEditorVpView.getEditView().setOnIbookerTitleEdTextChangedListener(onIbookerTitleEdTextChangedListener);
     }
 
     /**
      * 编辑区输入内容监听
      */
-    public void setOnIbookerEdTextChangedListener(IbookerEditorEditView.OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
+    public void setOnIbookerEdTextChangedListener
+    (IbookerEditorEditView.OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
         ibookerEditorVpView.getEditView().setOnIbookerEdTextChangedListener(onIbookerEdTextChangedListener);
     }
 
     /**
      * 底部工具栏监听
      */
-    public void setOnToolClickListener(IbookerEditorToolView.OnToolClickListener onToolClickListener) {
+    public void setOnToolClickListener(IbookerEditorToolView.OnToolClickListener
+                                               onToolClickListener) {
         ibookerEditorToolView.setOnToolClickListener(onToolClickListener);
     }
 
     /**
      * 图片预览接口
      */
-    public void setIbookerEditorImgPreviewListener(IbookerEditorWebView.IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
+    public void setIbookerEditorImgPreviewListener
+    (IbookerEditorWebView.IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
     }
 
     /**
      * Url加载状态接口
      */
-    public void setIbookerEditorWebViewUrlLoadingListener(IbookerEditorWebView.IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener) {
+    public void setIbookerEditorWebViewUrlLoadingListener
+    (IbookerEditorWebView.IbookerEditorWebViewUrlLoadingListener
+             ibookerEditorWebViewUrlLoadingListener) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorWebViewUrlLoadingListener(ibookerEditorWebViewUrlLoadingListener);
     }
+
+    /**
+     * 生成File文件
+     */
+    private File createSDDirs(String path) {
+        if (Environment.getExternalStorageState().equals("mounted")) {
+            File dir = new File(path);
+            boolean bool = true;
+            if (!dir.exists()) {
+                bool = dir.mkdirs();
+            }
+            return !bool ? null : dir;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 生成图片
+     */
+    private void generateBitmap() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (ibookerEditorVpView.getPreView().getIbookerEditorWebView().isLoadFinished()) {
+                    Toast.makeText(IbookerEditorView.this.getContext(), "图片生成中...", Toast.LENGTH_SHORT).show();
+                    Bitmap bitmap = ibookerEditorVpView.getPreView().getIbookerEditorWebView().getWebViewBitmap();
+                    if (bitmap != null) {
+                        // 分享图片
+                        try {
+                            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ibookerEditor" + File.separator + "shares" + File.separator;
+                            String fileName = System.currentTimeMillis() + ".jpg";
+                            File dir = new File(filePath);
+                            boolean bool = dir.exists();
+                            if (!bool)
+                                createSDDirs(filePath);
+                            File file = new File(filePath, fileName);
+
+                            FileOutputStream fOut = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fOut);
+                            fOut.flush();
+                            fOut.close();
+
+                            // 进入图片预览
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.fromFile(file), "image/*");
+                            IbookerEditorView.this.getContext().startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            bitmap.recycle();
+                            System.gc();
+                        }
+                    } else {
+                        Toast.makeText(IbookerEditorView.this.getContext(), "生成图片失败！", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    generateBitmap();
+                }
+            }
+        }, 500);
+
+    }
+
 }

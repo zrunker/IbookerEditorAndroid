@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 public class IbookerEditorTopView extends LinearLayout implements View.OnClickListener {
     private ImageView backImg, aboutImg;
     private LinearLayout rightLayout;
-    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn;
+    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn, shareIBtn;
 
     // 构造方法
     public IbookerEditorTopView(Context context) {
@@ -99,6 +99,15 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         previewIBtn.setOnClickListener(this);
         rightLayout.addView(previewIBtn);
 
+        shareIBtn = new ImageButton(context);
+        shareIBtn.setLayoutParams(layoutParams);
+        shareIBtn.setBackgroundResource(R.drawable.draw_share);
+        shareIBtn.setContentDescription(getResources().getString(R.string.share));
+        shareIBtn.setPadding(IbookerEditorUtil.dpToPx(context, 13F), IbookerEditorUtil.dpToPx(context, 13F), IbookerEditorUtil.dpToPx(context, 13F), IbookerEditorUtil.dpToPx(context, 13F));
+        shareIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SHARE);
+        shareIBtn.setOnClickListener(this);
+        rightLayout.addView(shareIBtn);
+
         helpIBtn = new ImageButton(context);
         helpIBtn.setLayoutParams(layoutParams);
         helpIBtn.setBackgroundResource(R.drawable.draw_help);
@@ -158,6 +167,10 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     public ImageButton getHelpIBtn() {
         return helpIBtn;
+    }
+
+    public ImageButton getShareIBtn() {
+        return shareIBtn;
     }
 
     // 设置返回按钮backImg
@@ -234,6 +247,17 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     public IbookerEditorTopView setAboutImgVisibility(int visibility) {
         aboutImg.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置关于分享按钮
+    public IbookerEditorTopView setShareImageResource(@DrawableRes int resId) {
+        shareIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setShareImgVisibility(int visibility) {
+        shareIBtn.setVisibility(visibility);
         return this;
     }
 
