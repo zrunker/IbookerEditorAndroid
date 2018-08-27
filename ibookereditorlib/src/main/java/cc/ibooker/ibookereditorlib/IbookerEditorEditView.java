@@ -42,6 +42,8 @@ public class IbookerEditorEditView extends NestedScrollView {
     private boolean isSign = true;// 标记是否需要记录currentPos=textList.size()和textList
     private int currentPos = 0;
 
+    private int dp10;
+
     public EditText getIbookerTitleEd() {
         return ibookerTitleEd;
     }
@@ -80,6 +82,9 @@ public class IbookerEditorEditView extends NestedScrollView {
         setVerticalScrollBarEnabled(false);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         setFillViewport(true);
+
+        dp10 = IbookerEditorUtil.dpToPx(context, 10F);
+
         init(context);
     }
 
@@ -92,7 +97,6 @@ public class IbookerEditorEditView extends NestedScrollView {
 
         ibookerTitleEd = new EditText(context);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50F));
-        int dp10 = IbookerEditorUtil.dpToPx(context, 10F);
         titleParams.leftMargin = dp10;
         titleParams.rightMargin = dp10;
         ibookerTitleEd.setLayoutParams(titleParams);
@@ -138,7 +142,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.setSingleLine(false);
         ibookerEd.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         ibookerEd.setHint("书客编辑器，从这里开始");
-        ibookerEd.setPadding(IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F), IbookerEditorUtil.dpToPx(context, 10F));
+        ibookerEd.setPadding(dp10, dp10, dp10, dp10);
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
         ibookerEd.setTextSize(16f);

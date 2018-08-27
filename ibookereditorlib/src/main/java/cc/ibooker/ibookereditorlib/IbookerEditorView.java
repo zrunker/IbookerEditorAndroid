@@ -1,8 +1,10 @@
 package cc.ibooker.ibookereditorlib;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -12,6 +14,8 @@ import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -71,6 +75,14 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     private IbookerEditorToolView ibookerEditorToolView;
     // 底部工具栏-操作类
     private IbookerEditorUtil ibookerEditorUtil;
+
+    // 权限申请模块
+    private String[] needPermissions = {
+            // SDK在Android 6.0+需要进行运行检测的权限如下：
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.READ_PHONE_STATE
+    };
 
     // 工具栏进入和退出动画
     private Animation inAnim, outAnim;
@@ -156,7 +168,6 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             }
         });
         ibookerEditorVpView.setCurrentItem(0);
-        changeVpUpdateIbookerEditorTopView(0);
         addView(ibookerEditorVpView);
         // 底部工具栏
         ibookerEditorToolView = new IbookerEditorToolView(context);
@@ -226,6 +237,12 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             int shareIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Res, R.drawable.draw_share);
             ibookerEditorTopView.getShareIBtn().setVisibility(shareIBtnVisible ? VISIBLE : GONE);
             ibookerEditorTopView.getShareIBtn().setBackgroundResource(shareIBtnRes);
+
+            // 更多
+            boolean elseIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_Visible, true);
+            int elseIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_Res, R.drawable.draw_else);
+            ibookerEditorTopView.getElseIBtn().setVisibility(elseIBtnVisible ? VISIBLE : GONE);
+            ibookerEditorTopView.getElseIBtn().setBackgroundResource(elseIBtnRes);
 
             // 编辑框
             int ibookerEditorEditViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorEditView_BackgroundColor, 0xffffffff);
@@ -464,7 +481,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     // 关闭/开启软盘
     private void openInputSoft(boolean isOpen) {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
+        if (imm != null && imm.isActive() && ((Activity) getContext()).getCurrentFocus() != null) {
             if (isOpen)
                 imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
             else
@@ -499,7 +516,11 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             getContext().startActivity(intent);
         } else if (tag.equals(IBTN_SHARE)) {// 分享
             ibookerEditorVpView.setCurrentItem(1);
-            generateBitmap();
+            if (!hasPermission(needPermissions)) {
+                requestPermission(12112, needPermissions);
+            } else {
+                generateBitmap();
+            }
         }
     }
 
@@ -693,6 +714,28 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
 
     public IbookerEditorView setIETopViewAboutImgVisibility(int visibility) {
         ibookerEditorTopView.setAboutImgVisibility(visibility);
+        return this;
+    }
+
+    // 设置分享按钮
+    public IbookerEditorView setIETopViewShareIBtnResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setShareIBtnResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewShareIBtnVisibility(int visibility) {
+        ibookerEditorTopView.setShareIBtnVisibility(visibility);
+        return this;
+    }
+
+    // 设置更多按钮
+    public IbookerEditorView setIETopViewElseIBtnResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setElseIBtnResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewElseIBtnVisibility(int visibility) {
+        ibookerEditorTopView.setElseIBtnVisibility(visibility);
         return this;
     }
 
@@ -1277,7 +1320,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     /**
      * 生成File文件
      */
-    private File createSDDirs(String path) {
+    public File createSDDirs(String path) {
         if (Environment.getExternalStorageState().equals("mounted")) {
             File dir = new File(path);
             boolean bool = true;
@@ -1293,7 +1336,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     /**
      * 生成图片
      */
-    private void generateBitmap() {
+    public void generateBitmap() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1312,7 +1355,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
                             File file = new File(filePath, fileName);
 
                             FileOutputStream fOut = new FileOutputStream(file);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fOut);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fOut);
                             fOut.flush();
                             fOut.close();
 
@@ -1334,7 +1377,25 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
                 }
             }
         }, 500);
+    }
 
+    /**
+     * 权限检查方法，false代表没有该权限，ture代表有该权限
+     */
+    public boolean hasPermission(String... permissions) {
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this.getContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 权限请求方法
+     */
+    public void requestPermission(int code, String... permissions) {
+        ActivityCompat.requestPermissions((Activity) this.getContext(), permissions, code);
     }
 
 }

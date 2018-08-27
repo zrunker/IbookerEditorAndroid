@@ -21,6 +21,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
             lowercaseIBtn, h1IBtn, h2IBtn, h3IBtn, h4IBtn, h5IBtn, h6IBtn, linkIBtn, quoteIBtn,
             codeIBtn, imguIBtn, olIBtn, ulIBtn, unselectedIBtn, selectedIBtn, tableIBtn, htmlIBtn, hrIBtn,
             emojiIBtn;
+    private int dp6, dp13;
 
     // getter
     public LinearLayout getToolLayout() {
@@ -145,6 +146,10 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
         setVerticalScrollBarEnabled(false);
+
+        dp6 = IbookerEditorUtil.dpToPx(context, 6F);
+        dp13 = IbookerEditorUtil.dpToPx(context, 13F);
+
         init(context);
     }
 
@@ -159,7 +164,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        layoutParams.setMargins(IbookerEditorUtil.dpToPx(context, 6F), IbookerEditorUtil.dpToPx(context, 6F), IbookerEditorUtil.dpToPx(context, 6F), IbookerEditorUtil.dpToPx(context, 6F));
+        layoutParams.setMargins(dp6, dp6, dp6, dp6);
         // 粗体
         boldIBtn = new ImageButton(context);
         setImageBtn(boldIBtn, layoutParams, R.drawable.draw_bold, getResources().getString(R.string.bold), IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD);
@@ -304,7 +309,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         imageButton.setLayoutParams(layoutParams);
         imageButton.setBackgroundResource(resid);
         imageButton.setContentDescription(contentDescription);
-        imageButton.setPadding(IbookerEditorUtil.dpToPx(getContext(), 13F), IbookerEditorUtil.dpToPx(getContext(), 13F), IbookerEditorUtil.dpToPx(getContext(), 13F), IbookerEditorUtil.dpToPx(getContext(), 13F));
+        imageButton.setPadding(dp13, dp13, dp13, dp13);
         imageButton.setTag(tag);
         imageButton.setOnClickListener(new OnClickListener() {
             @Override
