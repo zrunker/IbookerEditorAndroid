@@ -851,7 +851,10 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
      * @param text text内容
      */
     public IbookerEditorView setIEEditViewIbookerTitleEdText(CharSequence text) {
-        ibookerEditorVpView.getEditView().getIbookerTitleEd().setText(text);
+        if (!TextUtils.isEmpty(text)) {
+            ibookerEditorVpView.getEditView().getIbookerTitleEd().setText(text);
+            ibookerEditorVpView.getEditView().getIbookerTitleEd().setSelection(text.length());
+        }
         return this;
     }
 
