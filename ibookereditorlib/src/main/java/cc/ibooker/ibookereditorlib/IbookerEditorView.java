@@ -184,6 +184,10 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             // 获取自定义属性，并设置
             TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.IbookerEditorView);
 
+            // 整体
+            int ibookerEditorViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorView_BackgroundColor, 0xffffffff);
+            this.setBackgroundColor(ibookerEditorViewBackgroundColor);
+
             // 顶部工具栏
             boolean ibookerEditorTopViewVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_Visible, true);
             ibookerEditorTopView.setVisibility(ibookerEditorTopViewVisible ? VISIBLE : GONE);

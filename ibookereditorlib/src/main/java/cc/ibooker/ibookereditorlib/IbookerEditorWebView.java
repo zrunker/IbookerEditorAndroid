@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Picture;
 import android.net.http.SslError;
 import android.os.Build;
-import android.support.v4.view.NestedScrollingChild;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.webkit.SslErrorHandler;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
  * 书客编辑器 - 预览界面 - 自定义WebView
  * Created by 邹峰立 on 2018/2/11.
  */
-public class IbookerEditorWebView extends WebView implements NestedScrollingChild {
+public class IbookerEditorWebView extends WebView {
     private boolean isLoadFinished = false;// 本地文件是否加载完成
     private boolean isExecuteCompile = false;// 是否执行预览
     private boolean isExecuteHtmlCompile = false;// 是否执行HTML预览
@@ -116,18 +115,18 @@ public class IbookerEditorWebView extends WebView implements NestedScrollingChil
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedError(view, request, error);
-//                else
-//                    // 当网页加载出错时，加载本地错误文件
-//                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                else
+                    // 当网页加载出错时，加载本地错误文件
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
             }
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
-//                else
-//                    // 当网页加载出错时，加载本地错误文件
-//                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                else
+                    // 当网页加载出错时，加载本地错误文件
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
             }
 
             @Override

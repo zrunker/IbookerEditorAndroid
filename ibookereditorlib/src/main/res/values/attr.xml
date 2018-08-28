@@ -2,6 +2,9 @@
 <resources>
 
     <declare-styleable name="IbookerEditorView">
+        <!--整体-->
+        <attr name="IbookerEditorView_BackgroundColor" format="color" />
+
         <!--顶部状态栏-->
         <attr name="IbookerEditorTopView_Visible" format="boolean" />
         <attr name="IbookerEditorTopView_BackImg_Visible" format="boolean" />
