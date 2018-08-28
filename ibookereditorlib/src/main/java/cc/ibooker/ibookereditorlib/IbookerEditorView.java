@@ -1386,6 +1386,40 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     }
 
     /**
+     * 生成图片文件
+     */
+    public File generateFile() {
+        File file = null;
+        Toast.makeText(IbookerEditorView.this.getContext(), "图片生成中...", Toast.LENGTH_SHORT).show();
+        Bitmap bitmap = ibookerEditorVpView.getPreView().getIbookerEditorWebView().getWebViewBitmap();
+        if (bitmap != null) {
+            // 分享图片
+            try {
+                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ibookerEditor" + File.separator + "shares" + File.separator;
+                String fileName = System.currentTimeMillis() + ".jpg";
+                File dir = new File(filePath);
+                boolean bool = dir.exists();
+                if (!bool)
+                    createSDDirs(filePath);
+                file = new File(filePath, fileName);
+
+                FileOutputStream fOut = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fOut);
+                fOut.flush();
+                fOut.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                bitmap.recycle();
+                System.gc();
+            }
+        } else {
+            Toast.makeText(IbookerEditorView.this.getContext(), "生成图片失败！", Toast.LENGTH_SHORT).show();
+        }
+        return file;
+    }
+
+    /**
      * 权限检查方法，false代表没有该权限，ture代表有该权限
      */
     public boolean hasPermission(String... permissions) {
