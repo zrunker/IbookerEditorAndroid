@@ -318,6 +318,14 @@ public class IbookerEditorToolView extends HorizontalScrollView {
                     onToolClickListener.onToolClick(v.getTag());
             }
         });
+        imageButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (onToolLongClickListener != null)
+                    onToolLongClickListener.onToolLongClick(v.getTag());
+                return true;
+            }
+        });
     }
 
     // 粗体
@@ -602,9 +610,21 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         void onToolClick(Object tag);
     }
 
+    /**
+     * 长按事件监听
+     */
+    public interface OnToolLongClickListener {
+        void onToolLongClick(Object tag);
+    }
+
     private OnToolClickListener onToolClickListener;
+    private OnToolLongClickListener onToolLongClickListener;
 
     public void setOnToolClickListener(OnToolClickListener onToolClickListener) {
         this.onToolClickListener = onToolClickListener;
+    }
+
+    public void setOnToolLongClickListener(OnToolLongClickListener onToolLongClickListener) {
+        this.onToolLongClickListener = onToolLongClickListener;
     }
 }

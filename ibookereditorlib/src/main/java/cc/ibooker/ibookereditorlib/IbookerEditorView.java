@@ -8,7 +8,9 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.ColorInt;
@@ -16,10 +18,13 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -34,6 +39,7 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BO
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CAPITALS;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CODE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EMOJI;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H1;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H2;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H3;
@@ -66,7 +72,10 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BAC
  * 书客编辑器布局
  * Created by 邹峰立 on 2018/2/11.
  */
-public class IbookerEditorView extends LinearLayout implements IbookerEditorTopView.OnTopClickListener, IbookerEditorToolView.OnToolClickListener {
+public class IbookerEditorView extends LinearLayout implements
+        IbookerEditorTopView.OnTopClickListener,
+        IbookerEditorToolView.OnToolClickListener,
+        IbookerEditorToolView.OnToolLongClickListener {
     // 顶部控件
     private IbookerEditorTopView ibookerEditorTopView;
     // 中间区域ViewPager
@@ -90,6 +99,8 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             editIBtnSelectedRes = R.drawable.icon_ibooker_editor_edit_orange,
             previewIBtnDefaultRes = R.drawable.icon_ibooker_editor_preview_gray,
             previewIBtnSelectedRes = R.drawable.icon_ibooker_editor_preview_orange;
+
+    private TooltipsPopuwindow tooltipsPopuwindow;
 
     // getter/setter
     public IbookerEditorTopView getIbookerEditorTopView() {
@@ -140,6 +151,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         setBackgroundColor(Color.parseColor("#FFFFFF"));
 
         init(context, attrs);
+        addSoftInputListener();
     }
 
     // 初始化
@@ -172,6 +184,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         // 底部工具栏
         ibookerEditorToolView = new IbookerEditorToolView(context);
         ibookerEditorToolView.setOnToolClickListener(this);
+        ibookerEditorToolView.setOnToolLongClickListener(this);
         addView(ibookerEditorToolView);
         // 底部工具栏 - 管理类
         ibookerEditorUtil = new IbookerEditorUtil(ibookerEditorVpView.getEditView());
@@ -484,6 +497,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
 
     // 关闭/开启软盘
     private void openInputSoft(boolean isOpen) {
+        closeTooltipsPopuwindow();
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null && imm.isActive() && ((Activity) getContext()).getCurrentFocus() != null) {
             if (isOpen)
@@ -587,6 +601,90 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
             ibookerEditorUtil.html();
         } else if (tag.equals(IBTN_HR)) {// 分割线
             ibookerEditorUtil.hr();
+        } else if (tag.equals(IBTN_EMOJI)) {// emoji表情
+
+        }
+    }
+
+    // 工具栏长按事件监听
+    @Override
+    public void onToolLongClick(Object tag) {
+        tooltipsPopuwindow = new TooltipsPopuwindow(getContext());
+        if (tag.equals(IBTN_BOLD)) {// 加粗
+            tooltipsPopuwindow.setTooltipsTv("加粗");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getBoldIBtn(), 0);
+        } else if (tag.equals(IBTN_ITALIC)) {// 斜体
+            tooltipsPopuwindow.setTooltipsTv("斜体");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getItalicIBtn(), 0);
+        } else if (tag.equals(IBTN_STRIKEOUT)) {// 删除线
+            tooltipsPopuwindow.setTooltipsTv("删除线");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getStrikeoutIBtn(), 0);
+        } else if (tag.equals(IBTN_UNDERLINE)) {// 下划线
+            tooltipsPopuwindow.setTooltipsTv("下划线");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getUnderlineIBtn(), 0);
+        } else if (tag.equals(IBTN_CAPITALS)) {// 单词首字母大写
+            tooltipsPopuwindow.setTooltipsTv("单词首字母大写");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getCapitalsIBtn(), 0);
+        } else if (tag.equals(IBTN_UPPERCASE)) {// 字母转大写
+            tooltipsPopuwindow.setTooltipsTv("字母转大写");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getUppercaseIBtn(), 0);
+        } else if (tag.equals(IBTN_LOWERCASE)) {// 字母转小写
+            tooltipsPopuwindow.setTooltipsTv("字母转小写");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getLowercaseIBtn(), 0);
+        } else if (tag.equals(IBTN_H1)) {// 一级标题
+            tooltipsPopuwindow.setTooltipsTv("一级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH1IBtn(), 0);
+        } else if (tag.equals(IBTN_H2)) {// 二级标题
+            tooltipsPopuwindow.setTooltipsTv("二级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH2IBtn(), 0);
+        } else if (tag.equals(IBTN_H3)) {// 三级标题
+            tooltipsPopuwindow.setTooltipsTv("三级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH3IBtn(), 0);
+        } else if (tag.equals(IBTN_H4)) {// 四级标题
+            tooltipsPopuwindow.setTooltipsTv("四级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH4IBtn(), 0);
+        } else if (tag.equals(IBTN_H5)) {// 五级标题
+            tooltipsPopuwindow.setTooltipsTv("五级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH5IBtn(), 0);
+        } else if (tag.equals(IBTN_H6)) {// 六级标题
+            tooltipsPopuwindow.setTooltipsTv("六级标题");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getH6IBtn(), 0);
+        } else if (tag.equals(IBTN_LINK)) {// 超链接
+            tooltipsPopuwindow.setTooltipsTv("超链接");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getLinkIBtn(), 0);
+        } else if (tag.equals(IBTN_QUOTE)) {// 引用
+            tooltipsPopuwindow.setTooltipsTv("引用");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getQuoteIBtn(), 0);
+        } else if (tag.equals(IBTN_CODE)) {// 代码
+            tooltipsPopuwindow.setTooltipsTv("代码");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getCodeIBtn(), 0);
+        } else if (tag.equals(IBTN_IMG_U)) {// 图片
+            tooltipsPopuwindow.setTooltipsTv("图片");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getImguIBtn(), 0);
+        } else if (tag.equals(IBTN_OL)) {// 数字列表
+            tooltipsPopuwindow.setTooltipsTv("数字列表");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getOlIBtn(), 0);
+        } else if (tag.equals(IBTN_UL)) {// 普通列表
+            tooltipsPopuwindow.setTooltipsTv("普通列表");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getUlIBtn(), 0);
+        } else if (tag.equals(IBTN_UNSELECTED)) {// 复选框未选中
+            tooltipsPopuwindow.setTooltipsTv("复选框未选中");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getUnselectedIBtn(), 0);
+        } else if (tag.equals(IBTN_SELECTED)) {// 复选框选中
+            tooltipsPopuwindow.setTooltipsTv("复选框选中");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getSelectedIBtn(), 0);
+        } else if (tag.equals(IBTN_TABLE)) {// 表格
+            tooltipsPopuwindow.setTooltipsTv("表格");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getTableIBtn(), 0);
+        } else if (tag.equals(IBTN_HTML)) {// HTML
+            tooltipsPopuwindow.setTooltipsTv("HTML");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getHtmlIBtn(), 0);
+        } else if (tag.equals(IBTN_HR)) {// 分割线
+            tooltipsPopuwindow.setTooltipsTv("分割线");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getHrIBtn(), 0);
+        } else if (tag.equals(IBTN_EMOJI)) {// emoji表情
+            tooltipsPopuwindow.setTooltipsTv("emoji表情");
+            tooltipsPopuwindow.showViewTop(getContext(), ibookerEditorToolView.getEmojiIBtn(), 0);
         }
     }
 
@@ -609,6 +707,7 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         outAnim.cancel();
         outAnim = null;
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().destroy();
+        closeTooltipsPopuwindow();
     }
 
     /**
@@ -1310,6 +1409,13 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
     }
 
     /**
+     * 底部工具栏长按监听
+     */
+    public void setOnToolLongClickListener(IbookerEditorToolView.OnToolLongClickListener onToolLongClickListener) {
+        ibookerEditorToolView.setOnToolLongClickListener(onToolLongClickListener);
+    }
+
+    /**
      * 图片预览接口
      */
     public void setIbookerEditorImgPreviewListener
@@ -1370,7 +1476,15 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
 
                             // 进入图片预览
                             Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(file), "image/*");
+                            Uri uri;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                uri = FileProvider.getUriForFile(getContext(), "cc.ibooker.ibookereditorlib.fileProvider", file);
+                            } else {
+                                uri = Uri.fromFile(file);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            }
+                            intent.setDataAndType(uri, "image/*");
                             IbookerEditorView.this.getContext().startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -1441,4 +1555,29 @@ public class IbookerEditorView extends LinearLayout implements IbookerEditorTopV
         ActivityCompat.requestPermissions((Activity) this.getContext(), permissions, code);
     }
 
+    /**
+     * 关闭tooltipsPopuwindow
+     */
+    public void closeTooltipsPopuwindow() {
+        if (tooltipsPopuwindow != null)
+            tooltipsPopuwindow.dismiss();
+    }
+
+    /**
+     * 监听软键盘显示隐藏
+     */
+    private void addSoftInputListener() {
+        final View decorView = ((Activity) getContext()).getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect rect = new Rect();
+                decorView.getWindowVisibleDisplayFrame(rect);
+                int displayHight = rect.bottom - rect.top;
+                int hight = decorView.getHeight();
+                if (displayHight > hight / 3 * 2)
+                    closeTooltipsPopuwindow();
+            }
+        });
+    }
 }

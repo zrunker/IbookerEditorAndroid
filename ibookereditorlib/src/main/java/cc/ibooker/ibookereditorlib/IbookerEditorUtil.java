@@ -102,678 +102,793 @@ public class IbookerEditorUtil {
      * 加粗
      */
     void bold() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        Pattern pattern = Pattern.compile("^[*]+.*[*]+$");
-        if (pattern.matcher(selectTxt).matches()) {
-            // 如果已加粗，去掉
-            selectTxt = selectTxt.replaceAll("^[*]+([^*]*)[*]+$", "$1");
-            finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
-        } else {
-            finalTxt = text.substring(0, start) + "**" + (TextUtils.isEmpty(selectTxt) ? "加粗" : text.substring(start, end)) + "**" + text.substring(end, text.length());
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            Pattern pattern = Pattern.compile("^[*]+.*[*]+$");
+            if (pattern.matcher(selectTxt).matches()) {
+                // 如果已加粗，去掉
+                selectTxt = selectTxt.replaceAll("^[*]+([^*]*)[*]+$", "$1");
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+            } else {
+                finalTxt = text.substring(0, start) + "**" + (TextUtils.isEmpty(selectTxt) ? "加粗" : text.substring(start, end)) + "**" + text.substring(end, text.length());
+            }
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 斜体
      */
     void italic() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        Pattern pattern = Pattern.compile("^[*]+.*[*]+$");
-        if (pattern.matcher(selectTxt).matches()) {
-            // 如果已加粗，去掉
-            selectTxt = selectTxt.replaceAll("^[*]+([^*]*)[*]+$", "$1");
-            finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
-        } else {
-            finalTxt = text.substring(0, start) + "*" + (TextUtils.isEmpty(selectTxt) ? "斜体" : text.substring(start, end)) + "*" + text.substring(end, text.length());
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            Pattern pattern = Pattern.compile("^[*]+.*[*]+$");
+            if (pattern.matcher(selectTxt).matches()) {
+                // 如果已加粗，去掉
+                selectTxt = selectTxt.replaceAll("^[*]+([^*]*)[*]+$", "$1");
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+            } else {
+                finalTxt = text.substring(0, start) + "*" + (TextUtils.isEmpty(selectTxt) ? "斜体" : text.substring(start, end)) + "*" + text.substring(end, text.length());
+            }
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 删除线
      */
     void strikeout() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        Pattern pattern = Pattern.compile("^[~]+.*[~]+$");
-        if (pattern.matcher(selectTxt).matches()) {
-            // 如果已删除线，去掉
-            selectTxt = selectTxt.replaceAll("^[~]+([^~]*)[~]+$", "$1");
-            finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
-        } else {
-            finalTxt = text.substring(0, start) + "~~" + (TextUtils.isEmpty(selectTxt) ? "删除线" : text.substring(start, end)) + "~~" + text.substring(end, text.length());
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            Pattern pattern = Pattern.compile("^[~]+.*[~]+$");
+            if (pattern.matcher(selectTxt).matches()) {
+                // 如果已删除线，去掉
+                selectTxt = selectTxt.replaceAll("^[~]+([^~]*)[~]+$", "$1");
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+            } else {
+                finalTxt = text.substring(0, start) + "~~" + (TextUtils.isEmpty(selectTxt) ? "删除线" : text.substring(start, end)) + "~~" + text.substring(end, text.length());
+            }
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 下划线
      */
     void underline() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        Pattern pattern = Pattern.compile("^[_]+.*[_]+$");
-        if (pattern.matcher(selectTxt).matches()) {
-            // 如果已下划线，去掉
-            selectTxt = selectTxt.replaceAll("^[_]+([^_]*)[_]+$", "$1");
-            finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
-        } else {
-            finalTxt = text.substring(0, start) + "__" + (TextUtils.isEmpty(selectTxt) ? "下划线" : text.substring(start, end)) + "__" + text.substring(end, text.length());
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            Pattern pattern = Pattern.compile("^[_]+.*[_]+$");
+            if (pattern.matcher(selectTxt).matches()) {
+                // 如果已下划线，去掉
+                selectTxt = selectTxt.replaceAll("^[_]+([^_]*)[_]+$", "$1");
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+            } else {
+                finalTxt = text.substring(0, start) + "__" + (TextUtils.isEmpty(selectTxt) ? "下划线" : text.substring(start, end)) + "__" + text.substring(end, text.length());
+            }
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 单词首字母大写
      */
     void capitals() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
+        try {
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
 
-        // 赋值
+            // 赋值
 //        String finalTxt = text;
 //        if (selectTxt.length() == 1)
 //            finalTxt = text.substring(0, start) + selectTxt.substring(0, 1).toUpperCase() + text.substring(end, text.length());
 //        else if (selectTxt.length() > 1)
 //            finalTxt = text.substring(0, start) + selectTxt.substring(0, 1).toUpperCase() + selectTxt.substring(1) + text.substring(end, text.length());
 
-        // 赋值 - 无效
+            // 赋值 - 无效
 //      String finalTxt = text.substring(0, start) + selectTxt.toLowerCase().replaceAll("\\b[a-z]/g", "$1".toUpperCase()) + text.substring(end, text.length());
 
-        // 赋值
-        StringBuffer finalTxt = new StringBuffer();
-        Pattern p = Pattern.compile("\\b\\w");
-        Matcher m = p.matcher(selectTxt.toLowerCase());
-        while (m.find()) {
-            m.appendReplacement(finalTxt, m.group().toUpperCase());
+            // 赋值
+            StringBuffer finalTxt = new StringBuffer();
+            Pattern p = Pattern.compile("\\b\\w");
+            Matcher m = p.matcher(selectTxt.toLowerCase());
+            while (m.find()) {
+                m.appendReplacement(finalTxt, m.group().toUpperCase());
+            }
+            m.appendTail(finalTxt);
+            ibookerEd.setText((text.substring(0, start) + finalTxt + text.substring(end, text.length())));
+            // 设置光标位置
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        m.appendTail(finalTxt);
-        ibookerEd.setText((text.substring(0, start) + finalTxt + text.substring(end, text.length())));
-        // 设置光标位置
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 字母转大写
      */
     void uppercase() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        finalTxt = text.substring(0, start) + selectTxt.toUpperCase() + text.substring(end, text.length());
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        setSelectionInfo(rangeData);
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            finalTxt = text.substring(0, start) + selectTxt.toUpperCase() + text.substring(end, text.length());
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 字母转小写
      */
     void lowercase() {
-        // 初始化
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        String selectTxt = rangeData.getText();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        // 赋值
-        finalTxt = text.substring(0, start) + selectTxt.toLowerCase() + text.substring(end, text.length());
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        setSelectionInfo(rangeData);
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            String selectTxt = rangeData.getText();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            // 赋值
+            finalTxt = text.substring(0, start) + selectTxt.toLowerCase() + text.substring(end, text.length());
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 一级标题
      */
     void h1() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^#\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^#\\s(.*)$", "$1");
-        } else {
-            thisline = "# " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^#\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^#\\s(.*)$", "$1");
+            } else {
+                thisline = "# " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 二级标题
      */
     void h2() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^##\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^##\\s(.*)$", "$1");
-        } else {
-            thisline = "## " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^##\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^##\\s(.*)$", "$1");
+            } else {
+                thisline = "## " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 三级标题
      */
     void h3() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^###\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^###\\s(.*)$", "$1");
-        } else {
-            thisline = "### " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^###\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^###\\s(.*)$", "$1");
+            } else {
+                thisline = "### " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 四级标题
      */
     void h4() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^####\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^####\\s(.*)$", "$1");
-        } else {
-            thisline = "#### " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^####\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^####\\s(.*)$", "$1");
+            } else {
+                thisline = "#### " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 五级标题
      */
     void h5() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^#####\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^#####\\s(.*)$", "$1");
-        } else {
-            thisline = "##### " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^#####\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^#####\\s(.*)$", "$1");
+            } else {
+                thisline = "##### " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 六级标题
      */
     void h6() {
-        // 初始化
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        // 赋值
-        Pattern pattern = Pattern.compile("^######\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^######\\s(.*)$", "$1");
-        } else {
-            thisline = "###### " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            // 赋值
+            Pattern pattern = Pattern.compile("^######\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^######\\s(.*)$", "$1");
+            } else {
+                thisline = "###### " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 超链接
      */
     void link() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.getStart();
-        int end = rangeData.getEnd();
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        thisline += "\n[链接描述](http://www.ibooker.cc)";
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            thisline += "\n[链接描述](http://www.ibooker.cc)";
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 引用
      */
     void quote() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
 
-        Pattern pattern = Pattern.compile("^>.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^>(.*)$", "$1");
-        } else {
-            thisline = '>' + thisline;
+            Pattern pattern = Pattern.compile("^>.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^>(.*)$", "$1");
+            } else {
+                thisline = '>' + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 代码
      */
     void code() {
-        String finalTxt;
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String selectTxt = rangeData.text;
+        try {
+            String finalTxt;
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String selectTxt = rangeData.text;
 
-        Pattern pattern = Pattern.compile("^`{3}[\\s\\S]*`{3}$");
-        if (pattern.matcher(selectTxt).matches()) {
-            finalTxt = text.substring(0, start) + selectTxt.replaceAll("^`{3}[\\n]([\\s\\S]*)[\\n]`{3}$", "$1") + text.substring(end, text.length());
-        } else {
-            finalTxt = text.substring(0, start) + "\n```\n" + selectTxt + "\n```\n" + text.substring(end, text.length());
+            Pattern pattern = Pattern.compile("^`{3}[\\s\\S]*`{3}$");
+            if (pattern.matcher(selectTxt).matches()) {
+                finalTxt = text.substring(0, start) + selectTxt.replaceAll("^`{3}[\\n]([\\s\\S]*)[\\n]`{3}$", "$1") + text.substring(end, text.length());
+            } else {
+                finalTxt = text.substring(0, start) + "\n```\n" + selectTxt + "\n```\n" + text.substring(end, text.length());
+            }
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length() - 5;
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt);
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length() - 5;
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 图片
      */
     void imgu() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        thisline += "\n![图片描述](http://ibooker.cc/favicon.ico/)";
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            thisline += "\n![图片描述](http://ibooker.cc/resources/images-logos/ic_launcher_192.png)";
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 数字列表
      */
     void ol() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        int j = 1;
-        Pattern pattern = Pattern.compile("^\\d+\\.\\s([^\\s]*)$");
-        for (int i = 0; i <= line; i++) {
-            if (i == line && pattern.matcher(allLine[i]).matches()) {
-                allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", "$1");
-                continue;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            int j = 1;
+            Pattern pattern = Pattern.compile("^\\d+\\.\\s([^\\s]*)$");
+            for (int i = 0; i <= line; i++) {
+                if (i == line && pattern.matcher(allLine[i]).matches()) {
+                    allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", "$1");
+                    continue;
+                }
+                if (pattern.matcher(allLine[i].trim()).matches()) {
+                    allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", (j++) + ". " + "$1");
+                    continue;
+                }
+                if (i == line) {
+                    allLine[i] = (j++) + ". " + thisline;
+                    continue;
+                }
+                if ((i - 1) >= 0 && TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
+                    j = 1;
+                }
             }
-            if (pattern.matcher(allLine[i].trim()).matches()) {
-                allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", (j++) + ". " + "$1");
-                continue;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
             }
-            if (i == line) {
-                allLine[i] = (j++) + ". " + thisline;
-                continue;
-            }
-            if ((i - 1) >= 0 && TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
-                j = 1;
-            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 普通列表
      */
     void ul() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        Pattern pattern = Pattern.compile("^-\\s.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^-\\s(.*)$", "$1");
-        } else {
-            thisline = "- " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            Pattern pattern = Pattern.compile("^-\\s.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^-\\s(.*)$", "$1");
+            } else {
+                thisline = "- " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 复选框未选中
      */
     void tasklistsUnChecked() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
 
-        Pattern pattern = Pattern.compile("^-\\s+\\[\\s?]\\s+.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^-\\s+\\[\\s?]\\s+(.*)$", "$1");
-        } else {
-            thisline = "- [ ] " + thisline;
+            Pattern pattern = Pattern.compile("^-\\s+\\[\\s?]\\s+.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^-\\s+\\[\\s?]\\s+(.*)$", "$1");
+            } else {
+                thisline = "- [ ] " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 复选框选中
      */
     void tasklistsChecked() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        int end = rangeData.end;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        Pattern pattern = Pattern.compile("^-\\s+\\[x]\\s+.*$");
-        if (pattern.matcher(thisline).matches()) {
-            thisline = thisline.replaceAll("^-\\s+\\[x]\\s+(.*)$", "$1");
-        } else {
-            thisline = "- [x] " + thisline;
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            int end = rangeData.end;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            Pattern pattern = Pattern.compile("^-\\s+\\[x]\\s+.*$");
+            if (pattern.matcher(thisline).matches()) {
+                thisline = thisline.replaceAll("^-\\s+\\[x]\\s+(.*)$", "$1");
+            } else {
+                thisline = "- [x] " + thisline;
+            }
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
-        }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 表格
      */
     void tables() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        thisline += "\n|  h1   |    h2   |    h3   |"
-                + "\n|:------|:-------:|--------:|"
-                + "\n| 100   | [a][1]  | ![b][2] |"
-                + "\n| *foo* | **bar** | ~~baz~~ |";
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            thisline += "\n|  h1   |    h2   |    h3   |"
+                    + "\n|:------|:-------:|--------:|"
+                    + "\n| 100   | [a][1]  | ![b][2] |"
+                    + "\n| *foo* | **bar** | ~~baz~~ |";
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
      * HTML
      */
     void html() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        thisline += "\n<html>\n<!--在这里插入内容-->\n</html>";
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            thisline += "\n<html>\n<!--在这里插入内容-->\n</html>";
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length() - 9;
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length() - 9;
-        setSelectionInfo(rangeData);
     }
 
     /**
      * 分割线
      */
     void hr() {
-        RangeData rangeData = getSelectionInfo();
-        int start = rangeData.start;
-        String text = ibookerEd.getText().toString();
-        String temp = text.substring(0, start);
-        int line = temp.split("\n").length - 1;
-        if (line < 0) line = 0;
-        String thisline = text.split("\n")[line];
-        String[] allLine = text.split("\n");
-        thisline = thisline + "\n***";
-        allLine[line] = thisline;
-        StringBuilder finalTxt = new StringBuilder();
-        for (String str : allLine) {
-            finalTxt.append(str).append("\n");
+        try {
+            RangeData rangeData = getSelectionInfo();
+            int start = rangeData.start;
+            String text = ibookerEd.getText().toString();
+            String temp = text.substring(0, start);
+            int line = temp.split("\n").length - 1;
+            String[] texts = text.split("\n");
+            if (line >= texts.length) line = texts.length - 1;
+            if (line < 0) line = 0;
+            String thisline = texts[line];
+            String[] allLine = text.split("\n");
+            thisline = thisline + "\n***";
+            allLine[line] = thisline;
+            StringBuilder finalTxt = new StringBuilder();
+            for (String str : allLine) {
+                finalTxt.append(str).append("\n");
+            }
+            ibookerEd.setText(finalTxt.toString());
+            // 设置光标位置
+            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ibookerEd.setText(finalTxt.toString());
-        // 设置光标位置
-        rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
-        setSelectionInfo(rangeData);
     }
 
     /**
