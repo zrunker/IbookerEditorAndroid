@@ -18,8 +18,8 @@ import android.widget.LinearLayout;
 public class IbookerEditorTopView extends LinearLayout implements View.OnClickListener {
     private ImageView backImg, aboutImg;
     private LinearLayout rightLayout;
-    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn, shareIBtn, elseIBtn;
-    private int dp13, dp5, dp29;
+    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn, shareIBtn, elseIBtn, setIBtn;
+    private int dp13, dp3_5, dp4_5, dp5, dp12, dp29;
 
     // 构造方法
     public IbookerEditorTopView(Context context) {
@@ -38,6 +38,9 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         setMinimumHeight(IbookerEditorUtil.dpToPx(context, 48F));
 
         dp13 = IbookerEditorUtil.dpToPx(context, 13F);
+        dp12 = IbookerEditorUtil.dpToPx(context, 12F);
+        dp3_5 = IbookerEditorUtil.dpToPx(context, 3.5F);
+        dp4_5 = IbookerEditorUtil.dpToPx(context, 4.5F);
         dp5 = IbookerEditorUtil.dpToPx(context, 5F);
         dp29 = IbookerEditorUtil.dpToPx(context, 29F);
 
@@ -108,10 +111,19 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         shareIBtn.setLayoutParams(layoutParams);
         shareIBtn.setBackgroundResource(R.drawable.draw_share);
         shareIBtn.setContentDescription(getResources().getString(R.string.share));
-        shareIBtn.setPadding(dp13, dp13, dp13, dp13);
+        shareIBtn.setPadding(dp12, dp12, dp12, dp12);
         shareIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SHARE);
         shareIBtn.setOnClickListener(this);
         rightLayout.addView(shareIBtn);
+
+        setIBtn = new ImageButton(context);
+        setIBtn.setLayoutParams(layoutParams);
+        setIBtn.setBackgroundResource(R.drawable.draw_set);
+        setIBtn.setContentDescription(getResources().getString(R.string.set));
+        setIBtn.setPadding(dp12, dp12, dp12, dp12);
+        setIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SET);
+        setIBtn.setOnClickListener(this);
+        rightLayout.addView(setIBtn);
 
         helpIBtn = new ImageButton(context);
         helpIBtn.setLayoutParams(layoutParams);
@@ -123,12 +135,12 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         rightLayout.addView(helpIBtn);
 
         LayoutParams params = new LayoutParams(dp29, dp29);
-        params.setMargins(dp5, 0, dp5, 0);
+        params.setMargins(dp3_5, 0, dp3_5, 0);
         aboutImg = new ImageView(context);
         aboutImg.setLayoutParams(params);
         aboutImg.setImageResource(R.drawable.ibooker_editor_logo);
         aboutImg.setContentDescription(getResources().getString(R.string.about));
-        aboutImg.setPadding(dp5, dp5, dp5, dp5);
+        aboutImg.setPadding(dp4_5, dp4_5, dp4_5, dp4_5);
         aboutImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT);
         aboutImg.setOnClickListener(this);
         rightLayout.addView(aboutImg);
@@ -137,7 +149,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         elseIBtn.setLayoutParams(layoutParams);
         elseIBtn.setBackgroundResource(R.drawable.draw_else);
         elseIBtn.setContentDescription(getResources().getString(R.string._else));
-        elseIBtn.setPadding(dp13, dp13, dp13, dp13);
+        elseIBtn.setPadding(dp12, dp12, dp12, dp12);
         elseIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ELSE);
         elseIBtn.setOnClickListener(this);
         rightLayout.addView(elseIBtn);
@@ -189,6 +201,14 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     public ImageButton getElseIBtn() {
         return elseIBtn;
+    }
+
+    public ImageButton getSetIBtn() {
+        return setIBtn;
+    }
+
+    public void setSetIBtn(ImageButton setIBtn) {
+        this.setIBtn = setIBtn;
     }
 
     // 设置返回按钮backImg
@@ -287,6 +307,17 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     public IbookerEditorTopView setElseIBtnVisibility(int visibility) {
         elseIBtn.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置按钮
+    public IbookerEditorTopView setSetIBtnResource(@DrawableRes int resId) {
+        setIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setSetIBtnVisibility(int visibility) {
+        setIBtn.setVisibility(visibility);
         return this;
     }
 

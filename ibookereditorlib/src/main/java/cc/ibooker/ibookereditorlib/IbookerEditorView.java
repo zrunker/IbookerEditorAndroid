@@ -58,6 +58,7 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PR
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_QUOTE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SELECTED;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SET;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SHARE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_STRIKEOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_TABLE;
@@ -260,6 +261,12 @@ public class IbookerEditorView extends LinearLayout implements
             int elseIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_Res, R.drawable.draw_else);
             ibookerEditorTopView.getElseIBtn().setVisibility(elseIBtnVisible ? VISIBLE : GONE);
             ibookerEditorTopView.getElseIBtn().setBackgroundResource(elseIBtnRes);
+
+            // 设置
+            boolean setIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_SetIBtn_Visible, true);
+            int setIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_SetIBtn_Res, R.drawable.draw_set);
+            ibookerEditorTopView.getSetIBtn().setVisibility(setIBtnVisible ? VISIBLE : GONE);
+            ibookerEditorTopView.getSetIBtn().setBackgroundResource(setIBtnRes);
 
             // 编辑框
             int ibookerEditorEditViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorEditView_BackgroundColor, 0xffffffff);
@@ -541,6 +548,8 @@ public class IbookerEditorView extends LinearLayout implements
             } else {
                 generateBitmap();
             }
+        } else if (tag.equals(IBTN_SET)) {// 设置
+
         }
     }
 

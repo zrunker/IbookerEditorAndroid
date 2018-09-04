@@ -25,7 +25,7 @@ public class TooltipsPopuwindow extends PopupWindow {
     public TooltipsPopuwindow(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_tooltips, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.ibooker_editor_layout_tooltips, null);
         tooltipsTv = view.findViewById(R.id.tv_name);
         setContentView(view);
         setFocusable(true);
