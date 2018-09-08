@@ -112,6 +112,16 @@ public class IbookerEditorPreView extends NestedScrollView {
     }
 
     /**
+     * 设置WebView控件字体大小
+     *
+     * @param fontSize 字体大小
+     */
+    public IbookerEditorPreView setIbookerEditorWebViewFontSize(int fontSize) {
+        ibookerEditorWebView.setIbookerEditorWebViewFontSize(fontSize);
+        return this;
+    }
+
+    /**
      * 设置标题显示 或者隐藏
      *
      * @param visibility View.GONE,View.VISIBLE,View.INVISIBLE

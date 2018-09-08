@@ -35,4 +35,11 @@
     <string name="share">分享</string>
     <string name="set">设置</string>
     <string name="_else">其他</string>
+    <string name="font_size">字体大小：</string>
+    <string name="screen_brightness">屏幕亮度：</string>
+    <string name="font_color">字体颜色：</string>
+    <string name="background_color">背景颜色：</string>
+    <string name="follow_sys">跟随系统</string>
+    <string name="font_size_add"> A+ </string>
+    <string name="font_size_reduce"> A- </string>
 </resources>

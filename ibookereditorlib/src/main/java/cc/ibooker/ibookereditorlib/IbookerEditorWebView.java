@@ -31,6 +31,12 @@ public class IbookerEditorWebView extends WebView {
 
     private ArrayList<String> imgPathList;// WebView所有图片地址
     private IbookerEditorJsCheckImgEvent ibookerEditorJsCheckImgEvent;
+    private WebSettings webSettings;
+    private int currentFontSize;
+
+    public int getCurrentFontSize() {
+        return currentFontSize;
+    }
 
     public IbookerEditorWebView(Context context) {
         this(context, null);
@@ -59,7 +65,7 @@ public class IbookerEditorWebView extends WebView {
     // 初始化
     @SuppressLint({"AddJavascriptInterface", "SetJavaScriptEnabled"})
     private void init() {
-        WebSettings webSettings = this.getSettings();
+        webSettings = this.getSettings();
         // 支持内容重新布局
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         // 允许JS
@@ -89,6 +95,19 @@ public class IbookerEditorWebView extends WebView {
         webSettings.setBuiltInZoomControls(true);
         // 隐藏原生的缩放控件
         webSettings.setDisplayZoomControls(false);
+
+        // 获取当前字体大小
+        if (webSettings.getTextSize() == WebSettings.TextSize.SMALLEST) {
+            currentFontSize = 1;
+        } else if (webSettings.getTextSize() == WebSettings.TextSize.SMALLER) {
+            currentFontSize = 2;
+        } else if (webSettings.getTextSize() == WebSettings.TextSize.NORMAL) {
+            currentFontSize = 3;
+        } else if (webSettings.getTextSize() == WebSettings.TextSize.LARGER) {
+            currentFontSize = 4;
+        } else if (webSettings.getTextSize() == WebSettings.TextSize.LARGEST) {
+            currentFontSize = 5;
+        }
 
         // 隐藏滚动条
         setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -260,6 +279,32 @@ public class IbookerEditorWebView extends WebView {
         Canvas canvas = new Canvas(bitmap);
         picture.draw(canvas);
         return bitmap;
+    }
+
+    /**
+     * 设置当前字体大小
+     */
+    public void setIbookerEditorWebViewFontSize(int fontSize) {
+        if (fontSize >= 1 && fontSize <= 5) {
+            currentFontSize = fontSize;
+            switch (fontSize) {
+                case 1:
+                    webSettings.setTextSize(WebSettings.TextSize.SMALLEST);
+                    break;
+                case 2:
+                    webSettings.setTextSize(WebSettings.TextSize.SMALLER);
+                    break;
+                case 3:
+                    webSettings.setTextSize(WebSettings.TextSize.NORMAL);
+                    break;
+                case 4:
+                    webSettings.setTextSize(WebSettings.TextSize.LARGER);
+                    break;
+                case 5:
+                    webSettings.setTextSize(WebSettings.TextSize.LARGEST);
+                    break;
+            }
+        }
     }
 
     // 图片预览接口

@@ -37,12 +37,17 @@ public class IbookerEditorEditView extends NestedScrollView {
     private EditText ibookerTitleEd;
     private View lineView;
     private EditText ibookerEd;
+    private float currentTextSize = 16f;
 
     private ArrayList<String> textList = new ArrayList<>();
     private boolean isSign = true;// 标记是否需要记录currentPos=textList.size()和textList
     private int currentPos = 0;
 
     private int dp10;
+
+    public float getCurrentTextSize() {
+        return currentTextSize;
+    }
 
     public EditText getIbookerTitleEd() {
         return ibookerTitleEd;
@@ -145,7 +150,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.setPadding(dp10, dp10, dp10, dp10);
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
-        ibookerEd.setTextSize(16f);
+        ibookerEd.setTextSize(currentTextSize);
         ibookerEd.setLineSpacing(4f, 1.3f);
         ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
@@ -161,9 +166,9 @@ public class IbookerEditorEditView extends NestedScrollView {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 try {
-                    Field mEditor = TextView.class.getDeclaredField("mEditor");//找到 TextView中的成员变量mEditor
+                    Field mEditor = TextView.class.getDeclaredField("mEditor");// 找到 TextView中的成员变量mEditor
                     mEditor.setAccessible(true);
-                    Object object = mEditor.get(ibookerEd);//根具持有对象拿到mEditor变量里的值 （android.widget.Editor类的实例）
+                    Object object = mEditor.get(ibookerEd);// 根据持有对象拿到mEditor变量里的值 （android.widget.Editor类的实例）
 
                     //--------------------显示选择控制工具------------------------------//
                     @SuppressLint("PrivateApi")
@@ -257,6 +262,7 @@ public class IbookerEditorEditView extends NestedScrollView {
      * @param size 字体大小
      */
     public IbookerEditorEditView setIbookerEdTextSize(float size) {
+        currentTextSize = size;
         ibookerEd.setTextSize(size);
         return this;
     }

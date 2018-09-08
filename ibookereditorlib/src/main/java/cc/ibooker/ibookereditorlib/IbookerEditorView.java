@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -34,6 +35,12 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_BACKGROUNDCOLOR;
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_BRIGHTNESS;
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_ISBRIGHTNESS;
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_SET_NAME;
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IEEDITVIEW_IBOOKERED_TEXTSIZE;
+import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IEEDITVIEW_WEBVIEW_FONTSIZE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CAPITALS;
@@ -91,7 +98,8 @@ public class IbookerEditorView extends LinearLayout implements
             // SDK在Android 6.0+需要进行运行检测的权限如下：
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_PHONE_STATE
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.WRITE_SETTINGS
     };
 
     // 工具栏进入和退出动画
@@ -102,6 +110,8 @@ public class IbookerEditorView extends LinearLayout implements
             previewIBtnSelectedRes = R.drawable.icon_ibooker_editor_preview_orange;
 
     private TooltipsPopuwindow tooltipsPopuwindow;
+    private IbookerEditerSetPopuwindow editerSetPopuwindow;
+    private Handler handler;
 
     // getter/setter
     public IbookerEditorTopView getIbookerEditorTopView() {
@@ -145,7 +155,7 @@ public class IbookerEditorView extends LinearLayout implements
         this(context, attrs, 0);
     }
 
-    public IbookerEditorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public IbookerEditorView(final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(VERTICAL);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -153,6 +163,40 @@ public class IbookerEditorView extends LinearLayout implements
 
         init(context, attrs);
         addSoftInputListener();
+
+        if (handler == null)
+            handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (getIbookerEditorTopView().getSetIBtn().getVisibility() == VISIBLE) {
+                    // 初始化数据
+                    SharedPreferences sharedPreferences = context.getSharedPreferences(IBOOKEREDITER_SET_NAME, Context.MODE_PRIVATE);
+                    boolean ibookerediter_isbrightness = sharedPreferences.getBoolean(IBOOKEREDITER_ISBRIGHTNESS, false);
+                    int ibookerediter_brightness = sharedPreferences.getInt(IBOOKEREDITER_BRIGHTNESS, 0);
+                    int ieeditview_ibookered_textsize = sharedPreferences.getInt(IEEDITVIEW_IBOOKERED_TEXTSIZE, 0);
+                    int ieeditview_webview_fontsize = sharedPreferences.getInt(IEEDITVIEW_WEBVIEW_FONTSIZE, 0);
+                    String ibookerediter_backgroundcolor = sharedPreferences.getString(IBOOKEREDITER_BACKGROUNDCOLOR, "");
+
+                    if (!ScreenBrightnessUtil.checkPermission(context, false)) {
+                        if (ibookerediter_isbrightness) {
+                            ScreenBrightnessUtil.startAutoBrightness(context);
+                        } else {
+                            ScreenBrightnessUtil.stopAutoBrightness(context);
+                            ScreenBrightnessUtil.saveBrightness(context, ibookerediter_brightness);
+                        }
+                    }
+
+                    setIEEditViewIbookerEdTextSize(ieeditview_ibookered_textsize);
+                    setIEEditViewWebViewFontSize(ieeditview_webview_fontsize);
+                    if (!TextUtils.isEmpty(ibookerediter_backgroundcolor)) {
+                        int color = Color.parseColor(ibookerediter_backgroundcolor);
+                        setIEEditViewBackgroundColor(color);
+                        setIEPreViewBackgroundColor(color);
+                    }
+                }
+            }
+        }, 300);
     }
 
     // 初始化
@@ -517,6 +561,7 @@ public class IbookerEditorView extends LinearLayout implements
     // 顶部按钮点击事件监听
     @Override
     public void onTopClick(Object tag) {
+        if (ClickUtil.isFastClick()) return;
         if (tag.equals(IMG_BACK)) {// 返回
             ((Activity) getContext()).finish();
         } else if (tag.equals(IBTN_UNDO)) {// 撤销
@@ -549,13 +594,21 @@ public class IbookerEditorView extends LinearLayout implements
                 generateBitmap();
             }
         } else if (tag.equals(IBTN_SET)) {// 设置
-
+            openInputSoft(false);
+            if (editerSetPopuwindow == null)
+                editerSetPopuwindow = new IbookerEditerSetPopuwindow(getContext(), this);
+            if (!ScreenBrightnessUtil.checkPermission(this.getContext(), true)) {
+                editerSetPopuwindow.showAsDropDown(ibookerEditorTopView);
+            } else {
+                closeEditerSetPopuwindow();
+            }
         }
     }
 
     // 工具栏按钮点击事件监听
     @Override
     public void onToolClick(Object tag) {
+        if (ClickUtil.isFastClick()) return;
         ibookerEditorVpView.getEditView().getIbookerTitleEd().clearFocus();
         ibookerEditorVpView.getEditView().getIbookerEd().requestFocus();
         if (ibookerEditorUtil == null)// 初始化ibookerEditorUtil
@@ -717,6 +770,11 @@ public class IbookerEditorView extends LinearLayout implements
         outAnim = null;
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().destroy();
         closeTooltipsPopuwindow();
+        closeEditerSetPopuwindow();
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
     }
 
     /**
@@ -850,6 +908,16 @@ public class IbookerEditorView extends LinearLayout implements
 
     public IbookerEditorView setIETopViewElseIBtnVisibility(int visibility) {
         ibookerEditorTopView.setElseIBtnVisibility(visibility);
+        return this;
+    }
+
+    /**
+     * 设置预览界面字体大小
+     *
+     * @param size 字体大小
+     */
+    public IbookerEditorView setIEEditViewWebViewFontSize(int size) {
+        ibookerEditorVpView.getPreView().setIbookerEditorWebViewFontSize(size);
         return this;
     }
 
@@ -1568,8 +1636,16 @@ public class IbookerEditorView extends LinearLayout implements
      * 关闭tooltipsPopuwindow
      */
     public void closeTooltipsPopuwindow() {
-        if (tooltipsPopuwindow != null)
+        if (tooltipsPopuwindow != null && tooltipsPopuwindow.isShowing())
             tooltipsPopuwindow.dismiss();
+    }
+
+    /**
+     * 关闭设置弹框
+     */
+    public void closeEditerSetPopuwindow() {
+        if (editerSetPopuwindow != null && editerSetPopuwindow.isShowing())
+            editerSetPopuwindow.dismiss();
     }
 
     /**
@@ -1582,9 +1658,9 @@ public class IbookerEditorView extends LinearLayout implements
             public void onGlobalLayout() {
                 Rect rect = new Rect();
                 decorView.getWindowVisibleDisplayFrame(rect);
-                int displayHight = rect.bottom - rect.top;
-                int hight = decorView.getHeight();
-                if (displayHight > hight / 3 * 2)
+                int displayHeight = rect.bottom - rect.top;
+                int height = decorView.getHeight();
+                if (displayHeight > height / 3 * 2)
                     closeTooltipsPopuwindow();
             }
         });

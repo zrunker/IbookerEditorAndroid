@@ -1,6 +1,2013 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EFEFEF"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="#DBDBDB" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingEnd="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingStart="15dp"
+        android:paddingTop="25dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_ibooker_editor_dark" />
+
+        <SeekBar
+            android:id="@+id/seekbar_screen_brightness"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_ibooker_editor_light" />
+
+        <TextView
+            android:id="@+id/tv_follow_sys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/bg_ibooker_editor_555555_coner_3"
+            android:paddingBottom="3dp"
+            android:paddingEnd="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="3dp"
+            android:text="@string/follow_sys"
+            android:textColor="#555"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!--字体大小-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingEnd="18dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingStart="18dp"
+        android:paddingTop="25dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_ibooker_editor_edit_gray" />
+
+            <TextView
+                android:id="@+id/tv_edit_font_size_add"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ibooker_editor_555555_coner_3"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/font_size_add"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_edit_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="46dp"
+                android:paddingEnd="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingStart="8dp"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_edit_font_size_reduce"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ibooker_editor_555555_coner_3"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/font_size_reduce"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_ibooker_editor_preview_gray" />
+
+            <TextView
+                android:id="@+id/tv_pre_font_size_add"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ibooker_editor_555555_coner_3"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/font_size_add"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_pre_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="46dp"
+                android:paddingEnd="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingStart="8dp"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_pre_font_size_reduce"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ibooker_editor_555555_coner_3"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/font_size_reduce"
+                android:textColor="#555"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--背景颜色-->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp"
+        android:paddingEnd="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingStart="15dp"
+        android:paddingTop="25dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layout_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_white"
+                android:tag="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/img_ivory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_ivory"
+                android:tag="#FFFFF0" />
+
+            <ImageView
+                android:id="@+id/img_lightyellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightyellow"
+                android:tag="#FFFFE0" />
+
+            <ImageView
+                android:id="@+id/img_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_yellow"
+                android:tag="#FFFF00" />
+
+            <ImageView
+                android:id="@+id/img_snow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_snow"
+                android:tag="#FFFAFA" />
+
+            <ImageView
+                android:id="@+id/img_floralwhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_floralwhite"
+                android:tag="#FFFAF0" />
+
+            <ImageView
+                android:id="@+id/img_lemonchiffon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lemonchiffon"
+                android:tag="#FFFACD" />
+
+            <ImageView
+                android:id="@+id/img_cornsilk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_cornsilk"
+                android:tag="#FFF8DC" />
+
+            <ImageView
+                android:id="@+id/img_seashell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_seashell"
+                android:tag="#FFF5EE" />
+
+            <ImageView
+                android:id="@+id/img_lavenderblush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lavenderblush"
+                android:tag="#FFF0F5" />
+
+            <ImageView
+                android:id="@+id/img_papayawhip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_papayawhip"
+                android:tag="#FFEFD5" />
+
+            <ImageView
+                android:id="@+id/img_blanchedalmond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_blanchedalmond"
+                android:tag="#FFEBCD" />
+
+            <ImageView
+                android:id="@+id/img_mistyrose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mistyrose"
+                android:tag="#FFE4E1" />
+
+            <ImageView
+                android:id="@+id/img_bisque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_bisque"
+                android:tag="#FFE4C4" />
+
+            <ImageView
+                android:id="@+id/img_moccasin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_moccasin"
+                android:tag="#FFE4B5" />
+
+            <ImageView
+                android:id="@+id/img_navajowhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_navajowhite"
+                android:tag="#FFDEAD" />
+
+            <ImageView
+                android:id="@+id/img_peachpuff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_peachpuff"
+                android:tag="#FFDAB9" />
+
+            <ImageView
+                android:id="@+id/img_gold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_gold"
+                android:tag="#FFD700" />
+
+            <ImageView
+                android:id="@+id/img_pink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_pink"
+                android:tag="#FFC0CB" />
+
+            <ImageView
+                android:id="@+id/img_lightpink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightpink"
+                android:tag="#FFB6C1" />
+
+            <ImageView
+                android:id="@+id/img_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_orange"
+                android:tag="#FFA500" />
+
+            <ImageView
+                android:id="@+id/img_lightsalmon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightsalmon"
+                android:tag="#FFA07A" />
+
+            <ImageView
+                android:id="@+id/img_darkorange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkorange"
+                android:tag="#FF8C00" />
+
+            <ImageView
+                android:id="@+id/img_coral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_coral"
+                android:tag="#FF7F50" />
+
+            <ImageView
+                android:id="@+id/img_hotpink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_hotpink"
+                android:tag="#FF69B4" />
+
+            <ImageView
+                android:id="@+id/img_tomato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_tomato"
+                android:tag="#FF6347" />
+
+            <ImageView
+                android:id="@+id/img_orangered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_orangered"
+                android:tag="#FF4500" />
+
+            <ImageView
+                android:id="@+id/img_deeppink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_deeppink"
+                android:tag="#FF1493" />
+
+            <ImageView
+                android:id="@+id/img_magenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_magenta"
+                android:tag="#FF00FF" />
+
+            <ImageView
+                android:id="@+id/img_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_red"
+                android:tag="#FF0000" />
+
+            <ImageView
+                android:id="@+id/img_oldlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_oldlace"
+                android:tag="#FDF5E6" />
+
+            <ImageView
+                android:id="@+id/img_lightgoldenrodyellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightgoldenrodyellow"
+                android:tag="#FAFAD2" />
+
+            <ImageView
+                android:id="@+id/img_linen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_linen"
+                android:tag="#FAF0E6" />
+
+            <ImageView
+                android:id="@+id/img_antiquewhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_antiquewhite"
+                android:tag="#FAEBD7" />
+
+            <ImageView
+                android:id="@+id/img_salmon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_salmon"
+                android:tag="#FA8072" />
+
+            <ImageView
+                android:id="@+id/img_ghostwhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_ghostwhite"
+                android:tag="#F8F8FF" />
+
+            <ImageView
+                android:id="@+id/img_mintcream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mintcream"
+                android:tag="#F5FFFA" />
+
+            <ImageView
+                android:id="@+id/img_whitesmoke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_whitesmoke"
+                android:tag="#F5F5F5" />
+
+            <ImageView
+                android:id="@+id/img_beige"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_beige"
+                android:tag="#F5F5DC" />
+
+            <ImageView
+                android:id="@+id/img_wheat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_wheat"
+                android:tag="#F5DEB3" />
+
+            <ImageView
+                android:id="@+id/img_sandybrown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_sandybrown"
+                android:tag="#F4A460" />
+
+            <ImageView
+                android:id="@+id/img_azure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_azure"
+                android:tag="#F0FFFF" />
+
+            <ImageView
+                android:id="@+id/img_honeydew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_honeydew"
+                android:tag="#F0FFF0" />
+
+            <ImageView
+                android:id="@+id/img_aliceblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_aliceblue"
+                android:tag="#F0F8FF" />
+
+            <ImageView
+                android:id="@+id/img_khaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_khaki"
+                android:tag="#F0E68C" />
+
+            <ImageView
+                android:id="@+id/img_lightcoral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightcoral"
+                android:tag="#F08080" />
+
+            <ImageView
+                android:id="@+id/img_palegoldenrod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_palegoldenrod"
+                android:tag="#EEE8AA" />
+
+            <ImageView
+                android:id="@+id/img_violet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_violet"
+                android:tag="#EE82EE" />
+
+            <ImageView
+                android:id="@+id/img_darksalmon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darksalmon"
+                android:tag="#E9967A" />
+
+            <ImageView
+                android:id="@+id/img_lavender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lavender"
+                android:tag="#E6E6FA" />
+
+            <ImageView
+                android:id="@+id/img_lightcyan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightcyan"
+                android:tag="#E0FFFF" />
+
+            <ImageView
+                android:id="@+id/img_burlywood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_burlywood"
+                android:tag="#DEB887" />
+
+            <ImageView
+                android:id="@+id/img_plum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_plum"
+                android:tag="#DDA0DD" />
+
+            <ImageView
+                android:id="@+id/img_gainsboro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_gainsboro"
+                android:tag="#DCDCDC" />
+
+            <ImageView
+                android:id="@+id/img_crimson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_crimson"
+                android:tag="#DC143C" />
+
+            <ImageView
+                android:id="@+id/img_palevioletred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_palevioletred"
+                android:tag="#DB7093" />
+
+            <ImageView
+                android:id="@+id/img_goldenrod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_goldenrod"
+                android:tag="#DAA520" />
+
+            <ImageView
+                android:id="@+id/img_orchid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_orchid"
+                android:tag="#DA70D6" />
+
+            <ImageView
+                android:id="@+id/img_thistle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_thistle"
+                android:tag="#D8BFD8"
+                tools:ignore="TooManyViews" />
+
+            <ImageView
+                android:id="@+id/img_lightgray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightgray"
+                android:tag="#D3D3D3"
+                tools:ignore="TooManyViews" />
+
+            <ImageView
+                android:id="@+id/img_tan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_tan"
+                android:tag="#D2B48C" />
+
+            <ImageView
+                android:id="@+id/img_chocolate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_chocolate"
+                android:tag="#D2691E" />
+
+            <ImageView
+                android:id="@+id/img_peru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_peru"
+                android:tag="#CD853F" />
+
+            <ImageView
+                android:id="@+id/img_indianred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_indianred"
+                android:tag="#CD5C5C" />
+
+            <ImageView
+                android:id="@+id/img_mediumvioletred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumvioletred"
+                android:tag="#C71585" />
+
+            <ImageView
+                android:id="@+id/img_silver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_silver"
+                android:tag="#C0C0C0" />
+
+            <ImageView
+                android:id="@+id/img_darkkhaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkkhaki"
+                android:tag="#BDB76B" />
+
+            <ImageView
+                android:id="@+id/img_rosybrown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_rosybrown"
+                android:tag="#BC8F8F" />
+
+            <ImageView
+                android:id="@+id/img_mediumorchid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumorchid"
+                android:tag="#BA55D3" />
+
+            <ImageView
+                android:id="@+id/img_darkgoldenrod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkgoldenrod"
+                android:tag="#B8860B" />
+
+            <ImageView
+                android:id="@+id/img_firebrick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_firebrick"
+                android:tag="#B22222" />
+
+            <ImageView
+                android:id="@+id/img_powderblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_powderblue"
+                android:tag="#B0E0E6" />
+
+            <ImageView
+                android:id="@+id/img_lightsteelblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightsteelblue"
+                android:tag="#B0C4DE" />
+
+            <ImageView
+                android:id="@+id/img_paleturquoise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_paleturquoise"
+                android:tag="#AFEEEE" />
+
+            <ImageView
+                android:id="@+id/img_greenyellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_greenyellow"
+                android:tag="#ADFF2F" />
+
+            <ImageView
+                android:id="@+id/img_lightblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightblue"
+                android:tag="#ADD8E6" />
+
+            <ImageView
+                android:id="@+id/img_darkgray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkgray"
+                android:tag="#A9A9A9" />
+
+            <ImageView
+                android:id="@+id/img_brown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_brown"
+                android:tag="#A52A2A" />
+
+            <ImageView
+                android:id="@+id/img_sienna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_sienna"
+                android:tag="#A0522D" />
+
+            <ImageView
+                android:id="@+id/img_darkorchid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkorchid"
+                android:tag="#9932CC" />
+
+            <ImageView
+                android:id="@+id/img_palegreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_palegreen"
+                android:tag="#98FB98" />
+
+            <ImageView
+                android:id="@+id/img_darkviolet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkviolet"
+                android:tag="#9400D3" />
+
+            <ImageView
+                android:id="@+id/img_mediumpurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumpurple"
+                android:tag="#9370DB" />
+
+            <ImageView
+                android:id="@+id/img_lightgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightgreen"
+                android:tag="#90EE90" />
+
+            <ImageView
+                android:id="@+id/img_darkseagreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkseagreen"
+                android:tag="#8FBC8F" />
+
+            <ImageView
+                android:id="@+id/img_saddlebrown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_saddlebrown"
+                android:tag="#8B4513" />
+
+            <ImageView
+                android:id="@+id/img_darkmagenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkmagenta"
+                android:tag="#8B008B" />
+
+            <ImageView
+                android:id="@+id/img_darkred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkred"
+                android:tag="#8B0000" />
+
+            <ImageView
+                android:id="@+id/img_blueviolet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_blueviolet"
+                android:tag="#8A2BE2" />
+
+            <ImageView
+                android:id="@+id/img_lightskyblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightskyblue"
+                android:tag="#87CEFA" />
+
+            <ImageView
+                android:id="@+id/img_skyblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_skyblue"
+                android:tag="#87CEEB" />
+
+            <ImageView
+                android:id="@+id/img_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_gray"
+                android:tag="#808080" />
+
+            <ImageView
+                android:id="@+id/img_olive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_olive"
+                android:tag="#808000" />
+
+            <ImageView
+                android:id="@+id/img_purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_purple"
+                android:tag="#800080" />
+
+            <ImageView
+                android:id="@+id/img_maroon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_maroon"
+                android:tag="#800000" />
+
+            <ImageView
+                android:id="@+id/img_aquamarine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_aquamarine"
+                android:tag="#7FFFD4" />
+
+            <ImageView
+                android:id="@+id/img_chartreuse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_chartreuse"
+                android:tag="#7FFF00" />
+
+            <ImageView
+                android:id="@+id/img_lawngreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lawngreen"
+                android:tag="#7CFC00" />
+
+            <ImageView
+                android:id="@+id/img_mediumslateblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumslateblue"
+                android:tag="#7B68EE" />
+
+            <ImageView
+                android:id="@+id/img_lightslategray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightslategray"
+                android:tag="#778899" />
+
+            <ImageView
+                android:id="@+id/img_slategray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_slategray"
+                android:tag="#708090" />
+
+            <ImageView
+                android:id="@+id/img_olivedrab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_olivedrab"
+                android:tag="#6B8E23" />
+
+            <ImageView
+                android:id="@+id/img_slateblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_slateblue"
+                android:tag="#6A5ACD" />
+
+            <ImageView
+                android:id="@+id/img_dimgray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_dimgray"
+                android:tag="#696969" />
+
+            <ImageView
+                android:id="@+id/img_mediumaquamarine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumaquamarine"
+                android:tag="#66CDAA" />
+
+            <ImageView
+                android:id="@+id/img_cornflowerblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_cornflowerblue"
+                android:tag="#6495ED" />
+
+            <ImageView
+                android:id="@+id/img_cadetblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_cadetblue"
+                android:tag="#5F9EA0" />
+
+            <ImageView
+                android:id="@+id/img_darkolivegreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkolivegreen"
+                android:tag="#556B2F" />
+
+            <ImageView
+                android:id="@+id/img_indigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_indigo"
+                android:tag="#4B0082" />
+
+            <ImageView
+                android:id="@+id/img_mediumturquoise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumturquoise"
+                android:tag="#48D1CC" />
+
+            <ImageView
+                android:id="@+id/img_darkslateblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkslateblue"
+                android:tag="#483D8B" />
+
+            <ImageView
+                android:id="@+id/img_steelblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_steelblue"
+                android:tag="#4682B4" />
+
+            <ImageView
+                android:id="@+id/img_royalblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_royalblue"
+                android:tag="#4169E1" />
+
+            <ImageView
+                android:id="@+id/img_turquoise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_turquoise"
+                android:tag="#40E0D0" />
+
+            <ImageView
+                android:id="@+id/img_mediumseagreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumseagreen"
+                android:tag="#3CB371" />
+
+            <ImageView
+                android:id="@+id/img_limegreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_limegreen"
+                android:tag="#32CD32" />
+
+            <ImageView
+                android:id="@+id/img_darkslategray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkslategray"
+                android:tag="#2F4F4F" />
+
+            <ImageView
+                android:id="@+id/img_seagreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_seagreen"
+                android:tag="#2E8B57" />
+
+            <ImageView
+                android:id="@+id/img_forestgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_forestgreen"
+                android:tag="#228B22" />
+
+            <ImageView
+                android:id="@+id/img_lightseagreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lightseagreen"
+                android:tag="#20B2AA" />
+
+            <ImageView
+                android:id="@+id/img_dodgerblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_ibooker_editor_circle_dodgerblue"
+                android:tag="#1E90FF" />
+
+            <ImageView
+                android:id="@+id/img_midnightblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_midnightblue"
+                android:tag="#191970" />
+
+            <ImageView
+                android:id="@+id/img_aqua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_aqua"
+                android:tag="#00FFFF" />
+
+            <ImageView
+                android:id="@+id/img_springgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_springgreen"
+                android:tag="#00FF7F" />
+
+            <ImageView
+                android:id="@+id/img_lime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_lime"
+                android:tag="#00FF00" />
+
+            <ImageView
+                android:id="@+id/img_mediumspringgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumspringgreen"
+                android:tag="#00FA9A" />
+
+            <ImageView
+                android:id="@+id/img_darkturquoise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkturquoise"
+                android:tag="#00CED1" />
+
+            <ImageView
+                android:id="@+id/img_deepskyblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_deepskyblue"
+                android:tag="#00BFFF" />
+
+            <ImageView
+                android:id="@+id/img_darkcyan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkcyan"
+                android:tag="#008B8B" />
+
+            <ImageView
+                android:id="@+id/img_teal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_teal"
+                android:tag="#008080" />
+
+            <ImageView
+                android:id="@+id/img_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_green"
+                android:tag="#008000" />
+
+            <ImageView
+                android:id="@+id/img_darkgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkgreen"
+                android:tag="#006400" />
+
+            <ImageView
+                android:id="@+id/img_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_blue"
+                android:tag="#0000FF" />
+
+            <ImageView
+                android:id="@+id/img_mediumblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_mediumblue"
+                android:tag="#0000CD" />
+
+            <ImageView
+                android:id="@+id/img_darkblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_darkblue"
+                android:tag="#00008B" />
+
+            <ImageView
+                android:id="@+id/img_navy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_navy"
+                android:tag="#000080" />
+
+            <ImageView
+                android:id="@+id/img_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@null"
+                android:padding="1dp"
+                android:src="@drawable/icon_ibooker_editor_circle_black"
+                android:tag="#000000" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="#DBDBDB" />
+
+</LinearLayout>
