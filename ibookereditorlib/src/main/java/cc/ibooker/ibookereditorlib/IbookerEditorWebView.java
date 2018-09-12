@@ -141,6 +141,7 @@ public class IbookerEditorWebView extends WebView {
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
                 else
