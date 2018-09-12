@@ -141,7 +141,14 @@ public class IbookerEditorWebView extends WebView {
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
+                if (error.getPrimaryError() == SslError.SSL_DATE_INVALID
+                        || error.getPrimaryError() == SslError.SSL_EXPIRED
+                        || error.getPrimaryError() == SslError.SSL_INVALID
+                        || error.getPrimaryError() == SslError.SSL_UNTRUSTED) {
+                    handler.proceed();
+                } else {
+                    handler.cancel();
+                }
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
                 else
