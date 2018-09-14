@@ -3,12 +3,14 @@ package cc.ibooker.ibookereditorlib;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -60,15 +62,16 @@ public class IbookerEditerSetPopuwindow extends PopupWindow implements View.OnCl
         super(context);
         this.context = context;
         this.ibookerEditorView = ibookerEditorView;
-        View view = LayoutInflater.from(context).inflate(R.layout.ibooker_editor_layout_set, ibookerEditorView, false);
+        final View view = LayoutInflater.from(context).inflate(R.layout.ibooker_editor_layout_set, ibookerEditorView, false);
         initView(view);
         setContentView(view);
         setFocusable(true);
-        setBackgroundDrawable(null);
+        setBackgroundDrawable(new BitmapDrawable());
         setOutsideTouchable(true);
 //        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         setWidth(getScreenW(context));
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     @Override

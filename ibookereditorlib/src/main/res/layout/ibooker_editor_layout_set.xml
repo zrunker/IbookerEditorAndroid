@@ -33,7 +33,7 @@
         <SeekBar
             android:id="@+id/seekbar_screen_brightness"
             android:layout_width="0dp"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingBottom="5dp"
             android:paddingTop="5dp" />

@@ -1,6 +1,7 @@
 package cc.ibooker.ibookereditorlib;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class TooltipsPopuwindow extends PopupWindow {
         tooltipsTv = view.findViewById(R.id.tv_name);
         setContentView(view);
         setFocusable(true);
+        setBackgroundDrawable(new BitmapDrawable());
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
     }
