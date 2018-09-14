@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -65,7 +66,9 @@ public class IbookerEditerSetPopuwindow extends PopupWindow implements View.OnCl
         setFocusable(true);
         setBackgroundDrawable(null);
         setOutsideTouchable(true);
+//        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         setWidth(getScreenW(context));
+        setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @Override

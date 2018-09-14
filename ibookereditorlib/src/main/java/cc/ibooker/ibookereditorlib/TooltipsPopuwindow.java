@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ public class TooltipsPopuwindow extends PopupWindow {
         tooltipsTv = view.findViewById(R.id.tv_name);
         setContentView(view);
         setFocusable(true);
+        setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     public void setTooltipsTv(String text) {
