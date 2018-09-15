@@ -187,8 +187,10 @@ public class IbookerEditorView extends LinearLayout implements
                         }
                     }
 
-                    setIEEditViewIbookerEdTextSize(ieeditview_ibookered_textsize);
-                    setIEEditViewWebViewFontSize(ieeditview_webview_fontsize);
+                    if (ieeditview_ibookered_textsize > 0)
+                        setIEEditViewIbookerEdTextSize(ieeditview_ibookered_textsize);
+                    if (ieeditview_webview_fontsize > 0)
+                        setIEEditViewWebViewFontSize(ieeditview_webview_fontsize);
                     if (!TextUtils.isEmpty(ibookerediter_backgroundcolor)) {
                         int color = Color.parseColor(ibookerediter_backgroundcolor);
                         setIEEditViewBackgroundColor(color);

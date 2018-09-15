@@ -414,9 +414,16 @@ public class IbookerEditerSetPopuwindow extends PopupWindow implements View.OnCl
         int ieeditview_webview_fontsize = sharedPreferences.getInt(IEEDITVIEW_WEBVIEW_FONTSIZE, 0);
         String ibookerediter_backgroundcolor = sharedPreferences.getString(IBOOKEREDITER_BACKGROUNDCOLOR, "");
 
-        setIEEditViewIbookerEdTextSize(ieeditview_ibookered_textsize);
-        setIEEditViewWebViewFontSize(ieeditview_webview_fontsize);
-        setImageViewBackground(view.findViewWithTag(ibookerediter_backgroundcolor));
+        if (ieeditview_ibookered_textsize > 0) {
+            setIEEditViewIbookerEdTextSize(ieeditview_ibookered_textsize);
+            currentEditTextSize = ieeditview_ibookered_textsize;
+        }
+        if (ieeditview_webview_fontsize > 0) {
+            setIEEditViewWebViewFontSize(ieeditview_webview_fontsize);
+            currentPreFontSize = ieeditview_webview_fontsize;
+        }
+        if (!TextUtils.isEmpty(ibookerediter_backgroundcolor))
+            setImageViewBackground(view.findViewWithTag(ibookerediter_backgroundcolor));
 
         editFontSizeTv.setText(currentEditTextSize + "");
         preFontSizeTv.setText(currentPreFontSize + "倍");
