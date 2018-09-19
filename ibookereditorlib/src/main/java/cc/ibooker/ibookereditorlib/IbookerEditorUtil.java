@@ -307,7 +307,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^#\\s.*$");
@@ -316,14 +316,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "# " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -344,7 +349,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^##\\s.*$");
@@ -353,14 +358,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "## " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -381,7 +391,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^###\\s.*$");
@@ -390,14 +400,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "### " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -418,7 +433,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^####\\s.*$");
@@ -427,14 +442,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "#### " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -455,7 +475,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^#####\\s.*$");
@@ -464,14 +484,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "##### " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -492,7 +517,7 @@ public class IbookerEditorUtil {
             String[] texts = text.split("\n");
             if (line >= texts.length) line = texts.length - 1;
             if (line < 0) line = 0;
-            String thisline = texts[line];
+            String thisline = texts.length == 0 ? "" : texts[line];
             String[] allLine = text.split("\n");
             // 赋值
             Pattern pattern = Pattern.compile("^######\\s.*$");
@@ -501,14 +526,19 @@ public class IbookerEditorUtil {
             } else {
                 thisline = "###### " + thisline;
             }
-            allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
-            }
+            if (allLine.length > 0) {
+                if (line < allLine.length)
+                    allLine[line] = thisline;
+                for (String str : allLine) {
+                    finalTxt.append(str).append("\n");
+                }
+            } else
+                finalTxt.append(thisline).append("\n");
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = end + finalTxt.length() - text.length() - 1;
+            rangeData.start = rangeData.end = (position > 0 && position > thisline.length()) ? position : thisline.length();
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -539,7 +569,8 @@ public class IbookerEditorUtil {
             }
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = finalTxt.indexOf(thisline) + thisline.length() + 1;
+            rangeData.start = rangeData.end = position >= finalTxt.length() ? finalTxt.length() : position;
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -594,7 +625,6 @@ public class IbookerEditorUtil {
             int end = rangeData.end;
             String text = ibookerEd.getText().toString();
             String selectTxt = rangeData.text;
-
             Pattern pattern = Pattern.compile("^`{3}[\\s\\S]*`{3}$");
             if (pattern.matcher(selectTxt).matches()) {
                 finalTxt = text.substring(0, start) + selectTxt.replaceAll("^`{3}[\\n]([\\s\\S]*)[\\n]`{3}$", "$1") + text.substring(end, text.length());
@@ -617,7 +647,6 @@ public class IbookerEditorUtil {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
-            int end = rangeData.end;
             String text = ibookerEd.getText().toString();
             String temp = text.substring(0, start);
             int line = temp.split("\n").length - 1;
@@ -634,7 +663,8 @@ public class IbookerEditorUtil {
             }
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
+            int position = finalTxt.indexOf(thisline) + thisline.length() + 1;
+            rangeData.start = rangeData.end = position >= finalTxt.length() ? finalTxt.length() : position;
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -824,7 +854,8 @@ public class IbookerEditorUtil {
             }
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
+            int position = finalTxt.indexOf(thisline) + thisline.length() + 1;
+            rangeData.start = rangeData.end = position >= finalTxt.length() ? finalTxt.length() : position;
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -854,7 +885,8 @@ public class IbookerEditorUtil {
             }
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length() - 9;
+            int position = finalTxt.indexOf(thisline) + thisline.length() - 8;
+            rangeData.start = rangeData.end = position >= finalTxt.length() ? finalTxt.length() : position;
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
@@ -884,7 +916,8 @@ public class IbookerEditorUtil {
             }
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
-            rangeData.start = rangeData.end = rangeData.end + finalTxt.length() - text.length();
+            int position = finalTxt.indexOf(thisline) + thisline.length() + 1;
+            rangeData.start = rangeData.end = position >= finalTxt.length() ? finalTxt.length() : position;
             setSelectionInfo(rangeData);
         } catch (Exception e) {
             e.printStackTrace();
