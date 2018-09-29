@@ -2,9 +2,12 @@ package cc.ibooker.ibookereditorlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Picture;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.text.TextUtils;
@@ -60,6 +63,12 @@ public class IbookerEditorWebView extends WebView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
+    }
+
+    @Override
+    public void destroy() {
+        this.clearHistory();
+        super.destroy();
     }
 
     // 初始化
@@ -118,16 +127,28 @@ public class IbookerEditorWebView extends WebView {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    return ibookerEditorWebViewUrlLoadingListener.shouldOverrideUrlLoading(view, url);
+                else {
+//                    view.loadUrl(url);
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    getContext().startActivity(intent);
+                    return true;
+                }
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    view.loadUrl(request.getUrl().toString());
+                if (ibookerEditorWebViewUrlLoadingListener != null)
+                    return ibookerEditorWebViewUrlLoadingListener.shouldOverrideUrlLoading(view, request);
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        view.loadUrl(request.getUrl().toString());
+                    }
+                    return true;
                 }
-                return true;
             }
 
             @Override
@@ -279,14 +300,32 @@ public class IbookerEditorWebView extends WebView {
     }
 
     /**
-     * 获取整个WebView截图
+     * 获取整个WebView截图 - 5.0以上无效
      */
     public Bitmap getWebViewBitmap() {
-        Picture picture = this.capturePicture();
+        Picture picture = capturePicture();
         Bitmap bitmap = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         picture.draw(canvas);
         return bitmap;
+    }
+
+    /**
+     * 获取WebView长图
+     */
+    public Bitmap getLongImage() {
+        measure(MeasureSpec.makeMeasureSpec(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        setDrawingCacheEnabled(true);
+        buildDrawingCache();
+        Bitmap longImage = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(longImage);  // 画布的宽高和 WebView 的网页保持一致
+        Paint paint = new Paint();
+        canvas.drawBitmap(longImage, 0, getMeasuredHeight(), paint);
+        draw(canvas);
+        return longImage;
     }
 
     /**
@@ -326,6 +365,10 @@ public class IbookerEditorWebView extends WebView {
 
     // Url加载状态监听
     public interface IbookerEditorWebViewUrlLoadingListener {
+        boolean shouldOverrideUrlLoading(WebView view, String url);
+
+        boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request);
+
         void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error);
 
         void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error);

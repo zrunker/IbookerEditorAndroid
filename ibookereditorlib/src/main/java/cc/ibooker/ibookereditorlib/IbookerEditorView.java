@@ -578,13 +578,13 @@ public class IbookerEditorView extends LinearLayout implements
             ibookerEditorVpView.setCurrentItem(1);
         } else if (tag.equals(IBTN_HELP)) {// 帮助
             Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
+            intent.setAction(Intent.ACTION_VIEW);
             Uri content_url = Uri.parse("http://ibooker.cc/article/1/detail");
             intent.setData(content_url);
             getContext().startActivity(intent);
         } else if (tag.equals(IBTN_ABOUT)) {// 关于
             Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
+            intent.setAction(Intent.ACTION_VIEW);
             Uri content_url = Uri.parse("http://ibooker.cc/article/182/detail");
             intent.setData(content_url);
             getContext().startActivity(intent);
