@@ -22,7 +22,7 @@ import static android.content.Context.MODE_MULTI_PROCESS;
 /**
  * 编辑界面设置
  */
-public class IbookerEditerSetPopuwindow extends PopupWindow implements View.OnClickListener {
+public class IbookerEditorSetPopuwindow extends PopupWindow implements View.OnClickListener {
     static final String IBOOKEREDITER_SET_NAME = "IBOOKEREDITER_SET_NAME";
     static final String IEEDITVIEW_WEBVIEW_FONTSIZE = "IEEDITVIEW_WEBVIEW_FONTSIZE";
     static final String IEEDITVIEW_IBOOKERED_TEXTSIZE = "IEEDITVIEW_IBOOKERED_TEXTSIZE";
@@ -58,7 +58,7 @@ public class IbookerEditerSetPopuwindow extends PopupWindow implements View.OnCl
     private Handler handler;
     private int currentEditTextSize, currentPreFontSize;
 
-    IbookerEditerSetPopuwindow(Context context, IbookerEditorView ibookerEditorView) {
+    IbookerEditorSetPopuwindow(Context context, IbookerEditorView ibookerEditorView) {
         super(context);
         this.context = context;
         this.ibookerEditorView = ibookerEditorView;

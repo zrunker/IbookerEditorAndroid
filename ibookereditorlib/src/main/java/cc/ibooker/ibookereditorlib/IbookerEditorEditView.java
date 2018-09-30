@@ -160,6 +160,7 @@ public class IbookerEditorEditView extends NestedScrollView {
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+
             }
 
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

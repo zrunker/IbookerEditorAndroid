@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ibooker_editor_arrow_up" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ibooker_editor_bg_more"
+        android:divider="#DDD"
+        android:dividerHeight="0.5dp"
+        android:listSelector="@android:color/transparent"
+        android:paddingEnd="0dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="0dp"
+        android:paddingStart="15dp"
+        android:scrollbars="none" />
+
+</LinearLayout>

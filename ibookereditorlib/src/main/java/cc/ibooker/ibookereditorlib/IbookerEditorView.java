@@ -21,8 +21,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -34,18 +36,14 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_BACKGROUNDCOLOR;
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_BRIGHTNESS;
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_ISBRIGHTNESS;
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IBOOKEREDITER_SET_NAME;
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IEEDITVIEW_IBOOKERED_TEXTSIZE;
-import static cc.ibooker.ibookereditorlib.IbookerEditerSetPopuwindow.IEEDITVIEW_WEBVIEW_FONTSIZE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CAPITALS;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CODE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ELSE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EMOJI;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H1;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H2;
@@ -75,6 +73,12 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UN
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNSELECTED;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UPPERCASE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IBOOKEREDITER_BACKGROUNDCOLOR;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IBOOKEREDITER_BRIGHTNESS;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IBOOKEREDITER_ISBRIGHTNESS;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IBOOKEREDITER_SET_NAME;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IEEDITVIEW_IBOOKERED_TEXTSIZE;
+import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IEEDITVIEW_WEBVIEW_FONTSIZE;
 
 /**
  * 书客编辑器布局
@@ -110,8 +114,13 @@ public class IbookerEditorView extends LinearLayout implements
             previewIBtnSelectedRes = R.drawable.icon_ibooker_editor_preview_orange;
 
     private TooltipsPopuwindow tooltipsPopuwindow;
-    private IbookerEditerSetPopuwindow editerSetPopuwindow;
+    private IbookerEditorSetPopuwindow editorSetPopuwindow;
+    private IbookerEditorMorePopuwindow editorMorePopuwindow;
     private Handler handler;
+
+    private ArrayList<MoreBean> mDatas = new ArrayList<>();
+    private MoreBean moreBean1 = new MoreBean(R.drawable.draw_help, getResources().getString(R.string.help));
+    private MoreBean moreBean2 = new MoreBean(R.drawable.ibooker_editor_logo, getResources().getString(R.string.about));
 
     // getter/setter
     public IbookerEditorTopView getIbookerEditorTopView() {
@@ -255,8 +264,10 @@ public class IbookerEditorView extends LinearLayout implements
             // 返回按钮
             boolean backImgVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_BackImg_Visible, true);
             int backImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_BackImg_Res, R.drawable.icon_back_black);
-            ibookerEditorTopView.getBackImg().setVisibility(backImgVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getBackImg().setImageResource(backImgRes);
+//            ibookerEditorTopView.getBackImg().setVisibility(backImgVisible ? VISIBLE : GONE);
+//            ibookerEditorTopView.getBackImg().setImageResource(backImgRes);
+            ibookerEditorTopView.getBackTv().setVisibility(backImgVisible ? VISIBLE : GONE);
+            ibookerEditorTopView.getBackTv().setCompoundDrawablesWithIntrinsicBounds(backImgRes, 0, 0, 0);
 
             // 撤销按钮
             boolean undoIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_UndoIBtn_Visible, true);
@@ -284,17 +295,17 @@ public class IbookerEditorView extends LinearLayout implements
             ibookerEditorTopView.getPreviewIBtn().setVisibility(previewIBtnVisible ? VISIBLE : GONE);
             ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(previewIBtnDefaultRes);
 
-            // 帮助
-            boolean helpIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Visible, true);
-            int helpIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Res, R.drawable.draw_help);
-            ibookerEditorTopView.getHelpIBtn().setVisibility(helpIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getHelpIBtn().setBackgroundResource(helpIBtnRes);
-
-            // 关于
-            boolean aboutImgVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_AboutImg_Visible, true);
-            int aboutImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_AboutImg_Res, R.drawable.ibooker_editor_logo);
-            ibookerEditorTopView.getAboutImg().setVisibility(aboutImgVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getAboutImg().setImageResource(aboutImgRes);
+//            // 帮助
+//            boolean helpIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Visible, true);
+//            int helpIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Res, R.drawable.draw_help);
+//            ibookerEditorTopView.getHelpIBtn().setVisibility(helpIBtnVisible ? VISIBLE : GONE);
+//            ibookerEditorTopView.getHelpIBtn().setBackgroundResource(helpIBtnRes);
+//
+//            // 关于
+//            boolean aboutImgVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_AboutImg_Visible, true);
+//            int aboutImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_AboutImg_Res, R.drawable.ibooker_editor_logo);
+//            ibookerEditorTopView.getAboutImg().setVisibility(aboutImgVisible ? VISIBLE : GONE);
+//            ibookerEditorTopView.getAboutImg().setImageResource(aboutImgRes);
 
             // 分享
             boolean shareIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Visible, true);
@@ -514,6 +525,33 @@ public class IbookerEditorView extends LinearLayout implements
 
         ibookerEditorTopView.getEditIBtn().setBackgroundResource(editIBtnSelectedRes);
         ibookerEditorTopView.getPreviewIBtn().setBackgroundResource(previewIBtnDefaultRes);
+
+        // 设置更多弹框数据
+        if (ibookerEditorTopView.getElseIBtn().getVisibility() == VISIBLE) {
+            mDatas.add(moreBean1);
+            mDatas.add(moreBean2);
+            if (editorMorePopuwindow == null)
+                editorMorePopuwindow = new IbookerEditorMorePopuwindow(getContext(), mDatas);
+        }
+
+        // 设置编辑框输入事件监听
+        ibookerEditorVpView.getEditView().setOnIbookerEdTextChangedListener(new IbookerEditorEditView.OnIbookerEdTextChangedListener() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (ibookerEditorTopView.getBackTv().getVisibility() == VISIBLE)
+                    ibookerEditorTopView.setBackTvFontNum(s.length());
+            }
+        });
     }
 
     // 设置ViewPager变化
@@ -597,12 +635,19 @@ public class IbookerEditorView extends LinearLayout implements
             }
         } else if (tag.equals(IBTN_SET)) {// 设置
             openInputSoft(false);
-            if (editerSetPopuwindow == null)
-                editerSetPopuwindow = new IbookerEditerSetPopuwindow(getContext(), this);
+            if (editorSetPopuwindow == null)
+                editorSetPopuwindow = new IbookerEditorSetPopuwindow(getContext(), this);
             if (!ScreenBrightnessUtil.checkPermission(this.getContext(), true)) {
-                editerSetPopuwindow.showAsDropDown(ibookerEditorTopView);
+                editorSetPopuwindow.showAsDropDown(ibookerEditorTopView);
             } else {
                 closeEditerSetPopuwindow();
+            }
+        } else if (tag.equals(IBTN_ELSE)) {// 其他
+            openInputSoft(false);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13), Gravity.END);
+            } else {
+                editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13));
             }
         }
     }
@@ -773,6 +818,7 @@ public class IbookerEditorView extends LinearLayout implements
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().destroy();
         closeTooltipsPopuwindow();
         closeEditerSetPopuwindow();
+        closeEditerMorePopuwindow();
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
             handler = null;
@@ -814,14 +860,25 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+//    // 设置返回按钮backImg
+//    public IbookerEditorView setIETopViewBackImageResource(@DrawableRes int resId) {
+//        ibookerEditorTopView.setBackImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorView setIETopViewBackImgVisibility(int visibility) {
+//        ibookerEditorTopView.setBackImgVisibility(visibility);
+//        return this;
+//    }
+
     // 设置返回按钮backImg
-    public IbookerEditorView setIETopViewBackImageResource(@DrawableRes int resId) {
-        ibookerEditorTopView.setBackImageResource(resId);
+    public IbookerEditorView setIETopViewBackTvResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setBackTvResource(resId);
         return this;
     }
 
-    public IbookerEditorView setIETopViewBackImgVisibility(int visibility) {
-        ibookerEditorTopView.setBackImgVisibility(visibility);
+    public IbookerEditorView setIETopViewBackTvVisibility(int visibility) {
+        ibookerEditorTopView.setBackTvVisibility(visibility);
         return this;
     }
 
@@ -869,27 +926,27 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
-    // 设置帮助按钮
-    public IbookerEditorView setIETopViewHelpImageResource(@DrawableRes int resId) {
-        ibookerEditorTopView.setHelpImageResource(resId);
-        return this;
-    }
-
-    public IbookerEditorView setIETopViewHelpIBtnVisibility(int visibility) {
-        ibookerEditorTopView.setHelpIBtnVisibility(visibility);
-        return this;
-    }
-
-    // 设置关于按钮
-    public IbookerEditorView setIETopViewAboutImageResource(@DrawableRes int resId) {
-        ibookerEditorTopView.setAboutImageResource(resId);
-        return this;
-    }
-
-    public IbookerEditorView setIETopViewAboutImgVisibility(int visibility) {
-        ibookerEditorTopView.setAboutImgVisibility(visibility);
-        return this;
-    }
+//    // 设置帮助按钮
+//    public IbookerEditorView setIETopViewHelpImageResource(@DrawableRes int resId) {
+//        ibookerEditorTopView.setHelpImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorView setIETopViewHelpIBtnVisibility(int visibility) {
+//        ibookerEditorTopView.setHelpIBtnVisibility(visibility);
+//        return this;
+//    }
+//
+//    // 设置关于按钮
+//    public IbookerEditorView setIETopViewAboutImageResource(@DrawableRes int resId) {
+//        ibookerEditorTopView.setAboutImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorView setIETopViewAboutImgVisibility(int visibility) {
+//        ibookerEditorTopView.setAboutImgVisibility(visibility);
+//        return this;
+//    }
 
     // 设置分享按钮
     public IbookerEditorView setIETopViewShareIBtnResource(@DrawableRes int resId) {
@@ -1646,8 +1703,33 @@ public class IbookerEditorView extends LinearLayout implements
      * 关闭设置弹框
      */
     public void closeEditerSetPopuwindow() {
-        if (editerSetPopuwindow != null && editerSetPopuwindow.isShowing())
-            editerSetPopuwindow.dismiss();
+        if (editorSetPopuwindow != null && editorSetPopuwindow.isShowing())
+            editorSetPopuwindow.dismiss();
+    }
+
+    /**
+     * 关闭更多弹框
+     */
+    public void closeEditerMorePopuwindow() {
+        if (editorMorePopuwindow != null && editorMorePopuwindow.isShowing())
+            editorMorePopuwindow.dismiss();
+    }
+
+    /**
+     * 设置更多弹框点击事件
+     */
+    public void setOnMoreLvItemClickListener(IbookerEditorMorePopuwindow.OnMoreLvItemClickListener onMoreLvItemClickListener) {
+        if (editorMorePopuwindow != null)
+            editorMorePopuwindow.setOnMoreLvItemClickListener(onMoreLvItemClickListener);
+    }
+
+    /**
+     * 设置更多弹框数据
+     */
+    public void setEditorMorePopuwindowData(ArrayList<MoreBean> list) {
+        this.mDatas = list;
+        if (editorMorePopuwindow != null)
+            editorMorePopuwindow.setMoreLvAdapter(mDatas);
     }
 
     /**

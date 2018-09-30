@@ -8,17 +8,18 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * 书客编辑器 - 顶部布局
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorTopView extends LinearLayout implements View.OnClickListener {
-    private ImageView backImg, aboutImg;
+    //    private ImageView backImg, aboutImg;
+    private TextView backTv;
     private LinearLayout rightLayout;
-    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, helpIBtn, shareIBtn, elseIBtn, setIBtn;
+    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, shareIBtn, elseIBtn, setIBtn, helpIBtn;
     private int dp13, dp3_5, dp4_5, dp5, dp12, dp29;
 
     // 构造方法
@@ -52,16 +53,30 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     // 初始化
     private void init(Context context) {
-        backImg = new ImageView(context);
+//        backImg = new ImageView(context);
+//        LayoutParams backParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, IbookerEditorUtil.dpToPx(context, 22F));
+//        backParams.setMargins(dp5, 0, dp5, 0);
+//        backImg.setLayoutParams(backParams);
+//        backImg.setImageResource(R.drawable.icon_back_black);
+//        backImg.setAdjustViewBounds(true);
+//        backImg.setContentDescription(getResources().getString(R.string.back));
+//        backImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
+//        backImg.setOnClickListener(this);
+//        addView(backImg);
+
+        backTv = new TextView(context);
         LayoutParams backParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, IbookerEditorUtil.dpToPx(context, 22F));
         backParams.setMargins(dp5, 0, dp5, 0);
-        backImg.setLayoutParams(backParams);
-        backImg.setImageResource(R.drawable.icon_back_black);
-        backImg.setAdjustViewBounds(true);
-        backImg.setContentDescription(getResources().getString(R.string.back));
-        backImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
-        backImg.setOnClickListener(this);
-        addView(backImg);
+        backTv.setLayoutParams(backParams);
+        backTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_back_black, 0, 0, 0);
+        backTv.setCompoundDrawablePadding(dp5);
+        backTv.setContentDescription(getResources().getString(R.string.back));
+        backTv.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
+        backTv.setGravity(Gravity.CENTER);
+        backTv.setTextSize(15f);
+        backTv.setTextColor(Color.parseColor("#777777"));
+        backTv.setOnClickListener(this);
+        addView(backTv);
 
         rightLayout = new LinearLayout(context);
         rightLayout.setLayoutParams(new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
@@ -125,25 +140,25 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         setIBtn.setOnClickListener(this);
         rightLayout.addView(setIBtn);
 
-        helpIBtn = new ImageButton(context);
-        helpIBtn.setLayoutParams(layoutParams);
-        helpIBtn.setBackgroundResource(R.drawable.draw_help);
-        helpIBtn.setContentDescription(getResources().getString(R.string.help));
-        helpIBtn.setPadding(dp13, dp13, dp13, dp13);
-        helpIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP);
-        helpIBtn.setOnClickListener(this);
-        rightLayout.addView(helpIBtn);
+//        helpIBtn = new ImageButton(context);
+//        helpIBtn.setLayoutParams(layoutParams);
+//        helpIBtn.setBackgroundResource(R.drawable.draw_help);
+//        helpIBtn.setContentDescription(getResources().getString(R.string.help));
+//        helpIBtn.setPadding(dp13, dp13, dp13, dp13);
+//        helpIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP);
+//        helpIBtn.setOnClickListener(this);
+//        rightLayout.addView(helpIBtn);
 
-        LayoutParams params = new LayoutParams(dp29, dp29);
-        params.setMargins(dp3_5, 0, dp3_5, 0);
-        aboutImg = new ImageView(context);
-        aboutImg.setLayoutParams(params);
-        aboutImg.setImageResource(R.drawable.ibooker_editor_logo);
-        aboutImg.setContentDescription(getResources().getString(R.string.about));
-        aboutImg.setPadding(dp4_5, dp4_5, dp4_5, dp4_5);
-        aboutImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT);
-        aboutImg.setOnClickListener(this);
-        rightLayout.addView(aboutImg);
+//        LayoutParams params = new LayoutParams(dp29, dp29);
+//        params.setMargins(dp3_5, 0, dp3_5, 0);
+//        aboutImg = new ImageView(context);
+//        aboutImg.setLayoutParams(params);
+//        aboutImg.setImageResource(R.drawable.ibooker_editor_logo);
+//        aboutImg.setContentDescription(getResources().getString(R.string.about));
+//        aboutImg.setPadding(dp4_5, dp4_5, dp4_5, dp4_5);
+//        aboutImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT);
+//        aboutImg.setOnClickListener(this);
+//        rightLayout.addView(aboutImg);
 
         elseIBtn = new ImageButton(context);
         elseIBtn.setLayoutParams(layoutParams);
@@ -163,13 +178,17 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     }
 
     // getter
-    public ImageView getBackImg() {
-        return backImg;
+    public TextView getBackTv() {
+        return backTv;
     }
 
-    public ImageView getAboutImg() {
-        return aboutImg;
-    }
+//    public ImageView getBackImg() {
+//        return backImg;
+//    }
+
+//    public ImageView getAboutImg() {
+//        return aboutImg;
+//    }
 
     public LinearLayout getRightLayout() {
         return rightLayout;
@@ -191,9 +210,9 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return previewIBtn;
     }
 
-    public ImageButton getHelpIBtn() {
-        return helpIBtn;
-    }
+//    public ImageButton getHelpIBtn() {
+//        return helpIBtn;
+//    }
 
     public ImageButton getShareIBtn() {
         return shareIBtn;
@@ -211,14 +230,35 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         this.setIBtn = setIBtn;
     }
 
-    // 设置返回按钮backImg
-    public IbookerEditorTopView setBackImageResource(@DrawableRes int resId) {
-        backImg.setImageResource(resId);
+//    // 设置返回按钮backImg
+//    public IbookerEditorTopView setBackImageResource(@DrawableRes int resId) {
+//        backImg.setImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorTopView setBackImgVisibility(int visibility) {
+//        backImg.setVisibility(visibility);
+//        return this;
+//    }
+
+    // 设置返回按钮backTv
+    public IbookerEditorTopView setBackTvResource(@DrawableRes int resId) {
+        backTv.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
         return this;
     }
 
-    public IbookerEditorTopView setBackImgVisibility(int visibility) {
-        backImg.setVisibility(visibility);
+    public IbookerEditorTopView setBackTvVisibility(int visibility) {
+        backTv.setVisibility(visibility);
+        return this;
+    }
+
+    public IbookerEditorTopView setBackTvFontNum(int num) {
+        if (num > 0) {
+            String text = num + "";
+            if (num > 100000)
+                text = num / 100000 + "W";
+            backTv.setText(text);
+        }
         return this;
     }
 
@@ -266,27 +306,27 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return this;
     }
 
-    // 设置帮助按钮
-    public IbookerEditorTopView setHelpImageResource(@DrawableRes int resId) {
-        helpIBtn.setImageResource(resId);
-        return this;
-    }
+//    // 设置帮助按钮
+//    public IbookerEditorTopView setHelpImageResource(@DrawableRes int resId) {
+//        helpIBtn.setImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorTopView setHelpIBtnVisibility(int visibility) {
+//        helpIBtn.setVisibility(visibility);
+//        return this;
+//    }
 
-    public IbookerEditorTopView setHelpIBtnVisibility(int visibility) {
-        helpIBtn.setVisibility(visibility);
-        return this;
-    }
-
-    // 设置关于按钮
-    public IbookerEditorTopView setAboutImageResource(@DrawableRes int resId) {
-        aboutImg.setImageResource(resId);
-        return this;
-    }
-
-    public IbookerEditorTopView setAboutImgVisibility(int visibility) {
-        aboutImg.setVisibility(visibility);
-        return this;
-    }
+//    // 设置关于按钮
+//    public IbookerEditorTopView setAboutImageResource(@DrawableRes int resId) {
+//        aboutImg.setImageResource(resId);
+//        return this;
+//    }
+//
+//    public IbookerEditorTopView setAboutImgVisibility(int visibility) {
+//        aboutImg.setVisibility(visibility);
+//        return this;
+//    }
 
     // 设置分享按钮
     public IbookerEditorTopView setShareIBtnResource(@DrawableRes int resId) {
