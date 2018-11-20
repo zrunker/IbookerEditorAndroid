@@ -141,7 +141,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         linearLayout.addView(lineView);
 
         ibookerEd = new EditText(context);
-        ibookerEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        ibookerEd.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ibookerEd.setGravity(Gravity.TOP | Gravity.START);
         ibookerEd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         ibookerEd.setSingleLine(false);
