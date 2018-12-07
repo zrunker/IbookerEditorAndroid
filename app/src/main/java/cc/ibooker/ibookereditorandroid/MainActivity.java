@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 //                .setIETopViewBackImgVisibility(View.VISIBLE)
 //                .setIETopViewHelpIBtnVisibility(View.VISIBLE)
                 .setIEEditViewIbookerEdHint("书客编辑器")
-//                .setIEToolViewEmojiIBtnVisibility(View.GONE)
                 .setIbookerEditorImgPreviewListener(new IbookerEditorWebView.IbookerEditorImgPreviewListener() {
                     @Override
                     public void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList) {
