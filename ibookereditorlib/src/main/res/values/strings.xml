@@ -42,4 +42,5 @@
     <string name="follow_sys">跟随系统</string>
     <string name="font_size_add"> A+ </string>
     <string name="font_size_reduce"> A- </string>
+    <string name="emjio">emjio字符</string>
 </resources>

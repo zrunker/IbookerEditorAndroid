@@ -99,6 +99,25 @@ public class IbookerEditorUtil {
     }
 
     /**
+     * 在尾部添加text
+     */
+    void addEnd(String addStr) {
+        try {
+            RangeData rangeData = getSelectionInfo();
+            String text = ibookerEd.getText().toString();
+            int start = rangeData.getStart();
+            int end = rangeData.getEnd();
+            String finalTxt = text.substring(0, start) + addStr + text.substring(end, text.length());
+            ibookerEd.setText(finalTxt);
+            // 设置光标位置
+            rangeData.end = end + finalTxt.length() - text.length();
+            setSelectionInfo(rangeData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 加粗
      */
     void bold() {
@@ -233,7 +252,7 @@ public class IbookerEditorUtil {
 //            finalTxt = text.substring(0, start) + selectTxt.substring(0, 1).toUpperCase() + selectTxt.substring(1) + text.substring(end, text.length());
 
             // 赋值 - 无效
-//      String finalTxt = text.substring(0, start) + selectTxt.toLowerCase().replaceAll("\\b[a-z]/g", "$1".toUpperCase()) + text.substring(end, text.length());
+//        String finalTxt = text.substring(0, start) + selectTxt.toLowerCase().replaceAll("\\b[a-z]/g", "$1".toUpperCase()) + text.substring(end, text.length());
 
             // 赋值
             StringBuffer finalTxt = new StringBuffer();

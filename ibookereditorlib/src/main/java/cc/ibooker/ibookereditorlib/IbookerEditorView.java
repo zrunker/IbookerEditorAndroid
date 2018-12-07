@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
@@ -96,6 +97,8 @@ public class IbookerEditorView extends LinearLayout implements
     private IbookerEditorToolView ibookerEditorToolView;
     // 底部工具栏-操作类
     private IbookerEditorUtil ibookerEditorUtil;
+    // EmjioDialog
+    private EmjioDialog emjioDialog;
 
     // 权限申请模块
     private String[] needPermissions = {
@@ -637,18 +640,18 @@ public class IbookerEditorView extends LinearLayout implements
             openInputSoft(false);
             if (editorSetPopuwindow == null)
                 editorSetPopuwindow = new IbookerEditorSetPopuwindow(getContext(), this);
-            if (!ScreenBrightnessUtil.checkPermission(this.getContext(), true)) {
+            if (!ScreenBrightnessUtil.checkPermission(getContext(), true)) {
                 editorSetPopuwindow.showAsDropDown(ibookerEditorTopView);
             } else {
                 closeEditerSetPopuwindow();
             }
         } else if (tag.equals(IBTN_ELSE)) {// 其他
             openInputSoft(false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13), Gravity.END);
-            } else {
-                editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13));
-            }
+            if (editorMorePopuwindow != null)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+                    editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13), Gravity.END);
+                else
+                    editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13));
         }
     }
 
@@ -711,7 +714,7 @@ public class IbookerEditorView extends LinearLayout implements
         } else if (tag.equals(IBTN_HR)) {// 分割线
             ibookerEditorUtil.hr();
         } else if (tag.equals(IBTN_EMOJI)) {// emoji表情
-
+            showEmjioDialog();
         }
     }
 
@@ -809,6 +812,14 @@ public class IbookerEditorView extends LinearLayout implements
             ibookerEditorVpView.getPreView().getIbookerEditorWebView().ibookerCompile(content);
     }
 
+    // 取消方法
+    public void stopIbookerEditor() {
+        closeTooltipsPopuwindow();
+        closeEditerSetPopuwindow();
+        closeEditerMorePopuwindow();
+        closeEmjioDialog();
+    }
+
     // 销毁方法
     public void destoryIbookerEditor() {
         inAnim.cancel();
@@ -819,6 +830,7 @@ public class IbookerEditorView extends LinearLayout implements
         closeTooltipsPopuwindow();
         closeEditerSetPopuwindow();
         closeEditerMorePopuwindow();
+        closeEmjioDialog();
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
             handler = null;
@@ -1594,6 +1606,7 @@ public class IbookerEditorView extends LinearLayout implements
                 if (ibookerEditorVpView.getPreView().getIbookerEditorWebView().isLoadFinished()) {
                     Toast.makeText(IbookerEditorView.this.getContext(), "图片生成中...", Toast.LENGTH_SHORT).show();
                     Bitmap bitmap = ibookerEditorVpView.getPreView().getIbookerEditorWebView().getWebViewBitmap();
+                    FileOutputStream fOut = null;
                     if (bitmap != null) {
                         // 分享图片
                         try {
@@ -1605,10 +1618,9 @@ public class IbookerEditorView extends LinearLayout implements
                                 createSDDirs(filePath);
                             File file = new File(filePath, fileName);
 
-                            FileOutputStream fOut = new FileOutputStream(file);
+                            fOut = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fOut);
                             fOut.flush();
-                            fOut.close();
 
                             // 进入图片预览
                             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -1625,6 +1637,13 @@ public class IbookerEditorView extends LinearLayout implements
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
+                            if (fOut != null) {
+                                try {
+                                    fOut.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             bitmap.recycle();
                             System.gc();
                         }
@@ -1647,6 +1666,7 @@ public class IbookerEditorView extends LinearLayout implements
         Bitmap bitmap = ibookerEditorVpView.getPreView().getIbookerEditorWebView().getWebViewBitmap();
         if (bitmap != null) {
             // 分享图片
+            FileOutputStream fOut = null;
             try {
                 String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ibookerEditor" + File.separator + "shares" + File.separator;
                 String fileName = System.currentTimeMillis() + ".jpg";
@@ -1656,13 +1676,19 @@ public class IbookerEditorView extends LinearLayout implements
                     createSDDirs(filePath);
                 file = new File(filePath, fileName);
 
-                FileOutputStream fOut = new FileOutputStream(file);
+                fOut = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fOut);
                 fOut.flush();
-                fOut.close();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
+                if (fOut != null) {
+                    try {
+                        fOut.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 bitmap.recycle();
                 System.gc();
             }
@@ -1713,6 +1739,23 @@ public class IbookerEditorView extends LinearLayout implements
     public void closeEditerMorePopuwindow() {
         if (editorMorePopuwindow != null && editorMorePopuwindow.isShowing())
             editorMorePopuwindow.dismiss();
+    }
+
+    /**
+     * 展示EmjioDialog
+     */
+    public void showEmjioDialog() {
+        if (emjioDialog == null)
+            emjioDialog = new EmjioDialog(getContext(), R.style.emjioDialog, ibookerEditorUtil);
+        emjioDialog.show();
+    }
+
+    /**
+     * 关闭EmjioDialog
+     */
+    public void closeEmjioDialog() {
+        if (emjioDialog != null)
+            emjioDialog.dismiss();
     }
 
     /**

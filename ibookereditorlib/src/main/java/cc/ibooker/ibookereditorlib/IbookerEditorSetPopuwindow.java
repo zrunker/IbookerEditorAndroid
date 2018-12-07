@@ -433,7 +433,7 @@ public class IbookerEditorSetPopuwindow extends PopupWindow implements View.OnCl
                 startAutoBrightness(context);
                 followSysTv.setTextColor(Color.parseColor("#FE7517"));
                 followSysTv.setBackgroundResource(R.drawable.bg_ibooker_editor_fe7517_coner_3);
-                seekBar.setProgress(0);
+//                seekBar.setProgress(0);
             } else {
                 seekBar.setProgress(ibookerediter_brightness);
             }

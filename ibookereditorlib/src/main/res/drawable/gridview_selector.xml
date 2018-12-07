@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- GirdView自定义一个带分割线的选择器 -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <stroke android:width="0.4dp" android:color="#e4e4e4" />
+            <gradient android:angle="270.0" android:endColor="#ffe8ecef" android:startColor="#ffe8ecef" />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <gradient android:angle="270.0" android:endColor="#ffe8ecef" android:startColor="#ffe8ecef" />
+            <stroke android:width="0.4dp" android:color="#e4e4e4" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="270.0" android:endColor="#ffffffff" android:startColor="#ffffffff" />
+            <stroke android:width="0.4dp" android:color="#e4e4e4" />
+        </shape>
+    </item>
+
+</selector>
