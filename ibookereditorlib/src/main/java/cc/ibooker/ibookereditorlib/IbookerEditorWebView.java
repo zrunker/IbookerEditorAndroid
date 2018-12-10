@@ -257,23 +257,24 @@ public class IbookerEditorWebView extends WebView {
      * @param ibookerEditorText 待预览内容 非HTML
      */
     public void ibookerCompile(String ibookerEditorText) {
-        if (isLoadFinished) {
-            ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
-            String js = "javascript:ibookerCompile('" + ibookerEditorText + "')";
-            this.loadUrl(js);
+        if (!TextUtils.isEmpty(ibookerEditorText)) {
+            if (isLoadFinished) {
+                ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
+                String js = "javascript:ibookerCompile('" + ibookerEditorText + "')";
+                this.loadUrl(js);
 
-            // 重新WebView添加监听
-            addWebViewListener();
+                // 重新WebView添加监听
+                addWebViewListener();
 
-            this.isExecuteCompile = false;
-            this.ibookerEditorText = null;
-            this.isExecuteHtmlCompile = false;
-            this.ibookerEditorHtml = null;
-        } else {
-            this.isExecuteCompile = true;
-            this.ibookerEditorText = ibookerEditorText;
+                this.isExecuteCompile = false;
+                this.ibookerEditorText = null;
+                this.isExecuteHtmlCompile = false;
+                this.ibookerEditorHtml = null;
+            } else {
+                this.isExecuteCompile = true;
+                this.ibookerEditorText = ibookerEditorText;
+            }
         }
-
     }
 
     /**
@@ -282,20 +283,22 @@ public class IbookerEditorWebView extends WebView {
      * @param ibookerEditorHtml 待预览内容 HTML
      */
     public void ibookerHtmlCompile(String ibookerEditorHtml) {
-        if (isLoadFinished) {
-            String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
-            this.loadUrl(js);
+        if (!TextUtils.isEmpty(ibookerEditorHtml)) {
+            if (isLoadFinished) {
+                String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
+                this.loadUrl(js);
 
-            // 重新WebView添加监听
-            addWebViewListener();
+                // 重新WebView添加监听
+                addWebViewListener();
 
-            this.isExecuteHtmlCompile = false;
-            this.ibookerEditorHtml = null;
-            this.isExecuteCompile = false;
-            this.ibookerEditorText = null;
-        } else {
-            this.isExecuteHtmlCompile = true;
-            this.ibookerEditorHtml = ibookerEditorHtml;
+                this.isExecuteHtmlCompile = false;
+                this.ibookerEditorHtml = null;
+                this.isExecuteCompile = false;
+                this.ibookerEditorText = null;
+            } else {
+                this.isExecuteHtmlCompile = true;
+                this.ibookerEditorHtml = ibookerEditorHtml;
+            }
         }
     }
 
