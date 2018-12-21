@@ -1564,6 +1564,13 @@ public class IbookerEditorView extends LinearLayout implements
     }
 
     /**
+     * 滚动监听接口
+     */
+    public void setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebView.IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
+        ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorWebViewOnScrollChangedCallback(ibookerEditorWebViewOnScrollChangedCallback);
+    }
+
+    /**
      * 图片预览接口
      */
     public void setIbookerEditorImgPreviewListener

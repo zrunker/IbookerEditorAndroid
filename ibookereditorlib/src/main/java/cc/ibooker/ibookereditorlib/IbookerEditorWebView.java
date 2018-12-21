@@ -357,6 +357,25 @@ public class IbookerEditorWebView extends WebView {
         }
     }
 
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (mIbookerEditorWebViewOnScrollChangedCallback != null) {
+            mIbookerEditorWebViewOnScrollChangedCallback.onScroll(l - oldl, t - oldt);
+        }
+    }
+
+    // 滚动监听接口
+    public interface IbookerEditorWebViewOnScrollChangedCallback {
+        void onScroll(int dx, int dy);
+    }
+
+    private IbookerEditorWebViewOnScrollChangedCallback mIbookerEditorWebViewOnScrollChangedCallback;
+
+    public void setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
+        mIbookerEditorWebViewOnScrollChangedCallback = ibookerEditorWebViewOnScrollChangedCallback;
+    }
+
     // 图片预览接口
     public interface IbookerEditorImgPreviewListener {
         void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList);
