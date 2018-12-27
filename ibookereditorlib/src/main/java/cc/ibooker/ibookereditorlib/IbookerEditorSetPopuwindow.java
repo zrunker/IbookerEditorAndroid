@@ -68,7 +68,6 @@ public class IbookerEditorSetPopuwindow extends PopupWindow implements View.OnCl
         setFocusable(true);
         setBackgroundDrawable(new BitmapDrawable());
         setOutsideTouchable(true);
-//        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         setWidth(getScreenW(context));
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -95,6 +94,7 @@ public class IbookerEditorSetPopuwindow extends PopupWindow implements View.OnCl
                 if (!checkPermission(context, true) && progress > 0) {
                     // 延迟1s执行
                     if (handler == null) handler = new Handler();
+                    handler.removeCallbacksAndMessages(null);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
