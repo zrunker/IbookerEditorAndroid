@@ -15,13 +15,19 @@ import java.util.regex.Pattern;
  */
 public class IbookerEditorUtil {
     /**
-     * dp转换成px
-     *
-     * @param value 待转换值
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
-    static int dpToPx(Context context, float value) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm);
+    public static int dpToPx(Context context, float dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     */
+    public static int pxToDp(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
     }
 
     // 操作的EditText
