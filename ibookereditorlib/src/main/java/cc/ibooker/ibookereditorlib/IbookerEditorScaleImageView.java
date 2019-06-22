@@ -182,7 +182,7 @@ public class IbookerEditorScaleImageView extends AppCompatImageView implements O
             float dh = d.getIntrinsicHeight();
 
             // 对比图片的高度和宽度和控件的宽度和高度
-            float scale = 0.1f; // 缩放比例
+            float scale = 1.0f; // 缩放比例
             if (dw > width && dh < height) { // 图片宽度大于控件的宽度，高度小于控件的高度，缩小
                 scale = width * 1.0f / dw;
             }
