@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="IbookerEditorScaleImageView">
+        <attr name="isLimitSize" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="IbookerEditorView">
         <!--整体-->
         <attr name="IbookerEditorView_BackgroundColor" format="color" />

@@ -1,6 +1,7 @@
 package cc.ibooker.ibookereditorlib;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -50,12 +51,20 @@ public class IbookerEditorScaleImageView extends AppCompatImageView implements O
     // 双击放大和缩小
     private GestureDetector mGestureDetector;
     private boolean isAutoScale;
+    // 是否限制大小
+    private boolean isLimitSize;
 
     /**
      * 三种构造方法
      */
     public IbookerEditorScaleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        if (attrs != null) {
+            // 获取自定义属性，并设置
+            TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.IbookerEditorScaleImageView);
+            isLimitSize = ta.getBoolean(R.styleable.IbookerEditorScaleImageView_isLimitSize, false);
+            ta.recycle();
+        }
         // 初始化
         mScaleMatrix = new Matrix();
         setScaleType(ScaleType.MATRIX);
@@ -189,7 +198,14 @@ public class IbookerEditorScaleImageView extends AppCompatImageView implements O
             if (dh > height && dw < width) { // 图片高度大于控件的宽度，宽度小于控件的高度，缩小
                 scale = height * 1.0f / dh;
             }
-            if ((dw > width && dh > height) || (dw < width && dh < height)) {
+//            if ((dw > width && dh > height) || (dw < width && dh < height)) {
+//                scale = Math.min(width * 1.0f / dw, height * 1.0f / dh);
+//            }
+            if (isLimitSize) {
+                if (dw > width && dh > height) {
+                    scale = Math.min(width * 1.0f / dw, height * 1.0f / dh);
+                }
+            } else if ((dw > width && dh > height) || (dw < width && dh < height)) {
                 scale = Math.min(width * 1.0f / dw, height * 1.0f / dh);
             }
 
