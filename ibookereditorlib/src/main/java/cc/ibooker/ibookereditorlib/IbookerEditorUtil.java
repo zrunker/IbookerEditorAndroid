@@ -573,7 +573,7 @@ public class IbookerEditorUtil {
     /**
      * 超链接
      */
-    void link() {
+    void link(String link) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -586,7 +586,7 @@ public class IbookerEditorUtil {
             if (line < 0) line = 0;
             String thisline = texts[line];
             String[] allLine = text.split("\n");
-            thisline += "\n[链接描述](http://www.ibooker.cc)";
+            thisline += "\n" + link;
             allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
             for (String str : allLine) {
@@ -668,7 +668,7 @@ public class IbookerEditorUtil {
     /**
      * 图片
      */
-    void imgu() {
+    void imgu(String imgPath) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -680,7 +680,7 @@ public class IbookerEditorUtil {
             if (line < 0) line = 0;
             String thisline = texts[line];
             String[] allLine = text.split("\n");
-            thisline += "\n![图片描述](http://ibooker.cc/resources/images-logos/ic_launcher_192.png)";
+            thisline += "\n" + imgPath;
             allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
             for (String str : allLine) {

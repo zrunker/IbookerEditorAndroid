@@ -146,6 +146,7 @@ public class IbookerEditorToolView extends HorizontalScrollView {
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         setBackgroundResource(R.drawable.bg_ibooker_editor_tool);
         setVerticalScrollBarEnabled(false);
+        setClipToPadding(true);
 
         dp6 = IbookerEditorUtil.dpToPx(context, 6F);
         dp13 = IbookerEditorUtil.dpToPx(context, 13F);
