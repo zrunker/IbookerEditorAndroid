@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  * 书客编辑器 - 工具类
+ *
  * Created by 邹峰立 on 2018/2/12.
  */
 public class IbookerEditorUtil {
