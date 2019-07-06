@@ -2,8 +2,6 @@ package cc.ibooker.ibookereditorlib;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
@@ -107,7 +105,7 @@ public class IbookerEditorUtil {
     /**
      * 在尾部添加text
      */
-    void addEnd(String addStr) {
+    public void addEnd(String addStr) {
         try {
             RangeData rangeData = getSelectionInfo();
             String text = ibookerEd.getText().toString();
@@ -126,7 +124,7 @@ public class IbookerEditorUtil {
     /**
      * 加粗
      */
-    void bold() {
+    public void bold() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -155,7 +153,7 @@ public class IbookerEditorUtil {
     /**
      * 斜体
      */
-    void italic() {
+    public void italic() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -184,7 +182,7 @@ public class IbookerEditorUtil {
     /**
      * 删除线
      */
-    void strikeout() {
+    public void strikeout() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -213,7 +211,7 @@ public class IbookerEditorUtil {
     /**
      * 下划线
      */
-    void underline() {
+    public void underline() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -242,7 +240,7 @@ public class IbookerEditorUtil {
     /**
      * 单词首字母大写
      */
-    void capitals() {
+    public void capitals() {
         try {
             RangeData rangeData = getSelectionInfo();
             String selectTxt = rangeData.getText();
@@ -279,7 +277,7 @@ public class IbookerEditorUtil {
     /**
      * 字母转大写
      */
-    void uppercase() {
+    public void uppercase() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -300,7 +298,7 @@ public class IbookerEditorUtil {
     /**
      * 字母转小写
      */
-    void lowercase() {
+    public void lowercase() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -321,7 +319,7 @@ public class IbookerEditorUtil {
     /**
      * 一级标题
      */
-    void h1() {
+    public void h1() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -363,7 +361,7 @@ public class IbookerEditorUtil {
     /**
      * 二级标题
      */
-    void h2() {
+    public void h2() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -405,7 +403,7 @@ public class IbookerEditorUtil {
     /**
      * 三级标题
      */
-    void h3() {
+    public void h3() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -447,7 +445,7 @@ public class IbookerEditorUtil {
     /**
      * 四级标题
      */
-    void h4() {
+    public void h4() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -489,7 +487,7 @@ public class IbookerEditorUtil {
     /**
      * 五级标题
      */
-    void h5() {
+    public void h5() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -531,7 +529,7 @@ public class IbookerEditorUtil {
     /**
      * 六级标题
      */
-    void h6() {
+    public void h6() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -573,7 +571,7 @@ public class IbookerEditorUtil {
     /**
      * 超链接
      */
-    void link(String link) {
+    public void link(String link) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.getStart();
@@ -605,7 +603,7 @@ public class IbookerEditorUtil {
     /**
      * 引用
      */
-    void quote() {
+    public void quote() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -642,7 +640,7 @@ public class IbookerEditorUtil {
     /**
      * 代码
      */
-    void code() {
+    public void code() {
         try {
             String finalTxt;
             RangeData rangeData = getSelectionInfo();
@@ -668,7 +666,7 @@ public class IbookerEditorUtil {
     /**
      * 图片
      */
-    void imgu(String imgPath) {
+    public void imgu(String imgPath) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -699,7 +697,7 @@ public class IbookerEditorUtil {
     /**
      * 数字列表
      */
-    void ol() {
+    public void ol() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -747,7 +745,7 @@ public class IbookerEditorUtil {
     /**
      * 普通列表
      */
-    void ul() {
+    public void ul() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -783,7 +781,7 @@ public class IbookerEditorUtil {
     /**
      * 复选框未选中
      */
-    void tasklistsUnChecked() {
+    public void tasklistsUnChecked() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -820,7 +818,7 @@ public class IbookerEditorUtil {
     /**
      * 复选框选中
      */
-    void tasklistsChecked() {
+    public void tasklistsChecked() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -856,7 +854,7 @@ public class IbookerEditorUtil {
     /**
      * 表格
      */
-    void tables() {
+    public void tables() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -890,7 +888,7 @@ public class IbookerEditorUtil {
     /**
      * HTML
      */
-    void html() {
+    public void html() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -921,7 +919,7 @@ public class IbookerEditorUtil {
     /**
      * 分割线
      */
-    void hr() {
+    public void hr() {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
