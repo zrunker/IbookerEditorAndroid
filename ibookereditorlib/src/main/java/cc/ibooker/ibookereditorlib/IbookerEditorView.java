@@ -692,13 +692,13 @@ public class IbookerEditorView extends LinearLayout implements
         } else if (tag.equals(IBTN_H6)) {// 六级标题
             ibookerEditorUtil.h6();
         } else if (tag.equals(IBTN_LINK)) {// 超链接
-            ibookerEditorUtil.link("[链接描述](http://www.ibooker.cc)");
+            ibookerEditorUtil.link("http://www.ibooker.cc");
         } else if (tag.equals(IBTN_QUOTE)) {// 引用
             ibookerEditorUtil.quote();
         } else if (tag.equals(IBTN_CODE)) {// 代码
             ibookerEditorUtil.code();
         } else if (tag.equals(IBTN_IMG_U)) {// 图片
-            ibookerEditorUtil.imgu("![图片描述](http://ibooker.cc/resources/images-logos/ic_launcher_192.png)");
+            ibookerEditorUtil.imgu("http://ibooker.cc/resources/images-logos/ic_launcher_192.png");
         } else if (tag.equals(IBTN_OL)) {// 数字列表
             ibookerEditorUtil.ol();
         } else if (tag.equals(IBTN_UL)) {// 普通列表

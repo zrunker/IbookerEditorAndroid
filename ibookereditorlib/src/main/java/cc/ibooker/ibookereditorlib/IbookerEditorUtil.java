@@ -585,7 +585,7 @@ public class IbookerEditorUtil {
             if (line < 0) line = 0;
             String thisline = texts[line];
             String[] allLine = text.split("\n");
-            thisline += "\n" + link;
+            thisline += "\n[链接描述](" + link + ")";
             allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
             for (String str : allLine) {
@@ -679,7 +679,7 @@ public class IbookerEditorUtil {
             if (line < 0) line = 0;
             String thisline = texts[line];
             String[] allLine = text.split("\n");
-            thisline += "\n" + imgPath;
+            thisline += "\n![图片描述](" + imgPath + ")";
             allLine[line] = thisline;
             StringBuilder finalTxt = new StringBuilder();
             for (String str : allLine) {
