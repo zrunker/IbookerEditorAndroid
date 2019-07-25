@@ -78,7 +78,6 @@ public class ScreenBrightnessUtil {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void enterSettingIntent(Context context) {
-        if (ClickUtil.isFastClick()) return;
         Uri selfPackageUri = Uri.parse("package:" + context.getApplicationContext().getPackageName());
         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, selfPackageUri);
         context.startActivity(intent);
