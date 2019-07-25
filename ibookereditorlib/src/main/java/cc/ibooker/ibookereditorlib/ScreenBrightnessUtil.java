@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 
 /**
  * 屏幕亮度管理类
@@ -75,7 +76,9 @@ public class ScreenBrightnessUtil {
     /**
      * 进入设置界面
      */
-    public synchronized static void enterSettingIntent(Context context) {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void enterSettingIntent(Context context) {
+        if (ClickUtil.isFastClick()) return;
         Uri selfPackageUri = Uri.parse("package:" + context.getApplicationContext().getPackageName());
         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, selfPackageUri);
         context.startActivity(intent);
