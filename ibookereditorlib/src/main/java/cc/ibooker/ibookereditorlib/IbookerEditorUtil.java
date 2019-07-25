@@ -952,37 +952,69 @@ public class IbookerEditorUtil {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
             int end = rangeData.end;
-            String text = ibookerEd.getText().toString();
-            String temp = text.substring(0, start);
-            int line = temp.split("\n").length - 1;
-            String[] texts = text.split("\n");
-            if (line >= texts.length) line = texts.length - 1;
-            if (line < 0) line = 0;
-            String thisLine = texts[line];
-            String[] allLine = text.split("\n");
-            int j = 1;
-            Pattern pattern = Pattern.compile("^\\d+\\.\\s([^\\s]*)$");
-            for (int i = 0; i <= line; i++) {
-                if (i == line && pattern.matcher(allLine[i]).matches()) {
-                    allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", "$1");
-                    continue;
-                }
-                if (pattern.matcher(allLine[i].trim()).matches()) {
-                    allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", (j++) + ". " + "$1");
-                    continue;
-                }
-                if (i == line) {
-                    allLine[i] = (j++) + ". " + thisLine;
-                    continue;
-                }
-                if ((i - 1) >= 0 && TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
-                    j = 1;
-                }
-            }
             StringBuilder finalTxt = new StringBuilder();
-            for (String str : allLine) {
-                finalTxt.append(str).append("\n");
+            String text = ibookerEd.getText().toString();
+            if (TextUtils.isEmpty(text)) {
+                finalTxt.append("1. ");
+            } else {
+                // 标记每行内容
+                int allLineCount = (new IbookerEditorStrUtil()).countStr(text, "\n") + 1;
+                String[] allLine = new String[allLineCount];
+                String[] allLineTemp = text.split("\n");
+                for (int i = 0; i < allLineCount; i++) {
+                    if (i < allLineTemp.length)
+                        allLine[i] = allLineTemp[i];
+                    else
+                        allLine[i] = "";
+                }
+
+                // 计算当前游标的精准行数-即换行符的个数+1
+                String temp = text.substring(0, start);
+                int line = (new IbookerEditorStrUtil()).countStr(temp, "\n") + 1;
+
+                // 排除异常情况
+                if (line > allLineCount) line = allLineCount;
+                if (line < 1) line = 1;
+
+                // 计算当前行的数据
+                String thisLine = allLine.length <= 0 ? "" : allLine[line - 1];
+
+                // 处理数据
+                int newLine = line - 1;
+                int j = 1;
+                Pattern pattern = Pattern.compile("^\\d+\\.\\s([^\\s]*)$");
+                for (int i = 0; i <= newLine; i++) {
+                    if (i == newLine && pattern.matcher(allLine[i]).matches()) {
+                        allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", "$1");
+                        continue;
+                    }
+                    if (pattern.matcher(allLine[i]).matches()) {
+                        allLine[i] = allLine[i].replaceAll("^\\d+\\.\\s([^\\s]*)$", (j++) + ". " + "$1");
+                        continue;
+                    }
+                    if (i == newLine) {
+                        allLine[i] = (j++) + ". " + thisLine;
+                        continue;
+                    }
+                    if ((i - 1) >= 0 && TextUtils.isEmpty(allLine[i - 1]) && !TextUtils.isEmpty(allLine[i]) && !pattern.matcher(allLine[i]).matches()) {
+                        j = 1;
+                    }
+                }
+
+                // 重新组织待显示数据
+                if (allLine.length <= 0)
+                    finalTxt.append(thisLine);
+                else {
+                    for (int i = 0; i < allLine.length; i++) {
+                        String str = allLine[i];
+                        finalTxt.append(str);
+                        if (i != allLine.length - 1) {
+                            finalTxt.append("\n");
+                        }
+                    }
+                }
             }
+
             ibookerEd.setText(finalTxt.toString());
             // 设置光标位置
             rangeData.start = rangeData.end = end + finalTxt.length() - text.length();
