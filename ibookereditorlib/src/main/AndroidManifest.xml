@@ -22,7 +22,7 @@
         <!--Android7.0+用于访问外部文件 -->
         <provider
             android:name=".IbookerEditorFileProvider"
-            android:authorities="cc.ibooker.ibookereditorlib.fileProvider"
+            android:authorities="cc.ibooker.ibookereditorlib.ibookerFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
