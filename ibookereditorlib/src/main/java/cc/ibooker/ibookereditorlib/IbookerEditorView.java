@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -85,6 +86,7 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorSetPopuwindow.IEEDITVIEW_
  * 书客编辑器布局
  * Created by 邹峰立 on 2018/2/11.
  */
+@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class IbookerEditorView extends LinearLayout implements
         IbookerEditorTopView.OnTopClickListener,
         IbookerEditorToolView.OnToolClickListener,
@@ -105,8 +107,7 @@ public class IbookerEditorView extends LinearLayout implements
             // SDK在Android 6.0+需要进行运行检测的权限如下：
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.WRITE_SETTINGS
+            Manifest.permission.READ_PHONE_STATE
     };
 
     // 工具栏进入和退出动画
@@ -1706,7 +1707,7 @@ public class IbookerEditorView extends LinearLayout implements
     }
 
     /**
-     * 权限检查方法，false代表没有该权限，ture代表有该权限
+     * 权限检查方法，false代表没有该权限，true代表有该权限
      */
     public boolean hasPermission(String... permissions) {
         for (String permission : permissions) {
