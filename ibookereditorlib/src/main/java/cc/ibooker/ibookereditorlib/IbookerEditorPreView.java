@@ -75,9 +75,9 @@ public class IbookerEditorPreView extends NestedScrollView {
 
         ibookerTitleTv = new TextView(context);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, IbookerEditorUtil.dpToPx(context, 50F));
-        int dp10 = IbookerEditorUtil.dpToPx(context, 10F);
-        titleParams.leftMargin = dp10;
-        titleParams.rightMargin = dp10;
+        int dp12 = IbookerEditorUtil.dpToPx(context, 12F);
+        titleParams.leftMargin = dp12;
+        titleParams.rightMargin = dp12;
         ibookerTitleTv.setLayoutParams(titleParams);
         ibookerTitleTv.setPadding(0, 0, 0, 0);
         ibookerTitleTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));

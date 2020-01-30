@@ -1,1 +1,1 @@
-#ibooker_editor{float:left;width:100%;letter-spacing: 0.3px;font-size: 16px;}#ibooker_editor p {word-wrap: break-word;word-break: normal;word-break: break-all;}.MathJax_Display {width: auto !important;display: inline !important;}
+#ibooker_editor{box-sizing:border-box;letter-spacing: 0.3px;font-size: 16px;padding:0px 5px;}#ibooker_editor p {word-wrap: break-word;word-break: normal;word-break: break-all;}.MathJax_Display {width: auto !important;display: inline !important;}
