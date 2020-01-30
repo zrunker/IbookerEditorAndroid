@@ -850,6 +850,17 @@ public class IbookerEditorView extends LinearLayout implements
     }
 
     /**
+     * 设置顶部背景颜色
+     *
+     * @param color 背景颜色
+     */
+    public IbookerEditorView setIETopViewBackgroundColor(@ColorInt int color) {
+        if (ibookerEditorTopView != null)
+            ibookerEditorTopView.setBackgroundColor(color);
+        return this;
+    }
+
+    /**
      * 设置编辑控件背景颜色
      *
      * @param color 背景颜色

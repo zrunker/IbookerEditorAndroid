@@ -756,6 +756,7 @@ public class IbookerEditorSetPopuwindow extends PopupWindow implements View.OnCl
                 int color = Color.parseColor(colorStr);
                 ibookerEditorView.setIEEditViewBackgroundColor(color);
                 ibookerEditorView.setIEPreViewBackgroundColor(color);
+//                ibookerEditorView.setIETopViewBackgroundColor(color)
                 for (int i = 0; i < backgroundLayout.getChildCount(); i++) {
                     View imageView = backgroundLayout.getChildAt(i);
                     if (imageView == view)
