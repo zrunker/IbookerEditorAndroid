@@ -30,6 +30,7 @@ public class IbookerEditorWebView extends WebView {
     private boolean isLoadFinished = false;// 本地文件是否加载完成
     private boolean isExecuteCompile = false;// 是否执行预览
     private boolean isExecuteHtmlCompile = false;// 是否执行HTML预览
+    private boolean isLoadError = false;// 本地文件是否加载错误
     private String ibookerEditorText, ibookerEditorHtml;
 
     private ArrayList<String> imgPathList;// WebView所有图片地址
@@ -158,6 +159,7 @@ public class IbookerEditorWebView extends WebView {
                 else
                     // 当网页加载出错时，加载本地错误文件
                     IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                isLoadError = true;
             }
 
             @Override
@@ -175,6 +177,7 @@ public class IbookerEditorWebView extends WebView {
                 else
                     // 当网页加载出错时，加载本地错误文件
                     IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                isLoadError = true;
             }
 
             @Override
@@ -204,6 +207,7 @@ public class IbookerEditorWebView extends WebView {
         addJavascriptInterface(ibookerEditorJsCheckImgEvent, "ibookerEditorJsCheckImgEvent");
         // 加载本地HTML
         loadUrl("file:///android_asset/ibooker_editor_index.html");
+        isLoadError = false;
     }
 
     // 给WebView添加相关监听
@@ -258,7 +262,7 @@ public class IbookerEditorWebView extends WebView {
      */
     public void ibookerCompile(String ibookerEditorText) {
         if (!TextUtils.isEmpty(ibookerEditorText)) {
-            if (isLoadFinished) {
+            if (isLoadFinished && !isLoadError) {
                 ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
                 String js = "javascript:ibookerCompile('" + ibookerEditorText + "')";
                 this.loadUrl(js);
@@ -271,6 +275,11 @@ public class IbookerEditorWebView extends WebView {
                 this.isExecuteHtmlCompile = false;
                 this.ibookerEditorHtml = null;
             } else {
+                if (isLoadError) {
+                    // 加载本地HTML
+                    loadUrl("file:///android_asset/ibooker_editor_index.html");
+                    isLoadError = false;
+                }
                 this.isExecuteCompile = true;
                 this.ibookerEditorText = ibookerEditorText;
             }
@@ -284,7 +293,7 @@ public class IbookerEditorWebView extends WebView {
      */
     public void ibookerHtmlCompile(String ibookerEditorHtml) {
         if (!TextUtils.isEmpty(ibookerEditorHtml)) {
-            if (isLoadFinished) {
+            if (isLoadFinished && !isLoadError) {
                 String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
                 this.loadUrl(js);
 
@@ -296,6 +305,11 @@ public class IbookerEditorWebView extends WebView {
                 this.isExecuteCompile = false;
                 this.ibookerEditorText = null;
             } else {
+                if (isLoadError) {
+                    // 加载本地HTML
+                    loadUrl("file:///android_asset/ibooker_editor_index.html");
+                    isLoadError = false;
+                }
                 this.isExecuteHtmlCompile = true;
                 this.ibookerEditorHtml = ibookerEditorHtml;
             }

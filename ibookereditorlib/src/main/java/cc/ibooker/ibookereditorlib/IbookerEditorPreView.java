@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +86,7 @@ public class IbookerEditorPreView extends NestedScrollView {
         ibookerTitleTv.setLines(1);
         ibookerTitleTv.setEllipsize(TextUtils.TruncateAt.END);
         ibookerTitleTv.setTextColor(Color.parseColor("#444444"));
-        ibookerTitleTv.setTextSize(18f);
+        ibookerTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
         ibookerTitleTv.setLineSpacing(4f, 1.3f);
         ibookerTitleTv.setHint("标题");
         ibookerTitleTv.setGravity(Gravity.CENTER_VERTICAL);

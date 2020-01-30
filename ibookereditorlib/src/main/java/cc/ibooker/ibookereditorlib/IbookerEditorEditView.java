@@ -3,6 +3,7 @@ package cc.ibooker.ibookereditorlib;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +103,7 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerTitleEd.setSingleLine(true);
         ibookerTitleEd.setLines(1);
         ibookerTitleEd.setTextColor(Color.parseColor("#444444"));
-        ibookerTitleEd.setTextSize(18f);
+        ibookerTitleEd.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
         ibookerTitleEd.setLineSpacing(4f, 1.3f);
         ibookerTitleEd.setHint("标题");
         ibookerTitleEd.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
@@ -141,8 +143,8 @@ public class IbookerEditorEditView extends NestedScrollView {
         ibookerEd.setPadding(dp12, dp12, dp12, dp12);
         ibookerEd.setBackgroundResource(android.R.color.transparent);
         ibookerEd.setTextColor(Color.parseColor("#444444"));
-        ibookerEd.setTextSize(currentTextSize);
-        ibookerEd.setLineSpacing(4f, 1.3f);
+        ibookerEd.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize);
+        ibookerEd.setLineSpacing(5f, 1.3f);
 //        ibookerEd.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
 //            @Override
 //            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
@@ -255,7 +257,7 @@ public class IbookerEditorEditView extends NestedScrollView {
      */
     public IbookerEditorEditView setIbookerEdTextSize(float size) {
         currentTextSize = size;
-        ibookerEd.setTextSize(size);
+        ibookerEd.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         return this;
     }
 
