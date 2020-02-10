@@ -63,6 +63,7 @@ public class IbookerEditorScaleImageView extends AppCompatImageView implements O
             // 获取自定义属性，并设置
             TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.IbookerEditorScaleImageView);
             isLimitSize = ta.getBoolean(R.styleable.IbookerEditorScaleImageView_isLimitSize, false);
+            mOnce = ta.getBoolean(R.styleable.IbookerEditorScaleImageView_isOpenOnceScale, false);
             ta.recycle();
         }
         // 初始化

@@ -3,6 +3,7 @@
 
     <declare-styleable name="IbookerEditorScaleImageView">
         <attr name="isLimitSize" format="boolean" />
+        <attr name="isOpenOnceScale" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="IbookerEditorView">
