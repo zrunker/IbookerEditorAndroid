@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 
 /**
  * 屏幕亮度管理类
@@ -76,10 +75,26 @@ public class ScreenBrightnessUtil {
     /**
      * 进入设置界面
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void enterSettingIntent(Context context) {
-        Uri selfPackageUri = Uri.parse("package:" + context.getApplicationContext().getPackageName());
-        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, selfPackageUri);
-        context.startActivity(intent);
+//        Uri selfPackageUri = Uri.parse("package:" + context.getApplicationContext().getPackageName());
+//        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, selfPackageUri);
+//        context.startActivity(intent);
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.System.canWrite(context)) {
+                    Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, 0);
+                } else {
+                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + context.getApplicationContext().getPackageName()));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            } else {
+                Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
