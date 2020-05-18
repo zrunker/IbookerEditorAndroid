@@ -131,32 +131,36 @@ public class IbookerEditorView extends LinearLayout implements
         return ibookerEditorTopView;
     }
 
-    public void setIbookerEditorTopView(IbookerEditorTopView ibookerEditorTopView) {
+    public IbookerEditorView setIbookerEditorTopView(IbookerEditorTopView ibookerEditorTopView) {
         this.ibookerEditorTopView = ibookerEditorTopView;
+        return this;
     }
 
     public IbookerEditorVpView getIbookerEditorVpView() {
         return ibookerEditorVpView;
     }
 
-    public void setIbookerEditorVpView(IbookerEditorVpView ibookerEditorVpView) {
+    public IbookerEditorView setIbookerEditorVpView(IbookerEditorVpView ibookerEditorVpView) {
         this.ibookerEditorVpView = ibookerEditorVpView;
+        return this;
     }
 
     public IbookerEditorToolView getIbookerEditorToolView() {
         return ibookerEditorToolView;
     }
 
-    public void setIbookerEditorToolView(IbookerEditorToolView ibookerEditorToolView) {
+    public IbookerEditorView setIbookerEditorToolView(IbookerEditorToolView ibookerEditorToolView) {
         this.ibookerEditorToolView = ibookerEditorToolView;
+        return this;
     }
 
     public IbookerEditorUtil getIbookerEditorUtil() {
         return ibookerEditorUtil;
     }
 
-    public void setIbookerEditorUtil(IbookerEditorUtil ibookerEditorUtil) {
+    public IbookerEditorView setIbookerEditorUtil(IbookerEditorUtil ibookerEditorUtil) {
         this.ibookerEditorUtil = ibookerEditorUtil;
+        return this;
     }
 
     // 构造方法
@@ -559,7 +563,7 @@ public class IbookerEditorView extends LinearLayout implements
     }
 
     // 设置ViewPager变化
-    public void changeVpUpdateIbookerEditorTopView(int position) {
+    public IbookerEditorView changeVpUpdateIbookerEditorTopView(int position) {
         if (ibookerEditorTopView != null)
             if (position == 0) {
                 ibookerEditorTopView.getEditIBtn().setBackgroundResource(editIBtnSelectedRes);
@@ -588,6 +592,7 @@ public class IbookerEditorView extends LinearLayout implements
 
                 openInputSoft(false);
             }
+        return this;
     }
 
     // 关闭/开启软盘
@@ -814,15 +819,16 @@ public class IbookerEditorView extends LinearLayout implements
     }
 
     // 取消方法
-    public void stopIbookerEditor() {
+    public IbookerEditorView stopIbookerEditor() {
         closeTooltipsPopuwindow();
         closeEditerSetPopuwindow();
         closeEditerMorePopuwindow();
         closeEmjioDialog();
+        return this;
     }
 
     // 销毁方法
-    public void destoryIbookerEditor() {
+    public IbookerEditorView destoryIbookerEditor() {
         inAnim.cancel();
         inAnim = null;
         outAnim.cancel();
@@ -836,6 +842,7 @@ public class IbookerEditorView extends LinearLayout implements
             handler.removeCallbacksAndMessages(null);
             handler = null;
         }
+        return this;
     }
 
     /**
@@ -1515,8 +1522,9 @@ public class IbookerEditorView extends LinearLayout implements
      *
      * @param ibookerEditorText 待预览内容 非HTML
      */
-    public void ibookerCompile(String ibookerEditorText) {
+    public IbookerEditorView ibookerCompile(String ibookerEditorText) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().ibookerCompile(ibookerEditorText);
+        return this;
     }
 
     /**
@@ -1524,8 +1532,9 @@ public class IbookerEditorView extends LinearLayout implements
      *
      * @param ibookerEditorHtml 待预览内容 HTML
      */
-    public void ibookerHtmlCompile(String ibookerEditorHtml) {
+    public IbookerEditorView ibookerHtmlCompile(String ibookerEditorHtml) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().ibookerHtmlCompile(ibookerEditorHtml);
+        return this;
     }
 
     /**
@@ -1538,65 +1547,73 @@ public class IbookerEditorView extends LinearLayout implements
     /**
      * 编辑框顶部按钮点击监听
      */
-    public void setOnTopClickListener(IbookerEditorTopView.OnTopClickListener
-                                              onTopClickListener) {
+    public IbookerEditorView setOnTopClickListener(IbookerEditorTopView.OnTopClickListener
+                                                           onTopClickListener) {
         ibookerEditorTopView.setOnTopClickListener(onTopClickListener);
+        return this;
     }
 
     /**
      * 编辑区输入标题监听
      */
-    public void setOnIbookerTitleEdTextChangedListener
+    public IbookerEditorView setOnIbookerTitleEdTextChangedListener
     (IbookerEditorEditView.OnIbookerTitleEdTextChangedListener
              onIbookerTitleEdTextChangedListener) {
         ibookerEditorVpView.getEditView().setOnIbookerTitleEdTextChangedListener(onIbookerTitleEdTextChangedListener);
+        return this;
     }
 
     /**
      * 编辑区输入内容监听
      */
-    public void setOnIbookerEdTextChangedListener
+    public IbookerEditorView setOnIbookerEdTextChangedListener
     (IbookerEditorEditView.OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
         ibookerEditorVpView.getEditView().setOnIbookerEdTextChangedListener(onIbookerEdTextChangedListener);
+        return this;
     }
 
     /**
      * 底部工具栏监听
      */
-    public void setOnToolClickListener(IbookerEditorToolView.OnToolClickListener
-                                               onToolClickListener) {
+    public IbookerEditorView setOnToolClickListener(IbookerEditorToolView.OnToolClickListener
+                                                            onToolClickListener) {
         ibookerEditorToolView.setOnToolClickListener(onToolClickListener);
+        return this;
     }
 
     /**
      * 底部工具栏长按监听
      */
-    public void setOnToolLongClickListener(IbookerEditorToolView.OnToolLongClickListener onToolLongClickListener) {
+    public IbookerEditorView setOnToolLongClickListener(IbookerEditorToolView.OnToolLongClickListener onToolLongClickListener) {
         ibookerEditorToolView.setOnToolLongClickListener(onToolLongClickListener);
+        return this;
     }
 
     /**
      * 滚动监听接口
      */
-    public void setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebView.IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
+    public IbookerEditorView setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebView.IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorWebViewOnScrollChangedCallback(ibookerEditorWebViewOnScrollChangedCallback);
+        return this;
     }
 
     /**
      * 图片预览接口
      */
-    public void setIbookerEditorImgPreviewListener
+    public IbookerEditorView setIbookerEditorImgPreviewListener
     (IbookerEditorWebView.IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
+        return this;
     }
 
     /**
      * Url加载状态接口
      */
-    public void setIbookerEditorWebViewUrlLoadingListener
+    public IbookerEditorView setIbookerEditorWebViewUrlLoadingListener
     (IbookerEditorWebView.IbookerEditorWebViewUrlLoadingListener
              ibookerEditorWebViewUrlLoadingListener) {
         ibookerEditorVpView.getPreView().getIbookerEditorWebView().setIbookerEditorWebViewUrlLoadingListener(ibookerEditorWebViewUrlLoadingListener);
+        return this;
     }
 
     /**
@@ -1618,7 +1635,7 @@ public class IbookerEditorView extends LinearLayout implements
     /**
      * 生成图片
      */
-    public void generateBitmap() {
+    public IbookerEditorView generateBitmap() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1674,6 +1691,7 @@ public class IbookerEditorView extends LinearLayout implements
                 }
             }
         }, 500);
+        return this;
     }
 
     /**
@@ -1732,66 +1750,74 @@ public class IbookerEditorView extends LinearLayout implements
     /**
      * 权限请求方法
      */
-    public void requestPermission(int code, String... permissions) {
+    public IbookerEditorView requestPermission(int code, String... permissions) {
         ActivityCompat.requestPermissions((Activity) this.getContext(), permissions, code);
+        return this;
     }
 
     /**
      * 关闭tooltipsPopuwindow
      */
-    public void closeTooltipsPopuwindow() {
+    public IbookerEditorView closeTooltipsPopuwindow() {
         if (tooltipsPopuwindow != null && tooltipsPopuwindow.isShowing())
             tooltipsPopuwindow.dismiss();
+        return this;
     }
 
     /**
      * 关闭设置弹框
      */
-    public void closeEditerSetPopuwindow() {
+    public IbookerEditorView closeEditerSetPopuwindow() {
         if (editorSetPopuwindow != null && editorSetPopuwindow.isShowing())
             editorSetPopuwindow.dismiss();
+        return this;
     }
 
     /**
      * 关闭更多弹框
      */
-    public void closeEditerMorePopuwindow() {
+    public IbookerEditorView closeEditerMorePopuwindow() {
         if (editorMorePopuwindow != null && editorMorePopuwindow.isShowing())
             editorMorePopuwindow.dismiss();
+        return this;
     }
 
     /**
      * 展示EmjioDialog
      */
-    public void showEmjioDialog() {
+    public IbookerEditorView showEmjioDialog() {
         if (emjioDialog == null)
             emjioDialog = new EmjioDialog(getContext(), R.style.emjioDialog, ibookerEditorUtil);
         emjioDialog.show();
+        return this;
     }
 
     /**
      * 关闭EmjioDialog
      */
-    public void closeEmjioDialog() {
+    public IbookerEditorView closeEmjioDialog() {
         if (emjioDialog != null)
             emjioDialog.dismiss();
+        return this;
     }
 
     /**
      * 设置更多弹框点击事件
      */
-    public void setOnMoreLvItemClickListener(IbookerEditorMorePopuwindow.OnMoreLvItemClickListener onMoreLvItemClickListener) {
+    public IbookerEditorView setOnMoreLvItemClickListener(IbookerEditorMorePopuwindow.OnMoreLvItemClickListener onMoreLvItemClickListener) {
         if (editorMorePopuwindow != null)
             editorMorePopuwindow.setOnMoreLvItemClickListener(onMoreLvItemClickListener);
+        return this;
     }
 
     /**
      * 设置更多弹框数据
      */
-    public void setEditorMorePopuwindowData(ArrayList<MoreBean> list) {
+    public IbookerEditorView setEditorMorePopuwindowData(ArrayList<MoreBean> list) {
         this.mDatas = list;
         if (editorMorePopuwindow != null)
             editorMorePopuwindow.setMoreLvAdapter(mDatas);
+        return this;
     }
 
     /**

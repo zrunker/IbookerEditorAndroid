@@ -370,7 +370,8 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
     private OnTopClickListener onTopClickListener;
 
-    public void setOnTopClickListener(OnTopClickListener onTopClickListener) {
+    public IbookerEditorTopView setOnTopClickListener(OnTopClickListener onTopClickListener) {
         this.onTopClickListener = onTopClickListener;
+        return this;
     }
 }

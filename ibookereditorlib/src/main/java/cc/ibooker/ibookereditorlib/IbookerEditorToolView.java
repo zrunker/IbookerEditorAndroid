@@ -621,11 +621,13 @@ public class IbookerEditorToolView extends HorizontalScrollView {
     private OnToolClickListener onToolClickListener;
     private OnToolLongClickListener onToolLongClickListener;
 
-    public void setOnToolClickListener(OnToolClickListener onToolClickListener) {
+    public IbookerEditorToolView setOnToolClickListener(OnToolClickListener onToolClickListener) {
         this.onToolClickListener = onToolClickListener;
+        return this;
     }
 
-    public void setOnToolLongClickListener(OnToolLongClickListener onToolLongClickListener) {
+    public IbookerEditorToolView setOnToolLongClickListener(OnToolLongClickListener onToolLongClickListener) {
         this.onToolLongClickListener = onToolLongClickListener;
+        return this;
     }
 }

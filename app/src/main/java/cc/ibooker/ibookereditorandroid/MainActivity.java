@@ -1,10 +1,17 @@
 package cc.ibooker.ibookereditorandroid;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +44,47 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("position", position);
                         intent.putStringArrayListExtra("imgAllPathList", imgAllPathList);
                         startActivity(intent);
+                    }
+                })
+                .setIbookerEditorWebViewUrlLoadingListener(new IbookerEditorWebView.IbookerEditorWebViewUrlLoadingListener() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                        return true;
+                    }
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(request.getUrl().toString()));
+                            startActivity(intent);
+                        }
+                        return true;
+                    }
+
+                    @Override
+                    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+
+                    }
+
+                    @Override
+                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+
+                    }
+
+                    @Override
+                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
+                    }
+
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+
                     }
                 });
 

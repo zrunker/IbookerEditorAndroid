@@ -46,24 +46,27 @@ public class IbookerEditorEditView extends NestedScrollView {
         return ibookerTitleEd;
     }
 
-    public void setIbookerTitleEd(EditText ibookerTitleEd) {
+    public IbookerEditorEditView setIbookerTitleEd(EditText ibookerTitleEd) {
         this.ibookerTitleEd = ibookerTitleEd;
+        return this;
     }
 
     public View getLineView() {
         return lineView;
     }
 
-    public void setLineView(View lineView) {
+    public IbookerEditorEditView setLineView(View lineView) {
         this.lineView = lineView;
+        return this;
     }
 
     public EditText getIbookerEd() {
         return ibookerEd;
     }
 
-    public void setIbookerEd(EditText ibookerEd) {
+    public IbookerEditorEditView setIbookerEd(EditText ibookerEd) {
         this.ibookerEd = ibookerEd;
+        return this;
     }
 
     // 三种构造方法
@@ -390,8 +393,9 @@ public class IbookerEditorEditView extends NestedScrollView {
 
     private OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener;
 
-    public void setOnIbookerTitleEdTextChangedListener(OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener) {
+    public IbookerEditorEditView setOnIbookerTitleEdTextChangedListener(OnIbookerTitleEdTextChangedListener onIbookerTitleEdTextChangedListener) {
         this.onIbookerTitleEdTextChangedListener = onIbookerTitleEdTextChangedListener;
+        return this;
     }
 
     /**
@@ -407,7 +411,8 @@ public class IbookerEditorEditView extends NestedScrollView {
 
     private OnIbookerEdTextChangedListener onIbookerEdTextChangedListener;
 
-    public void setOnIbookerEdTextChangedListener(OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
+    public IbookerEditorEditView setOnIbookerEdTextChangedListener(OnIbookerEdTextChangedListener onIbookerEdTextChangedListener) {
         this.onIbookerEdTextChangedListener = onIbookerEdTextChangedListener;
+        return this;
     }
 }

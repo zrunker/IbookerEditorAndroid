@@ -36,8 +36,9 @@ public class TooltipsPopuwindow extends PopupWindow {
         setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    public void setTooltipsTv(String text) {
+    public TooltipsPopuwindow setTooltipsTv(String text) {
         tooltipsTv.setText(text);
+        return this;
     }
 
     /**
@@ -46,7 +47,7 @@ public class TooltipsPopuwindow extends PopupWindow {
      * @param view    指定的View
      * @param yOffset Y轴偏移量
      */
-    public void showViewTop(Context context, View view, int yOffset) {
+    public TooltipsPopuwindow showViewTop(Context context, View view, int yOffset) {
         if (context != null) {
             // 获取需要在其上方显示的控件的位置信息
             int[] location = new int[2];
@@ -56,6 +57,7 @@ public class TooltipsPopuwindow extends PopupWindow {
             int popupHeight = this.getContentView().getMeasuredHeight();
             showAtLocation(view, Gravity.NO_GRAVITY, location[0] - 5, location[1] - popupHeight - yOffset);
         }
+        return this;
     }
 
 }

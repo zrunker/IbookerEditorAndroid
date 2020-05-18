@@ -28,24 +28,27 @@ public class IbookerEditorPreView extends NestedScrollView {
         return ibookerTitleTv;
     }
 
-    public void setIbookerTitleTv(TextView ibookerTitleTv) {
+    public IbookerEditorPreView setIbookerTitleTv(TextView ibookerTitleTv) {
         this.ibookerTitleTv = ibookerTitleTv;
+        return this;
     }
 
     public View getLineView() {
         return lineView;
     }
 
-    public void setLineView(View lineView) {
+    public IbookerEditorPreView setLineView(View lineView) {
         this.lineView = lineView;
+        return this;
     }
 
     public IbookerEditorWebView getIbookerEditorWebView() {
         return ibookerEditorWebView;
     }
 
-    public void setIbookerEditorWebView(IbookerEditorWebView ibookerEditorWebView) {
+    public IbookerEditorPreView setIbookerEditorWebView(IbookerEditorWebView ibookerEditorWebView) {
         this.ibookerEditorWebView = ibookerEditorWebView;
+        return this;
     }
 
     public IbookerEditorPreView(@NonNull Context context) {
