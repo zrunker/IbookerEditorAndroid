@@ -156,9 +156,9 @@ public class IbookerEditorWebView extends WebView {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedError(view, request, error);
-                else
-                    // 当网页加载出错时，加载本地错误文件
-                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+//                else
+//                    // 当网页加载出错时，加载本地错误文件
+//                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
                 isLoadError = true;
             }
 
@@ -174,9 +174,9 @@ public class IbookerEditorWebView extends WebView {
                 }
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
-                else
-                    // 当网页加载出错时，加载本地错误文件
-                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+//                else
+//                    // 当网页加载出错时，加载本地错误文件
+//                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
                 isLoadError = true;
             }
 

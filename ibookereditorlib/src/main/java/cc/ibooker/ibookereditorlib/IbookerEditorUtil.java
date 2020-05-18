@@ -723,6 +723,13 @@ public class IbookerEditorUtil {
      * 超链接
      */
     public void link(String link) {
+        link(link, "链接描述");
+    }
+
+    /**
+     * 超链接
+     */
+    public void link(String link, String desc) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -731,7 +738,7 @@ public class IbookerEditorUtil {
             StringBuilder finalTxt = new StringBuilder();
             if (TextUtils.isEmpty(link))
                 link = "链接地址";
-            String tagStr = "[链接描述](" + link + ")";
+            String tagStr = "[" + desc + "](" + link + ")";
             String thisLine;
             if (TextUtils.isEmpty(text)) {
                 thisLine = tagStr;
@@ -882,6 +889,13 @@ public class IbookerEditorUtil {
      * 图片
      */
     public void imgu(String imgPath) {
+        imgu(imgPath, "图片描述");
+    }
+
+    /**
+     * 图片
+     */
+    public void imgu(String imgPath, String des) {
         try {
             RangeData rangeData = getSelectionInfo();
             int start = rangeData.start;
@@ -890,7 +904,7 @@ public class IbookerEditorUtil {
             StringBuilder finalTxt = new StringBuilder();
             if (TextUtils.isEmpty(imgPath))
                 imgPath = "图片地址";
-            String tagStr = "\n![图片描述](" + imgPath + ")\n";
+            String tagStr = "\n![" + des + "](" + imgPath + ")\n";
             String thisLine;
             if (TextUtils.isEmpty(text)) {
                 thisLine = tagStr;
