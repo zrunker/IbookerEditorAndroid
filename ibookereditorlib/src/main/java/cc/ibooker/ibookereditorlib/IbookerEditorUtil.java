@@ -738,7 +738,7 @@ public class IbookerEditorUtil {
             StringBuilder finalTxt = new StringBuilder();
             if (TextUtils.isEmpty(link))
                 link = "链接地址";
-            String tagStr = "[" + desc + "](" + link + ")";
+            String tagStr = "\n[" + desc + "](" + link + ")";
             String thisLine;
             if (TextUtils.isEmpty(text)) {
                 thisLine = tagStr;

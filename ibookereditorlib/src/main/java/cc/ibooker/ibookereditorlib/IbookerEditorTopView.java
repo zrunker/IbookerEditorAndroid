@@ -268,6 +268,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return this;
     }
 
+    public IbookerEditorTopView setUndoImageBgResource(@DrawableRes int resId) {
+        undoIBtn.setBackgroundResource(resId);
+        return this;
+    }
+
     public IbookerEditorTopView setUndoIBtnVisibility(int visibility) {
         undoIBtn.setVisibility(visibility);
         return this;
@@ -276,6 +281,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     // 设置重做按钮
     public IbookerEditorTopView setRedoImageResource(@DrawableRes int resId) {
         redoIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setRedoImageBgResource(@DrawableRes int resId) {
+        redoIBtn.setBackgroundResource(resId);
         return this;
     }
 
@@ -290,6 +300,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return this;
     }
 
+    public IbookerEditorTopView setEditImageBgResource(@DrawableRes int resId) {
+        editIBtn.setBackgroundResource(resId);
+        return this;
+    }
+
     public IbookerEditorTopView setEditIBtnVisibility(int visibility) {
         editIBtn.setVisibility(visibility);
         return this;
@@ -298,6 +313,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     // 设置预览按钮
     public IbookerEditorTopView setPreviewImageResource(@DrawableRes int resId) {
         previewIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setPreviewImageBgResource(@DrawableRes int resId) {
+        previewIBtn.setBackgroundResource(resId);
         return this;
     }
 
@@ -334,6 +354,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return this;
     }
 
+    public IbookerEditorTopView setShareIBtnBgResource(@DrawableRes int resId) {
+        shareIBtn.setBackgroundResource(resId);
+        return this;
+    }
+
     public IbookerEditorTopView setShareIBtnVisibility(int visibility) {
         shareIBtn.setVisibility(visibility);
         return this;
@@ -345,6 +370,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         return this;
     }
 
+    public IbookerEditorTopView setElseIBtnBgResource(@DrawableRes int resId) {
+        elseIBtn.setBackgroundResource(resId);
+        return this;
+    }
+
     public IbookerEditorTopView setElseIBtnVisibility(int visibility) {
         elseIBtn.setVisibility(visibility);
         return this;
@@ -353,6 +383,11 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     // 设置按钮
     public IbookerEditorTopView setSetIBtnResource(@DrawableRes int resId) {
         setIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setSetIBtnBgResource(@DrawableRes int resId) {
+        setIBtn.setBackgroundResource(resId);
         return this;
     }
 
