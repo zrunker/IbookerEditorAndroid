@@ -47,6 +47,7 @@ import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_CO
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ELSE;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EMOJI;
+import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_FUJIAN;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H1;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H2;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_H3;
@@ -123,7 +124,7 @@ public class IbookerEditorView extends LinearLayout implements
     private Handler handler;
 
     private ArrayList<MoreBean> mDatas = new ArrayList<>();
-    private MoreBean moreBean1 = new MoreBean(R.drawable.draw_help, getResources().getString(R.string.help));
+    private MoreBean moreBean1 = new MoreBean(R.drawable.ibooker_editor_draw_help, getResources().getString(R.string.help));
     private MoreBean moreBean2 = new MoreBean(R.drawable.ibooker_editor_logo, getResources().getString(R.string.about));
 
     // getter/setter
@@ -271,7 +272,7 @@ public class IbookerEditorView extends LinearLayout implements
 
             // 返回按钮
             boolean backImgVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_BackImg_Visible, true);
-            int backImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_BackImg_Res, R.drawable.icon_back_black);
+            int backImgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_BackImg_Res, R.drawable.icon_ibooker_editor_back_black);
 //            ibookerEditorTopView.getBackImg().setVisibility(backImgVisible ? VISIBLE : GONE);
 //            ibookerEditorTopView.getBackImg().setImageResource(backImgRes);
             ibookerEditorTopView.getBackTv().setVisibility(backImgVisible ? VISIBLE : GONE);
@@ -279,15 +280,15 @@ public class IbookerEditorView extends LinearLayout implements
 
             // 撤销按钮
             boolean undoIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_UndoIBtn_Visible, true);
-            int undoIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_UndoIBtn_Res, R.drawable.draw_undo);
+            int undoIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_UndoIBtn_BgRes, R.drawable.ibooker_editor_draw_undo);
             ibookerEditorTopView.getUndoIBtn().setVisibility(undoIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getUndoIBtn().setBackgroundResource(undoIBtnRes);
+            ibookerEditorTopView.getUndoIBtn().setBackgroundResource(undoIBtnBgRes);
 
             // 重做按钮
             boolean redoIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_RedoIBtn_Visible, true);
-            int redoIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_RedoIBtn_Res, R.drawable.draw_redo);
+            int redoIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_RedoIBtn_BgRes, R.drawable.ibooker_editor_draw_redo);
             ibookerEditorTopView.getRedoIBtn().setVisibility(redoIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getRedoIBtn().setBackgroundResource(redoIBtnRes);
+            ibookerEditorTopView.getRedoIBtn().setBackgroundResource(redoIBtnBgRes);
 
             // 编辑模式
             boolean editIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_EditIBtn_Visible, true);
@@ -305,7 +306,7 @@ public class IbookerEditorView extends LinearLayout implements
 
 //            // 帮助
 //            boolean helpIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Visible, true);
-//            int helpIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Res, R.drawable.draw_help);
+//            int helpIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_HelpIBtn_Res, R.drawable.ibooker_editor_draw_help);
 //            ibookerEditorTopView.getHelpIBtn().setVisibility(helpIBtnVisible ? VISIBLE : GONE);
 //            ibookerEditorTopView.getHelpIBtn().setBackgroundResource(helpIBtnRes);
 //
@@ -315,23 +316,29 @@ public class IbookerEditorView extends LinearLayout implements
 //            ibookerEditorTopView.getAboutImg().setVisibility(aboutImgVisible ? VISIBLE : GONE);
 //            ibookerEditorTopView.getAboutImg().setImageResource(aboutImgRes);
 
+            // 附件
+            boolean fujianIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_FujianIBtn_Visible, true);
+            int fujianIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_FujianIBtn_BgRes, R.drawable.ibooker_editor_draw_fujian);
+            ibookerEditorTopView.getFujianIBtn().setVisibility(fujianIBtnVisible ? VISIBLE : GONE);
+            ibookerEditorTopView.getFujianIBtn().setBackgroundResource(fujianIBtnBgRes);
+
             // 分享
             boolean shareIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Visible, true);
-            int shareIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_Res, R.drawable.draw_share);
+            int shareIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ShareIBtn_BgRes, R.drawable.ibooker_editor_draw_share);
             ibookerEditorTopView.getShareIBtn().setVisibility(shareIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getShareIBtn().setBackgroundResource(shareIBtnRes);
+            ibookerEditorTopView.getShareIBtn().setBackgroundResource(shareIBtnBgRes);
 
             // 更多
             boolean elseIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_Visible, true);
-            int elseIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_Res, R.drawable.draw_else);
+            int elseIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_ElseIBtn_BgRes, R.drawable.ibooker_editor_draw_else);
             ibookerEditorTopView.getElseIBtn().setVisibility(elseIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getElseIBtn().setBackgroundResource(elseIBtnRes);
+            ibookerEditorTopView.getElseIBtn().setBackgroundResource(elseIBtnBgRes);
 
             // 设置
             boolean setIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorTopView_SetIBtn_Visible, true);
-            int setIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_SetIBtn_Res, R.drawable.draw_set);
+            int setIBtnBgRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorTopView_SetIBtn_BgRes, R.drawable.ibooker_editor_draw_set);
             ibookerEditorTopView.getSetIBtn().setVisibility(setIBtnVisible ? VISIBLE : GONE);
-            ibookerEditorTopView.getSetIBtn().setBackgroundResource(setIBtnRes);
+            ibookerEditorTopView.getSetIBtn().setBackgroundResource(setIBtnBgRes);
 
             // 编辑框
             int ibookerEditorEditViewBackgroundColor = ta.getColor(R.styleable.IbookerEditorView_IbookerEditorEditView_BackgroundColor, 0xffffffff);
@@ -404,127 +411,127 @@ public class IbookerEditorView extends LinearLayout implements
                 ibookerEditorToolView.setBackgroundColor(ibookerEditorToolViewBackgroundColor);
 
             boolean boldIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_BoldIBtn_Visible, true);
-            int boldIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_BoldIBtn_Res, R.drawable.draw_bold);
+            int boldIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_BoldIBtn_Res, R.drawable.ibooker_editor_draw_bold);
             ibookerEditorToolView.getBoldIBtn().setVisibility(boldIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getBoldIBtn().setBackgroundResource(boldIBtnRes);
 
             boolean italicIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_ItalicIBtn_Visible, true);
-            int italicIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_ItalicIBtn_Res, R.drawable.draw_italic);
+            int italicIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_ItalicIBtn_Res, R.drawable.ibooker_editor_draw_italic);
             ibookerEditorToolView.getItalicIBtn().setVisibility(italicIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getItalicIBtn().setBackgroundResource(italicIBtnRes);
 
             boolean strikeoutIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_StrikeoutIBtn_Visible, true);
-            int strikeoutIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_StrikeoutIBtn_Res, R.drawable.draw_strikeout);
+            int strikeoutIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_StrikeoutIBtn_Res, R.drawable.ibooker_editor_draw_strikeout);
             ibookerEditorToolView.getStrikeoutIBtn().setVisibility(strikeoutIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getStrikeoutIBtn().setBackgroundResource(strikeoutIBtnRes);
 
             boolean underlineIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_UnderlineIBtn_Visible, true);
-            int underlineIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UnderlineIBtn_Res, R.drawable.draw_underline);
+            int underlineIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UnderlineIBtn_Res, R.drawable.ibooker_editor_draw_underline);
             ibookerEditorToolView.getUnderlineIBtn().setVisibility(underlineIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getUnderlineIBtn().setBackgroundResource(underlineIBtnRes);
 
             boolean capitalsIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_CapitalsIBtn_Visible, true);
-            int capitalsIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_CapitalsIBtn_Res, R.drawable.draw_capitals);
+            int capitalsIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_CapitalsIBtn_Res, R.drawable.ibooker_editor_draw_capitals);
             ibookerEditorToolView.getCapitalsIBtn().setVisibility(capitalsIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getCapitalsIBtn().setBackgroundResource(capitalsIBtnVisibleRes);
 
             boolean uppercaseIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_UppercaseIBtn_Visible, true);
-            int uppercaseIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UppercaseIBtnBackImg_Res, R.drawable.draw_uppercase);
+            int uppercaseIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UppercaseIBtnBackImg_Res, R.drawable.ibooker_editor_draw_uppercase);
             ibookerEditorToolView.getUppercaseIBtn().setVisibility(uppercaseIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getUppercaseIBtn().setBackgroundResource(uppercaseIBtnVisibleRes);
 
             boolean lowercaseIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_LowercaseIBtn_Visible, true);
-            int lowercaseIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_LowercaseIBtn_Res, R.drawable.draw_lowercase);
+            int lowercaseIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_LowercaseIBtn_Res, R.drawable.ibooker_editor_draw_lowercase);
             ibookerEditorToolView.getLowercaseIBtn().setVisibility(lowercaseIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getLowercaseIBtn().setBackgroundResource(lowercaseIBtnVisibleRes);
 
             boolean h1IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H1IBtn_Visible, true);
-            int h1IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H1IBtn_Res, R.drawable.draw_h1);
+            int h1IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H1IBtn_Res, R.drawable.ibooker_editor_draw_h1);
             ibookerEditorToolView.getH1IBtn().setVisibility(h1IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH1IBtn().setBackgroundResource(h1IBtnVisibleRes);
 
             boolean h2IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H2IBtn_Visible, true);
-            int h2IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H2IBtn_Res, R.drawable.draw_h2);
+            int h2IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H2IBtn_Res, R.drawable.ibooker_editor_draw_h2);
             ibookerEditorToolView.getH2IBtn().setVisibility(h2IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH2IBtn().setBackgroundResource(h2IBtnVisibleRes);
 
             boolean h3IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H3IBtn_Visible, true);
-            int h3IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H3IBtn_Res, R.drawable.draw_h3);
+            int h3IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H3IBtn_Res, R.drawable.ibooker_editor_draw_h3);
             ibookerEditorToolView.getH3IBtn().setVisibility(h3IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH3IBtn().setBackgroundResource(h3IBtnVisibleRes);
 
             boolean h4IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H4IBtn_Visible, true);
-            int h4IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H4IBtn_Res, R.drawable.draw_h4);
+            int h4IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H4IBtn_Res, R.drawable.ibooker_editor_draw_h4);
             ibookerEditorToolView.getH4IBtn().setVisibility(h4IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH4IBtn().setBackgroundResource(h4IBtnVisibleRes);
 
             boolean h5IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H5IBtn_Visible, true);
-            int h5IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H5IBtn_Res, R.drawable.draw_h5);
+            int h5IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H5IBtn_Res, R.drawable.ibooker_editor_draw_h5);
             ibookerEditorToolView.getH5IBtn().setVisibility(h5IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH5IBtn().setBackgroundResource(h5IBtnVisibleRes);
 
             boolean h6IBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_H6IBtn_Visible, true);
-            int h6IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H6IBtn_Res, R.drawable.draw_h6);
+            int h6IBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_H6IBtn_Res, R.drawable.ibooker_editor_draw_h6);
             ibookerEditorToolView.getH6IBtn().setVisibility(h6IBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getH6IBtn().setBackgroundResource(h6IBtnVisibleRes);
 
             boolean linkIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_LinkIBtn_Visible, true);
-            int linkIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_LinkIBtn_Res, R.drawable.draw_link);
+            int linkIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_LinkIBtn_Res, R.drawable.ibooker_editor_draw_link);
             ibookerEditorToolView.getLinkIBtn().setVisibility(linkIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getLinkIBtn().setBackgroundResource(linkIBtnVisibleRes);
 
             boolean quoteIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_QuoteIBtn_Visible, true);
-            int quoteIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_QuoteIBtn_Res, R.drawable.draw_quote);
+            int quoteIBtnVisibleRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_QuoteIBtn_Res, R.drawable.ibooker_editor_draw_quote);
             ibookerEditorToolView.getQuoteIBtn().setVisibility(quoteIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getQuoteIBtn().setBackgroundResource(quoteIBtnVisibleRes);
 
             boolean codeIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_CodeIBtn_Visible, true);
-            int codeIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_CodeIBtn_Res, R.drawable.draw_code);
+            int codeIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_CodeIBtn_Res, R.drawable.ibooker_editor_draw_code);
             ibookerEditorToolView.getCodeIBtn().setVisibility(codeIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getCodeIBtn().setBackgroundResource(codeIBtnRes);
 
             boolean imguIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_ImguIBtn_Visible, true);
-            int imguIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_ImguIBtn_Res, R.drawable.draw_img_u);
+            int imguIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_ImguIBtn_Res, R.drawable.ibooker_editor_draw_img_u);
             ibookerEditorToolView.getImguIBtn().setVisibility(imguIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getImguIBtn().setBackgroundResource(imguIBtnRes);
 
             boolean olIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_OlIBtn_Visible, true);
-            int olIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_OlIBtn_Res, R.drawable.draw_ol);
+            int olIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_OlIBtn_Res, R.drawable.ibooker_editor_draw_ol);
             ibookerEditorToolView.getOlIBtn().setVisibility(olIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getOlIBtn().setBackgroundResource(olIBtnRes);
 
             boolean ulIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_UlIBtn_Visible, true);
-            int ulIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UlIBtn_Res, R.drawable.draw_ul);
+            int ulIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UlIBtn_Res, R.drawable.ibooker_editor_draw_ul);
             ibookerEditorToolView.getUlIBtn().setVisibility(ulIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getUlIBtn().setBackgroundResource(ulIBtnRes);
 
             boolean unselectedIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_UnselectedIBtn_Visible, true);
-            int unselectedIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UnselectedIBtn_Res, R.drawable.draw_unselected);
+            int unselectedIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_UnselectedIBtn_Res, R.drawable.ibooker_editor_draw_unselected);
             ibookerEditorToolView.getUnselectedIBtn().setVisibility(unselectedIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getUnselectedIBtn().setBackgroundResource(unselectedIBtnRes);
 
             boolean selectedIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_SelectedIBtn_Visible, true);
-            int selectedIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_SelectedIBtn_Res, R.drawable.draw_selected);
+            int selectedIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_SelectedIBtn_Res, R.drawable.ibooker_editor_draw_selected);
             ibookerEditorToolView.getSelectedIBtn().setVisibility(selectedIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getSelectedIBtn().setBackgroundResource(selectedIBtnRes);
 
             boolean tableIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_TableIBtn_Visible, true);
-            int tableIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_TableIBtn_Res, R.drawable.draw_table);
+            int tableIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_TableIBtn_Res, R.drawable.ibooker_editor_draw_table);
             ibookerEditorToolView.getTableIBtn().setVisibility(tableIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getTableIBtn().setBackgroundResource(tableIBtnRes);
 
             boolean htmlIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_HtmlIBtn_Visible, true);
-            int htmlIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_HtmlIBtn_Res, R.drawable.draw_html);
+            int htmlIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_HtmlIBtn_Res, R.drawable.ibooker_editor_draw_html);
             ibookerEditorToolView.getHtmlIBtn().setVisibility(htmlIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getHtmlIBtn().setBackgroundResource(htmlIBtnRes);
 
             boolean hrIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_HrIBtn_Visible, true);
-            int hrIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_HrIBtn_Res, R.drawable.draw_hr);
+            int hrIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_HrIBtn_Res, R.drawable.ibooker_editor_draw_hr);
             ibookerEditorToolView.getHrIBtn().setVisibility(hrIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getHrIBtn().setBackgroundResource(hrIBtnRes);
 
             boolean emojiIBtnVisible = ta.getBoolean(R.styleable.IbookerEditorView_IbookerEditorToolView_EmojiIBtn_Visible, true);
-            int emojiIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_EmojiIBtng_Res, R.drawable.draw_emoji);
+            int emojiIBtnRes = ta.getResourceId(R.styleable.IbookerEditorView_IbookerEditorToolView_EmojiIBtng_Res, R.drawable.ibooker_editor_draw_emoji);
             ibookerEditorToolView.getEmojiIBtn().setVisibility(emojiIBtnVisible ? VISIBLE : GONE);
             ibookerEditorToolView.getEmojiIBtn().setBackgroundResource(emojiIBtnRes);
 
@@ -658,6 +665,9 @@ public class IbookerEditorView extends LinearLayout implements
                     editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13), Gravity.END);
                 else
                     editorMorePopuwindow.showAsDropDown(ibookerEditorTopView.getElseIBtn(), 0, IbookerEditorUtil.dpToPx(getContext(), 13));
+        } else if (tag.equals(IBTN_FUJIAN)) {// 附件
+            ibookerEditorVpView.setCurrentItem(0);
+            ibookerEditorVpView.getEditView().pickFile();
         }
     }
 
@@ -845,6 +855,11 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+    // 获取附件返回内容（文件地址）
+    public String getPickFile(Intent intent) {
+        return UriUtil.getFilePathByUri(getContext(), intent.getData());
+    }
+
     /**
      * 显示或者隐藏顶部工具栏
      *
@@ -919,6 +934,11 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+    public IbookerEditorView setIETopViewUndoImageBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setUndoImageBgResource(resId);
+        return this;
+    }
+
     public IbookerEditorView setIETopViewUndoIBtnVisibility(int visibility) {
         ibookerEditorTopView.setUndoIBtnVisibility(visibility);
         return this;
@@ -927,6 +947,11 @@ public class IbookerEditorView extends LinearLayout implements
     // 设置重做按钮
     public IbookerEditorView setIETopViewRedoImageResource(@DrawableRes int resId) {
         ibookerEditorTopView.setRedoImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewRedoImageBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setRedoImageBgResource(resId);
         return this;
     }
 
@@ -941,6 +966,11 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+    public IbookerEditorView setIETopViewEditImageBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setEditImageBgResource(resId);
+        return this;
+    }
+
     public IbookerEditorView setIETopViewEditIBtnVisibility(int visibility) {
         ibookerEditorTopView.setEditIBtnVisibility(visibility);
         return this;
@@ -949,6 +979,11 @@ public class IbookerEditorView extends LinearLayout implements
     // 设置预览按钮
     public IbookerEditorView setIETopViewPreviewImageResource(@DrawableRes int resId) {
         ibookerEditorTopView.setPreviewImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewPreviewImageBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setPreviewImageBgResource(resId);
         return this;
     }
 
@@ -985,6 +1020,11 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+    public IbookerEditorView setIETopViewShareIBtnBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setShareIBtnBgResource(resId);
+        return this;
+    }
+
     public IbookerEditorView setIETopViewShareIBtnVisibility(int visibility) {
         ibookerEditorTopView.setShareIBtnVisibility(visibility);
         return this;
@@ -996,8 +1036,29 @@ public class IbookerEditorView extends LinearLayout implements
         return this;
     }
 
+    public IbookerEditorView setIETopViewElseIBtnBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setElseIBtnBgResource(resId);
+        return this;
+    }
+
     public IbookerEditorView setIETopViewElseIBtnVisibility(int visibility) {
         ibookerEditorTopView.setElseIBtnVisibility(visibility);
+        return this;
+    }
+
+    // 设置附件按钮
+    public IbookerEditorView setIETopViewFujianIBtnResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setFujianImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewFujianIBtnBgResource(@DrawableRes int resId) {
+        ibookerEditorTopView.setFujianImageBgResource(resId);
+        return this;
+    }
+
+    public IbookerEditorView setIETopViewFujianIBtnVisibility(int visibility) {
+        ibookerEditorTopView.setFujianIBtnVisibility(visibility);
         return this;
     }
 

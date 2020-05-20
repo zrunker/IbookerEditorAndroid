@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IbookerEditorLib</string>
+    <string name="app_name">书客编辑器-Java版</string>
     <string name="back">返回</string>
     <string name="bold">加粗</string>
     <string name="italic">斜体</string>
@@ -43,4 +43,5 @@
     <string name="font_size_add"> A+ </string>
     <string name="font_size_reduce"> A- </string>
     <string name="emjio">emjio字符</string>
+    <string name="fujian">附件</string>
 </resources>

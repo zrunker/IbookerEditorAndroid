@@ -19,7 +19,8 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
     //    private ImageView backImg, aboutImg;
     private TextView backTv;
     private LinearLayout rightLayout;
-    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, shareIBtn, elseIBtn, setIBtn, helpIBtn;
+    private ImageButton undoIBtn, redoIBtn, editIBtn, previewIBtn, shareIBtn,
+            elseIBtn, setIBtn, helpIBtn, fujianIBtn;
     private int dp13, dp3_5, dp4_5, dp5, dp12, dp29;
 
     // 构造方法
@@ -57,7 +58,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 //        LayoutParams backParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, IbookerEditorUtil.dpToPx(context, 22F));
 //        backParams.setMargins(dp5, 0, dp5, 0);
 //        backImg.setLayoutParams(backParams);
-//        backImg.setImageResource(R.drawable.icon_back_black);
+//        backImg.setImageResource(R.drawable.icon_ibooker_editor_back_black);
 //        backImg.setAdjustViewBounds(true);
 //        backImg.setContentDescription(getResources().getString(R.string.back));
 //        backImg.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
@@ -68,7 +69,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
         LayoutParams backParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, IbookerEditorUtil.dpToPx(context, 22F));
         backParams.setMargins(dp5, 0, dp5, 0);
         backTv.setLayoutParams(backParams);
-        backTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_back_black, 0, 0, 0);
+        backTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_ibooker_editor_back_black, 0, 0, 0);
         backTv.setCompoundDrawablePadding(dp5);
         backTv.setContentDescription(getResources().getString(R.string.back));
         backTv.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IMG_BACK);
@@ -88,7 +89,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         undoIBtn = new ImageButton(context);
         undoIBtn.setLayoutParams(layoutParams);
-        undoIBtn.setBackgroundResource(R.drawable.draw_undo);
+        undoIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_undo);
         undoIBtn.setContentDescription(getResources().getString(R.string.undo));
         undoIBtn.setPadding(dp13, dp13, dp13, dp13);
         undoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_UNDO);
@@ -97,7 +98,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         redoIBtn = new ImageButton(context);
         redoIBtn.setLayoutParams(layoutParams);
-        redoIBtn.setBackgroundResource(R.drawable.draw_redo);
+        redoIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_redo);
         redoIBtn.setContentDescription(getResources().getString(R.string.redo));
         redoIBtn.setPadding(dp13, dp13, dp13, dp13);
         redoIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_REDO);
@@ -106,7 +107,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         editIBtn = new ImageButton(context);
         editIBtn.setLayoutParams(layoutParams);
-        editIBtn.setBackgroundResource(R.drawable.draw_edit);
+        editIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_edit);
         editIBtn.setContentDescription(getResources().getString(R.string.edit));
         editIBtn.setPadding(dp13, dp13, dp13, dp13);
         editIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_EDIT);
@@ -115,16 +116,25 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         previewIBtn = new ImageButton(context);
         previewIBtn.setLayoutParams(layoutParams);
-        previewIBtn.setBackgroundResource(R.drawable.draw_preview);
+        previewIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_preview);
         previewIBtn.setContentDescription(getResources().getString(R.string.preview));
         previewIBtn.setPadding(dp13, dp13, dp13, dp13);
         previewIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_PREVIEW);
         previewIBtn.setOnClickListener(this);
         rightLayout.addView(previewIBtn);
 
+        fujianIBtn = new ImageButton(context);
+        fujianIBtn.setLayoutParams(layoutParams);
+        fujianIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_fujian);
+        fujianIBtn.setContentDescription(getResources().getString(R.string.fujian));
+        fujianIBtn.setPadding(dp12, dp12, dp12, dp12);
+        fujianIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_FUJIAN);
+        fujianIBtn.setOnClickListener(this);
+        rightLayout.addView(fujianIBtn);
+
         shareIBtn = new ImageButton(context);
         shareIBtn.setLayoutParams(layoutParams);
-        shareIBtn.setBackgroundResource(R.drawable.draw_share);
+        shareIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_share);
         shareIBtn.setContentDescription(getResources().getString(R.string.share));
         shareIBtn.setPadding(dp12, dp12, dp12, dp12);
         shareIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SHARE);
@@ -133,7 +143,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         setIBtn = new ImageButton(context);
         setIBtn.setLayoutParams(layoutParams);
-        setIBtn.setBackgroundResource(R.drawable.draw_set);
+        setIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_set);
         setIBtn.setContentDescription(getResources().getString(R.string.set));
         setIBtn.setPadding(dp12, dp12, dp12, dp12);
         setIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_SET);
@@ -142,7 +152,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
 //        helpIBtn = new ImageButton(context);
 //        helpIBtn.setLayoutParams(layoutParams);
-//        helpIBtn.setBackgroundResource(R.drawable.draw_help);
+//        helpIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_help);
 //        helpIBtn.setContentDescription(getResources().getString(R.string.help));
 //        helpIBtn.setPadding(dp13, dp13, dp13, dp13);
 //        helpIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_HELP);
@@ -162,7 +172,7 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 
         elseIBtn = new ImageButton(context);
         elseIBtn.setLayoutParams(layoutParams);
-        elseIBtn.setBackgroundResource(R.drawable.draw_else);
+        elseIBtn.setBackgroundResource(R.drawable.ibooker_editor_draw_else);
         elseIBtn.setContentDescription(getResources().getString(R.string._else));
         elseIBtn.setPadding(dp12, dp12, dp12, dp12);
         elseIBtn.setTag(IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ELSE);
@@ -241,6 +251,10 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
 //        return this;
 //    }
 
+    public ImageButton getFujianIBtn() {
+        return fujianIBtn;
+    }
+
     // 设置返回按钮backTv
     public IbookerEditorTopView setBackTvResource(@DrawableRes int resId) {
         backTv.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
@@ -259,6 +273,22 @@ public class IbookerEditorTopView extends LinearLayout implements View.OnClickLi
                 text = num / 100000 + "W";
             backTv.setText(text);
         }
+        return this;
+    }
+
+    // 设置附件按钮fujianIBtn
+    public IbookerEditorTopView setFujianImageResource(@DrawableRes int resId) {
+        fujianIBtn.setImageResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setFujianImageBgResource(@DrawableRes int resId) {
+        fujianIBtn.setBackgroundResource(resId);
+        return this;
+    }
+
+    public IbookerEditorTopView setFujianIBtnVisibility(int visibility) {
+        fujianIBtn.setVisibility(visibility);
         return this;
     }
 

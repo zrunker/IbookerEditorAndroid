@@ -10,7 +10,7 @@
         <!-- 半透明 -->
         <item name="android:windowNoTitle">true</item>
         <!-- 无标题 -->
-        <item name="android:windowBackground">@drawable/bg_white_corner_3</item>
+        <item name="android:windowBackground">@drawable/bg_ibooker_editor_s_ffffff_c_3_a</item>
         <!-- 背景 -->
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 是否为半透明 -->

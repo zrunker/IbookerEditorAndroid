@@ -3,7 +3,7 @@
     android:id="@+id/textView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gridview_selector"
+    android:background="@drawable/ibooker_editor_gridview_selector"
     android:gravity="center"
     android:padding="10dp"
     android:lines="1"

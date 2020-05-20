@@ -2,8 +2,8 @@ package cc.ibooker.ibookereditorlib;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
@@ -27,6 +27,7 @@ import java.util.ArrayList;
  * Created by 邹峰立 on 2018/2/11.
  */
 public class IbookerEditorEditView extends NestedScrollView {
+    public static final int PICKFILE_REQUEST_CODE = 11111;
     private EditText ibookerTitleEd;
     private View lineView;
     private EditText ibookerEd;
@@ -250,7 +251,16 @@ public class IbookerEditorEditView extends NestedScrollView {
             }
             isSign = true;
         }
+    }
 
+    /**
+     * 打开系统的文件选择器
+     */
+    protected void pickFile() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        ((Activity) getContext()).startActivityForResult(intent, PICKFILE_REQUEST_CODE);
     }
 
     /**
