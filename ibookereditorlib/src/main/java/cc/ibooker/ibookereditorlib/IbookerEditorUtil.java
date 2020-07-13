@@ -112,7 +112,7 @@ public class IbookerEditorUtil {
             String text = ibookerEd.getText().toString();
             int start = rangeData.getStart();
             int end = rangeData.getEnd();
-            String finalTxt = text.substring(0, start) + addStr + text.substring(end, text.length());
+            String finalTxt = text.substring(0, start) + addStr + text.substring(end);
             ibookerEd.setText(finalTxt);
             // 设置光标位置
             rangeData.end = end + finalTxt.length() - text.length();
@@ -138,7 +138,7 @@ public class IbookerEditorUtil {
             if (pattern.matcher(selectTxt).matches()) {
                 // 如果已加粗，去掉
                 selectTxt = selectTxt.replaceAll("^[*]+([^*]*)[*]+$", "$1");
-                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end);
             } else {
                 finalTxt = text.substring(0, start) + "**" + (TextUtils.isEmpty(selectTxt) ? "加粗" : text.substring(start, end)) + "**" + text.substring(end, text.length());
             }
@@ -196,7 +196,7 @@ public class IbookerEditorUtil {
             if (pattern.matcher(selectTxt).matches()) {
                 // 如果已删除线，去掉
                 selectTxt = selectTxt.replaceAll("^[~]+([^~]*)[~]+$", "$1");
-                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end);
             } else {
                 finalTxt = text.substring(0, start) + "~~" + (TextUtils.isEmpty(selectTxt) ? "删除线" : text.substring(start, end)) + "~~" + text.substring(end, text.length());
             }
@@ -225,9 +225,9 @@ public class IbookerEditorUtil {
             if (pattern.matcher(selectTxt).matches()) {
                 // 如果已下划线，去掉
                 selectTxt = selectTxt.replaceAll("^[_]+([^_]*)[_]+$", "$1");
-                finalTxt = text.substring(0, start) + selectTxt + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + selectTxt + text.substring(end);
             } else {
-                finalTxt = text.substring(0, start) + "__" + (TextUtils.isEmpty(selectTxt) ? "下划线" : text.substring(start, end)) + "__" + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + "__" + (TextUtils.isEmpty(selectTxt) ? "下划线" : text.substring(start, end)) + "__" + text.substring(end);
             }
             ibookerEd.setText(finalTxt);
             // 设置光标位置
@@ -267,7 +267,7 @@ public class IbookerEditorUtil {
                 m.appendReplacement(finalTxt, m.group().toUpperCase());
             }
             m.appendTail(finalTxt);
-            ibookerEd.setText((text.substring(0, start) + finalTxt + text.substring(end, text.length())));
+            ibookerEd.setText((text.substring(0, start) + finalTxt + text.substring(end)));
             // 设置光标位置
             setSelectionInfo(rangeData);
         } catch (Exception e) {
@@ -287,7 +287,7 @@ public class IbookerEditorUtil {
             int end = rangeData.getEnd();
             String text = ibookerEd.getText().toString();
             // 赋值
-            finalTxt = text.substring(0, start) + selectTxt.toUpperCase() + text.substring(end, text.length());
+            finalTxt = text.substring(0, start) + selectTxt.toUpperCase() + text.substring(end);
             ibookerEd.setText(finalTxt);
             // 设置光标位置
             setSelectionInfo(rangeData);
@@ -308,7 +308,7 @@ public class IbookerEditorUtil {
             int end = rangeData.getEnd();
             String text = ibookerEd.getText().toString();
             // 赋值
-            finalTxt = text.substring(0, start) + selectTxt.toLowerCase() + text.substring(end, text.length());
+            finalTxt = text.substring(0, start) + selectTxt.toLowerCase() + text.substring(end);
             ibookerEd.setText(finalTxt);
             // 设置光标位置
             setSelectionInfo(rangeData);
@@ -872,9 +872,9 @@ public class IbookerEditorUtil {
             String selectTxt = rangeData.text;
             Pattern pattern = Pattern.compile("^`{3}[\\s\\S]*`{3}$");
             if (pattern.matcher(selectTxt).matches()) {
-                finalTxt = text.substring(0, start) + selectTxt.replaceAll("^`{3}[\\n]([\\s\\S]*)[\\n]`{3}$", "$1") + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + selectTxt.replaceAll("^`{3}[\\n]([\\s\\S]*)[\\n]`{3}$", "$1") + text.substring(end);
             } else {
-                finalTxt = text.substring(0, start) + "\n```\n" + selectTxt + "\n```\n" + text.substring(end, text.length());
+                finalTxt = text.substring(0, start) + "\n```\n" + selectTxt + "\n```\n" + text.substring(end);
             }
             ibookerEd.setText(finalTxt);
             // 设置光标位置
