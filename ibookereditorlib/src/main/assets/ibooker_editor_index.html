@@ -82,7 +82,7 @@
 				eConverter.setFlavor('github');
 			}
 
-			ibookerHtmlCompile(eConverter.makeHtml(ibookerEditorText));
+			ibookerHtmlCompile(eConverter.makeHtml(pinyinConvert(ibookerEditorText)));
 		}
 	};
 
@@ -135,5 +135,12 @@
 			hljs.highlightBlock(block);
 		});
 	}
+
+	// 显示拼音
+    function pinyinConvert(text) {
+        return text.replace(/\{([^{}()]+)\}\(([^{}()]+)\)/g, function(match, $1, $2) {
+            return '<ruby>' + $1 + '<rt>' + $2 + '</rt></ruby>';
+        });
+    }
 </script>
 </html>

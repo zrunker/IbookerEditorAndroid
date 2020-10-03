@@ -15,9 +15,9 @@
         <attr name="IbookerEditorTopView_BackImg_Visible" format="boolean" />
         <attr name="IbookerEditorTopView_BackImg_Res" format="reference" />
         <attr name="IbookerEditorTopView_UndoIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_UndoIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_UndoIBtn_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_RedoIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_RedoIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_RedoIBtn_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_EditIBtn_Visible" format="boolean" />
         <attr name="IbookerEditorTopView_EditIBtn_Default_Res" format="reference" />
         <attr name="IbookerEditorTopView_EditIBtn_Selected_Res" format="reference" />
@@ -25,15 +25,17 @@
         <attr name="IbookerEditorTopView_PreviewIBtn_Default_Res" format="reference" />
         <attr name="IbookerEditorTopView_PreviewIBtn_Selected_Res" format="reference" />
         <attr name="IbookerEditorTopView_AboutImg_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_AboutImg_Res" format="reference" />
+        <attr name="IbookerEditorTopView_AboutImg_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_HelpIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_HelpIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_HelpIBtn_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_ShareIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_ShareIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_ShareIBtn_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_ElseIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_ElseIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_ElseIBtn_BgRes" format="reference" />
         <attr name="IbookerEditorTopView_SetIBtn_Visible" format="boolean" />
-        <attr name="IbookerEditorTopView_SetIBtn_Res" format="reference" />
+        <attr name="IbookerEditorTopView_SetIBtn_BgRes" format="reference" />
+        <attr name="IbookerEditorTopView_FujianIBtn_Visible" format="boolean" />
+        <attr name="IbookerEditorTopView_FujianIBtn_BgRes" format="reference" />
 
         <!--编辑框-->
         <attr name="IbookerEditorEditView_BackgroundColor" format="color" />

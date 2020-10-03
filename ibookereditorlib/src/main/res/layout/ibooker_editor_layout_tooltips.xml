@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-15dp"
         android:contentDescription="@null"
-        android:src="@drawable/icon_arrow_drop_down_gray" />
+        android:src="@drawable/icon_ibooker_editor_arrow_drop_down_gray" />
 
 </LinearLayout>

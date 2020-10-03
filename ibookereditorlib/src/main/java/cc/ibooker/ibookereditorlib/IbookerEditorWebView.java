@@ -146,7 +146,11 @@ public class IbookerEditorWebView extends WebView {
                     return ibookerEditorWebViewUrlLoadingListener.shouldOverrideUrlLoading(view, request);
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        view.loadUrl(request.getUrl().toString());
+//                        view.loadUrl(request.getUrl().toString());
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(request.getUrl().toString()));
+                        getContext().startActivity(intent);
                     }
                     return true;
                 }
@@ -260,7 +264,7 @@ public class IbookerEditorWebView extends WebView {
      *
      * @param ibookerEditorText 待预览内容 非HTML
      */
-    public void ibookerCompile(String ibookerEditorText) {
+    public IbookerEditorWebView ibookerCompile(String ibookerEditorText) {
         if (!TextUtils.isEmpty(ibookerEditorText)) {
             if (isLoadFinished && !isLoadError) {
                 ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
@@ -284,6 +288,7 @@ public class IbookerEditorWebView extends WebView {
                 this.ibookerEditorText = ibookerEditorText;
             }
         }
+        return this;
     }
 
     /**
@@ -291,7 +296,7 @@ public class IbookerEditorWebView extends WebView {
      *
      * @param ibookerEditorHtml 待预览内容 HTML
      */
-    public void ibookerHtmlCompile(String ibookerEditorHtml) {
+    public IbookerEditorWebView ibookerHtmlCompile(String ibookerEditorHtml) {
         if (!TextUtils.isEmpty(ibookerEditorHtml)) {
             if (isLoadFinished && !isLoadError) {
                 String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
@@ -314,6 +319,7 @@ public class IbookerEditorWebView extends WebView {
                 this.ibookerEditorHtml = ibookerEditorHtml;
             }
         }
+        return this;
     }
 
     /**
@@ -348,7 +354,7 @@ public class IbookerEditorWebView extends WebView {
     /**
      * 设置当前字体大小
      */
-    public void setIbookerEditorWebViewFontSize(int fontSize) {
+    public IbookerEditorWebView setIbookerEditorWebViewFontSize(int fontSize) {
         if (fontSize >= 1 && fontSize <= 5) {
             currentFontSize = fontSize;
             switch (fontSize) {
@@ -369,6 +375,7 @@ public class IbookerEditorWebView extends WebView {
                     break;
             }
         }
+        return this;
     }
 
     @Override
@@ -386,8 +393,9 @@ public class IbookerEditorWebView extends WebView {
 
     private IbookerEditorWebViewOnScrollChangedCallback mIbookerEditorWebViewOnScrollChangedCallback;
 
-    public void setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
+    public IbookerEditorWebView setIbookerEditorWebViewOnScrollChangedCallback(IbookerEditorWebViewOnScrollChangedCallback ibookerEditorWebViewOnScrollChangedCallback) {
         mIbookerEditorWebViewOnScrollChangedCallback = ibookerEditorWebViewOnScrollChangedCallback;
+        return this;
     }
 
     // 图片预览接口
@@ -395,8 +403,9 @@ public class IbookerEditorWebView extends WebView {
         void onIbookerEditorImgPreview(String currentPath, int position, ArrayList<String> imgAllPathList);
     }
 
-    public void setIbookerEditorImgPreviewListener(IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
+    public IbookerEditorWebView setIbookerEditorImgPreviewListener(IbookerEditorImgPreviewListener ibookerEditorImgPreviewListener) {
         ibookerEditorJsCheckImgEvent.setmIbookerEditorImgPreviewListener(ibookerEditorImgPreviewListener);
+        return this;
     }
 
     // Url加载状态监听
@@ -416,7 +425,8 @@ public class IbookerEditorWebView extends WebView {
 
     private IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener;
 
-    public void setIbookerEditorWebViewUrlLoadingListener(IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener) {
+    public IbookerEditorWebView setIbookerEditorWebViewUrlLoadingListener(IbookerEditorWebViewUrlLoadingListener ibookerEditorWebViewUrlLoadingListener) {
         this.ibookerEditorWebViewUrlLoadingListener = ibookerEditorWebViewUrlLoadingListener;
+        return this;
     }
 }

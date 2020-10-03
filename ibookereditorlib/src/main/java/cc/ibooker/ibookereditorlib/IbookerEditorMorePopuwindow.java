@@ -88,7 +88,8 @@ public class IbookerEditorMorePopuwindow extends PopupWindow {
 
     private OnMoreLvItemClickListener onMoreLvItemClickListener;
 
-    public void setOnMoreLvItemClickListener(OnMoreLvItemClickListener onMoreLvItemClickListener) {
+    public IbookerEditorMorePopuwindow setOnMoreLvItemClickListener(OnMoreLvItemClickListener onMoreLvItemClickListener) {
         this.onMoreLvItemClickListener = onMoreLvItemClickListener;
+        return this;
     }
 }
