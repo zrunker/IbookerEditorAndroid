@@ -1646,12 +1646,12 @@ public class IbookerEditorView extends LinearLayout implements
                             Uri uri;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                uri = FileProvider.getUriForFile(getContext(), "cc.ibooker.ibookereditorlib.ibookerFileProvider", file);
+                                uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".ibookerFileProvider", file);
                             } else {
                                 uri = Uri.fromFile(file);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             }
                             intent.setDataAndType(uri, "image/*");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             IbookerEditorView.this.getContext().startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();

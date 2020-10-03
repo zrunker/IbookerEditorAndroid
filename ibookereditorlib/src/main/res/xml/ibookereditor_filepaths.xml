@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <external-path
+        name="ibookerEditor_1"
+        path="Android/data/cc.ibooker.ibookereditorklib/" />
+    <external-path
+        name="ibookerEditor_2"
+        path="Android/data/" />
+    <external-path
+        name="ibookerEditor_3"
+        path="." />
+    <external-path
         name="ibookerEditor"
         path="ibookerEditor/" />
 </paths>
