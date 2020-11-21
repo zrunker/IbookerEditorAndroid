@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_ABOUT;
 import static cc.ibooker.ibookereditorlib.IbookerEditorEnum.TOOLVIEW_TAG.IBTN_BOLD;
@@ -858,6 +859,12 @@ public class IbookerEditorView extends LinearLayout implements
     // 获取附件返回内容（文件地址）
     public String getPickFile(Intent intent) {
         return UriUtil.getFilePathByUri(getContext(), intent.getData());
+    }
+
+    // 设置请求头
+    public IbookerEditorView setAdditionalHttpHeaders(Map<String, String> additionalHttpHeaders) {
+        ibookerEditorVpView.getPreView().setAdditionalHttpHeaders(additionalHttpHeaders);
+        return this;
     }
 
     /**

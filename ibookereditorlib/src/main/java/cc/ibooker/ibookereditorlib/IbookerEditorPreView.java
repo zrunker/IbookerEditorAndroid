@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Map;
+
 /**
  * 书客编辑器 - 预览界面 - 自定义WebView
  * Created by 邹峰立 on 2018/2/11.
@@ -103,6 +105,12 @@ public class IbookerEditorPreView extends NestedScrollView {
         ibookerEditorWebView = new IbookerEditorWebView(context);
         ibookerEditorWebView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         linearLayout.addView(ibookerEditorWebView);
+    }
+
+    // 设置请求头
+    public IbookerEditorPreView setAdditionalHttpHeaders(Map<String, String> additionalHttpHeaders) {
+        ibookerEditorWebView.setAdditionalHttpHeaders(additionalHttpHeaders);
+        return this;
     }
 
     /**

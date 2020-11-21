@@ -21,6 +21,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * 书客编辑器 - 预览界面 - 自定义WebView
@@ -37,6 +38,8 @@ public class IbookerEditorWebView extends WebView {
     private IbookerEditorJsCheckImgEvent ibookerEditorJsCheckImgEvent;
     private WebSettings webSettings;
     private int currentFontSize;
+
+    private Map<String, String> additionalHttpHeaders;
 
     public int getCurrentFontSize() {
         return currentFontSize;
@@ -131,7 +134,7 @@ public class IbookerEditorWebView extends WebView {
                 if (ibookerEditorWebViewUrlLoadingListener != null)
                     return ibookerEditorWebViewUrlLoadingListener.shouldOverrideUrlLoading(view, url);
                 else {
-//                    view.loadUrl(url);
+//                    view.loadUrl(url, additionalHttpHeaders);
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
@@ -146,7 +149,7 @@ public class IbookerEditorWebView extends WebView {
                     return ibookerEditorWebViewUrlLoadingListener.shouldOverrideUrlLoading(view, request);
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        view.loadUrl(request.getUrl().toString());
+//                        view.loadUrl(request.getUrl().toString(), additionalHttpHeaders);
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(request.getUrl().toString()));
@@ -162,7 +165,7 @@ public class IbookerEditorWebView extends WebView {
                     ibookerEditorWebViewUrlLoadingListener.onReceivedError(view, request, error);
                 else
                     // 当网页加载出错时，加载本地错误文件
-                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html", additionalHttpHeaders);
                 isLoadError = true;
             }
 
@@ -180,7 +183,7 @@ public class IbookerEditorWebView extends WebView {
                     ibookerEditorWebViewUrlLoadingListener.onReceivedSslError(view, handler, error);
                 else
                     // 当网页加载出错时，加载本地错误文件
-                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html");
+                    IbookerEditorWebView.this.loadUrl("file:///android_asset/error.html", additionalHttpHeaders);
                 isLoadError = true;
             }
 
@@ -210,7 +213,7 @@ public class IbookerEditorWebView extends WebView {
         ibookerEditorJsCheckImgEvent = new IbookerEditorJsCheckImgEvent();
         addJavascriptInterface(ibookerEditorJsCheckImgEvent, "ibookerEditorJsCheckImgEvent");
         // 加载本地HTML
-        loadUrl("file:///android_asset/ibooker_editor_index.html");
+        loadUrl("file:///android_asset/ibooker_editor_index.html", additionalHttpHeaders);
         isLoadError = false;
     }
 
@@ -249,7 +252,14 @@ public class IbookerEditorWebView extends WebView {
                 + "          window.ibookerEditorJsCheckImgEvent.onCheckImg(this.src);"
                 + "     }"
                 + "  }"
-                + "})()");
+                + "})()", additionalHttpHeaders);
+    }
+
+    // 设置请求头
+    public IbookerEditorWebView setAdditionalHttpHeaders(Map<String, String> additionalHttpHeaders) {
+        this.additionalHttpHeaders = additionalHttpHeaders;
+        loadUrl("file:///android_asset/ibooker_editor_index.html", additionalHttpHeaders);
+        return this;
     }
 
     /**
@@ -269,7 +279,7 @@ public class IbookerEditorWebView extends WebView {
             if (isLoadFinished && !isLoadError) {
                 ibookerEditorText = ibookerEditorText.replaceAll("\\n", "\\\\n");
                 String js = "javascript:ibookerCompile('" + ibookerEditorText + "')";
-                this.loadUrl(js);
+                this.loadUrl(js, additionalHttpHeaders);
 
                 // 重新WebView添加监听
                 addWebViewListener();
@@ -281,7 +291,7 @@ public class IbookerEditorWebView extends WebView {
             } else {
                 if (isLoadError) {
                     // 加载本地HTML
-                    loadUrl("file:///android_asset/ibooker_editor_index.html");
+                    loadUrl("file:///android_asset/ibooker_editor_index.html", additionalHttpHeaders);
                     isLoadError = false;
                 }
                 this.isExecuteCompile = true;
@@ -300,7 +310,7 @@ public class IbookerEditorWebView extends WebView {
         if (!TextUtils.isEmpty(ibookerEditorHtml)) {
             if (isLoadFinished && !isLoadError) {
                 String js = "javascript:ibookerHtmlCompile('" + ibookerEditorHtml + "')";
-                this.loadUrl(js);
+                this.loadUrl(js, additionalHttpHeaders);
 
                 // 重新WebView添加监听
                 addWebViewListener();
@@ -312,7 +322,7 @@ public class IbookerEditorWebView extends WebView {
             } else {
                 if (isLoadError) {
                     // 加载本地HTML
-                    loadUrl("file:///android_asset/ibooker_editor_index.html");
+                    loadUrl("file:///android_asset/ibooker_editor_index.html", additionalHttpHeaders);
                     isLoadError = false;
                 }
                 this.isExecuteHtmlCompile = true;
