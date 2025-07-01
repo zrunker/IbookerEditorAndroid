@@ -1,8 +1,6 @@
 # IbookerEditorAndroid
 书客编辑器安卓Java版
 
->作者：邹峰立，微博：zrunker，邮箱：zrunker@yahoo.com，微信公众号：书客创作，个人平台：www.ibooker.cc。
-
 >本文选自[书客创作](www.ibooker.cc)平台第130篇文章。[阅读原文](http://www.ibooker.cc/article/130/detail) ，  [书客编辑器安卓Java版 - 体验版下载](https://www.pgyer.com/QUOX)
 
 ![书客创作](http://upload-images.jianshu.io/upload_images/3480018-3eaa10cda787aaed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
